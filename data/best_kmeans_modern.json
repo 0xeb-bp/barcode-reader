@@ -1,0 +1,709 @@
+{
+  "config": {
+    "K": 3,
+    "prod_collapse": true,
+    "modern_only": true,
+    "min_date": "2025-01-01",
+    "n_samples": 86,
+    "n_features": 182,
+    "pca_explained_variance": [
+      0.19992890849219375,
+      0.16962668003241818
+    ]
+  },
+  "race_breakdown": {
+    "Terran": 20,
+    "Protoss": 44,
+    "Zerg": 22
+  },
+  "samples": [
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 7.887344358046988,
+      "pca_y": 2.635394503579888,
+      "file": "NCS_Bestt_vs_MBU_Movie_tvp_win_MM-07F72D24-F5EA-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -1.9599999124726881,
+      "pca_y": 6.514210507653073,
+      "file": "NCS_Bestt_vs_llIIIlIIIllIIII_tvp_win_MM-7D93933A-FD4A-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -5.328507745486836,
+      "pca_y": -3.2552629684579166,
+      "file": "NCS_Bestt_vs_PuraVida_zvt_loss_MM-F433BB32-F520-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -3.629930250069008,
+      "pca_y": -8.03862291252613,
+      "file": "NCS_Bestt_vs_womendeai_zvz_win_MM-C85DEF74-FE2A-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": 0.6088368317356347,
+      "pca_y": 10.52615924682437,
+      "file": "NCS_Bestt_vs_lllIllIIIlIlIlI_pvp_win_MM-CF358B88-0026-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -5.64606110199101,
+      "pca_y": 1.3466825114979608,
+      "file": "NCS_Bestt_vs_xibazerg_zvt_win_MM-E2EBEA00-F522-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 11.023210748013504,
+      "pca_y": 0.6197429414694894,
+      "file": "NCS_Bestt_vs_NCS_Tshu_tvp_win_MM-D891C276-FC0E-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 5.918458207459746,
+      "pca_y": -6.0661715120189275,
+      "file": "NCS_Bestt_vs_IIIOOIILLIL_zvp_win_MM-C1933644-FF8E-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 1,
+      "pca_x": -13.292954858258682,
+      "pca_y": 3.2336614839240423,
+      "file": "NCS_Bestt_vs_naem-sae_zvz_win_MM-1D4D692A-F51F-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -1.6657312498693806,
+      "pca_y": 9.080461291196245,
+      "file": "NCS_Bestt_vs_IIIlIlIIllllllI_tvp_win_MM-B334B1C4-FC26-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -6.245349907001072,
+      "pca_y": 9.837628211561864,
+      "file": "NCS_Bestt_vs_loveaddio_zvt_win_MM-C8AAD78C-F761-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 6.795301995131075,
+      "pca_y": 3.6179785518058636,
+      "file": "NCS_Bestt_vs_CJFreshjWay._tvp_win_MM-E158047A-FE24-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -9.479353791063236,
+      "pca_y": -0.9845335975286047,
+      "file": "NCS_Bestt_vs_Kuri__zvz_win_MM-02CA977A-F520-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -4.514628112932739,
+      "pca_y": 4.099385888704523,
+      "file": "NCS_Bestt_vs_agreewithagree_zvp_win_MM-177B80C8-FD3E-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 7.388811976105528,
+      "pca_y": -0.7316659910734375,
+      "file": "NCS_Bestt_vs_415_L_pvp_win_MM-47D2506C-FE1F-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 5.644555548743119,
+      "pca_y": 2.0619684686370268,
+      "file": "NCS_Bestt_vs_lIIlIllIlIIlIIl_zvp_loss_MM-EBCBC66C-0022-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 6.971616239716579,
+      "pca_y": 6.534724766458711,
+      "file": "NCS_Bestt_vs_IIIIIIIIIlII_tvp_win_MM-28047C3A-0025-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -7.163706716717737,
+      "pca_y": 15.505943251685538,
+      "file": "NCS_Bestt_vs_&-fireman_pvp_loss_MM-C70565BA-F76F-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 5.6020326384248795,
+      "pca_y": -1.0627380461727878,
+      "file": "NCS_Bestt_vs_TimeisgoId_zvt_win_MM-F3051806-F763-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 9.068566555844896,
+      "pca_y": -1.4071870935392221,
+      "file": "NCS_Bestt_vs_iiiiilililli_tvp_loss_MM-489B49A0-F76B-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 2,
+      "pca_x": -1.8839915990613638,
+      "pca_y": -1.9421302983290816,
+      "file": "NCS_Bestt_vs_dfaeffgsf_tvp_win_MM-517A425A-00EF-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 3.2460173995526795,
+      "pca_y": 4.937392427577388,
+      "file": "NCS_Bestt_vs_rwqkoprkw_pvp_win_MM-AB6460F8-FE23-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -2.990098444102051,
+      "pca_y": 6.372205519208993,
+      "file": "NCS_Bestt_vs_yanka_[S.U]_zvp_win_MM-C1ABBFF8-FD3F-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -1.7494250329642362,
+      "pca_y": 8.053603912185805,
+      "file": "NCS_Bestt_vs_Dunchon_Hun2_zvp_win_MM-E75378E8-00E8-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 9.405152043046698,
+      "pca_y": 0.6272085671582116,
+      "file": "NCS_Bestt_vs_CJFreshjWay._tvt_loss_MM-D90562E8-FE26-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 7.1122560927875655,
+      "pca_y": -1.803908968320975,
+      "file": "NCS_Bestt_vs_OOOO0000OO0_zvp_win_MM-CBAB19CC-FF92-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 3.3849449470542012,
+      "pca_y": 1.2317931768435577,
+      "file": "NCS_Bestt_vs_JJABJJE`net_zvp_win_MM-892DD624-00EC-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 4.639068327442272,
+      "pca_y": 2.797248167581587,
+      "file": "NCS_Bestt_vs_dq5hbuaq_tvp_win_MM-62CFFF5C-F769-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 2.0263281299206657,
+      "pca_y": 2.8895730534208064,
+      "file": "NCS_Bestt_vs_AOI_OGRE_AN-21_zvt_loss_MM-AA9B39F2-F523-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -4.066164907633669,
+      "pca_y": 4.705187750283456,
+      "file": "NCS_Bestt_vs_ByungJae`GRD_zvt_win_MM-D4E4A14E-F762-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 3.6097341613625282,
+      "pca_y": 0.7059775988857634,
+      "file": "NCS_Bestt_vs_NCS_NASDIFANSDF_tvt_loss_MM-0E730B0A-F766-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 2,
+      "pca_x": -1.4313592913849766,
+      "pca_y": -3.0166958418030463,
+      "file": "NCS_Bestt_vs_IlIlIllI1Il_zvp_win_MM-874B7836-FD43-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -12.237096466717407,
+      "pca_y": -3.739752566836547,
+      "file": "NCS_Bestt_vs_doooooooooo112_zvt_win_MM-0028F328-F768-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -6.8848367139979,
+      "pca_y": -4.558026505312397,
+      "file": "NCS_Bestt_vs_dq5hbuaq_zvt_loss_MM-952CC77E-F768-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": 2.561476671383493,
+      "pca_y": -6.551022688443602,
+      "file": "NCS_Bestt_vs_4d5d6d7d8d9d_zvp_loss_MM-D33D3134-F5EC-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -6.714117928450535,
+      "pca_y": 6.844815353403395,
+      "file": "NCS_Bestt_vs_IIIlIlIIllllllI_tvp_win_MM-F7700FBA-FC25-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 1.462019570230368,
+      "pca_y": 1.11088526326173,
+      "file": "NCS_Bestt_vs_TuF`Gas_pvp_loss_MM-DBAAAC00-FD46-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 1.2805295949178614,
+      "pca_y": -2.3908985983438433,
+      "file": "NCS_Bestt_vs_llIIIlIIIllIIII_tvp_win_MM-6BDBE060-FD41-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -7.79764887992283,
+      "pca_y": 2.596136600428859,
+      "file": "NCS_Bestt_vs_xhtmehgoqhwk_tvp_win_MM-D934FCB2-FD3E-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -1.4368412808856894,
+      "pca_y": 0.6231350155125472,
+      "file": "NCS_Bestt_vs_llIIIlIIIllIIII_tvp_win_MM-6E2D1818-FD49-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 4.495838135160525,
+      "pca_y": 2.797774629966447,
+      "file": "NCS_Bestt_vs_C9_FlaSh_tvp_win_MM-CFC89540-00E9-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": 0.2889931368383225,
+      "pca_y": 4.217517901625358,
+      "file": "NCS_Bestt_vs_its`chOi_tvp_win_MM-335AD524-00EE-11F1-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -9.108956907961621,
+      "pca_y": 8.627418773465639,
+      "file": "NCS_Bestt_vs_23b587235b9f_tvt_win_MM-E188FF28-FD3C-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 1.934392180616519,
+      "pca_y": 1.3588460512042964,
+      "file": "NCS_Bestt_vs_lIIllIllI_pvp_win_MM-27F5BD8A-FE22-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -3.913019466350057,
+      "pca_y": -10.865872194807887,
+      "file": "IllllIlIIIlI_vs_NCS_Bestt_zvp_win_MM-2E8B97E2-DD33-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 6.7682812989586925,
+      "pca_y": 0.8229458250184897,
+      "file": "SSU_Stork_vs_NCS_Bestt_tvp_win_MM-BF13F53A-DCC4-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -3.517826261619326,
+      "pca_y": -7.1063992568475385,
+      "file": "NCS_Bestt_vs_IIIIIlIIIIIIlII_zvz_loss_MM-51DA687A-DCC7-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 5.562374134614588,
+      "pca_y": -4.873932416507008,
+      "file": "NCS_Bestt_vs_llIIIlIIIllIIII_tvp_win_MM-A05F8E84-E75E-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 3.915584033111164,
+      "pca_y": -1.1283111202970195,
+      "file": "NCS_Bestt_vs_Wico`Yadoran_tvp_loss_MM-7A961FF4-DD38-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -7.167623940568742,
+      "pca_y": -9.420350186702333,
+      "file": "NCS_Bestt_vs_rmfmrm[kS]_zvz_win_MM-D0570A9C-DCCB-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -2.7997190246242654,
+      "pca_y": 4.980351712963781,
+      "file": "NCS_Bestt_vs_541546456_zvp_win_MM-225398BA-E172-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -6.8122886748159495,
+      "pca_y": -3.120624241572872,
+      "file": "NCS_Bestt_vs_IIIIlIlIlIIlllI_zvz_loss_MM-DFA75494-DBDA-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 5.084840298113514,
+      "pca_y": -3.37708628583155,
+      "file": "NCS_Bestt_vs_C9_HyuK9_zvt_loss_MM-BE333116-DEB9-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 1,
+      "pca_x": -11.87094146404711,
+      "pca_y": 1.1964791039015303,
+      "file": "NCS_Bestt_vs_Dic_Double`Jay_zvp_win_MM-972F6244-F51E-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -0.09074486780287078,
+      "pca_y": 2.886739359139487,
+      "file": "NCS_Bestt_vs_IIIIlIlIlIIlllI_zvt_loss_MM-D1AA8E94-DBDD-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 9.322462434838613,
+      "pca_y": 3.4019877439900843,
+      "file": "NCS_Bestt_vs_Mpddannny_tvp_win_MM-14A92D52-E176-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -7.543165998169654,
+      "pca_y": -7.835589657625839,
+      "file": "NCS_Bestt_vs_asadasddda_zvz_win_MM-910BBA42-DCC9-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 7.8886787190541625,
+      "pca_y": -2.057219469839593,
+      "file": "NCS_Bestt_vs_1zxdasd3_tvp_loss_MM-D44689CC-DEBD-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -3.1540251122332807,
+      "pca_y": 6.820018489375828,
+      "file": "NCS_Bestt_vs_IlllllIIlIllIIl_pvp_win_MM-DB1A224C-E172-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 0,
+      "pca_x": 3.9047153465323325,
+      "pca_y": -4.597173503086788,
+      "file": "NCS_Bestt_vs_IIIIlIlIlIIlllI_zvt_win_MM-81D3ABB0-DBDF-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 6.585336446487574,
+      "pca_y": 0.7668359615178351,
+      "file": "NCS_Bestt_vs_IlIllIlIIIlllI_zvp_win_MM-6155836C-E892-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 1.6080146749730386,
+      "pca_y": -1.0097527484035935,
+      "file": "NCS_Bestt_vs_LGCraft_MSG_pvp_win_MM-F180BCE6-E896-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 8.670675795620415,
+      "pca_y": -1.9613591521621736,
+      "file": "NCS_Bestt_vs_ByungAri_zvp_win_MM-E6FC6B08-E75B-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": 2.8621300296260834,
+      "pca_y": -8.202493969389495,
+      "file": "NCS_Bestt_vs_IllIIIIIIlIlIlI_zvt_win_MM-064CDA54-DCCD-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 9.522845308281202,
+      "pca_y": 1.2179220578008245,
+      "file": "NCS_Bestt_vs_liIliLi13ll2i31_tvp_win_MM-0C466A1C-E761-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -2.1399484087145098,
+      "pca_y": 9.852197036654513,
+      "file": "NCS_Bestt_vs_IlIll1IlIlIIII_pvp_loss_MM-33D0A6E4-EBB5-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 2,
+      "pca_x": -1.7834144239289036,
+      "pca_y": -2.1861841523014727,
+      "file": "NCS_Bestt_vs_IIIIlIlIlIIlllI_zvt_win_MM-E0E1601C-DBDE-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -3.081252157992188,
+      "pca_y": -12.132900061297356,
+      "file": "NCS_Bestt_vs_IlllllIlllIlll_zvt_loss_MM-51B457EE-DB09-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": 4.168734152736338,
+      "pca_y": -10.915901224383969,
+      "file": "NCS_Bestt_vs_qwdilwdilwqdiwq_zvp_loss_MM-38B4C7C8-E5DC-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 2.5401811838098434,
+      "pca_y": 0.9769584865562474,
+      "file": "NCS_Bestt_vs_IIllIIIIIIIl_zvp_loss_MM-B1EB7560-E889-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Terran",
+      "cluster": 1,
+      "pca_x": -5.7291825421691565,
+      "pca_y": 2.5310248170116187,
+      "file": "NCS_Bestt_vs_llIIlllllIIIllI_zvt_win_MM-EBD126D4-DEBC-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 4.412949438971663,
+      "pca_y": 1.6569280190224909,
+      "file": "NCS_Bestt_vs_SSU_ZeLoT_zvp_win_MM-1C95B076-EBB7-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 0.9271110316582734,
+      "pca_y": 0.9094436060380087,
+      "file": "NCS_Bestt_vs_StOryTerran_tvp_win_MM-110E124A-E174-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -4.314062572400112,
+      "pca_y": -4.408615610791472,
+      "file": "NCS_Bestt_vs_asadasddda_zvz_loss_MM-27F26EF8-DB38-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -4.756342752968504,
+      "pca_y": 5.559070316019103,
+      "file": "NCS_Bestt_vs_NaiqouG_FnuS_pvp_win_MM-DDB1BA7C-EBB5-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": -2.1588105631652525,
+      "pca_y": 1.4555264474669949,
+      "file": "NCS_Bestt_vs_afiwj;fkvm;dm;l_pvp_win_MM-24414AEA-DA61-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": -0.4570768142491019,
+      "pca_y": 0.7778890656836882,
+      "file": "NCS_Bestt_vs_K_JyJ1_tvp_win_MM-F829EE1A-DA62-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 5.357239371562561,
+      "pca_y": -4.081942113661449,
+      "file": "NCS_Bestt_vs_SCU_mayd_tvp_win_MM-6485AA3E-F216-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -8.92544846357044,
+      "pca_y": -4.07238117758229,
+      "file": "NCS_Bestt_vs_bhsvawegbvargb_zvz_win_MM-15C26DD8-DB37-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": 2.3350210390674624,
+      "pca_y": -12.889358225247259,
+      "file": "NCS_Bestt_vs_PUTIN`NET_zvt_win_MM-90E69196-DB0B-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 1,
+      "pca_x": 1.2248591611965869,
+      "pca_y": 6.354775536100883,
+      "file": "NCS_Bestt_vs_llllliilval_tvp_win_MM-25435670-E75B-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 11.001446121615333,
+      "pca_y": -0.7233837435360385,
+      "file": "NCS_Bestt_vs_llIIIlIIIllIIII_tvp_win_MM-D0E66200-E757-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -8.916267868037552,
+      "pca_y": -7.470280791727214,
+      "file": "NCS_Bestt_vs_IIIIlIlIlIIlllI_zvz_win_MM-C81FC6D4-DBDB-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -11.056202196429053,
+      "pca_y": -6.3105802683895895,
+      "file": "NCS_Bestt_vs_bab_1GGi_zvt_loss_MM-F61023A2-DCC8-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Zerg",
+      "cluster": 2,
+      "pca_x": -6.614322971495456,
+      "pca_y": -10.687927272581065,
+      "file": "NCS_Bestt_vs_Yebin_S2_zvt_win_MM-9A7368C0-DD35-11F0-A3DD-FA167B5461B6.rep"
+    },
+    {
+      "alias": "NCS_Bestt",
+      "race": "Protoss",
+      "cluster": 0,
+      "pca_x": 6.009482133931034,
+      "pca_y": -1.293518537994457,
+      "file": "NCS_Bestt_vs_IIIIIlllIIlllIl_pvp_loss_MM-5BDD6BD2-E894-11F0-A3DD-FA167B5461B6.rep"
+    }
+  ]
+}
