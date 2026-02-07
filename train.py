@@ -42,13 +42,8 @@ def main():
         player_samples = []
         for alias in aliases:
             samples = extract_player_samples(conn, alias, label=canonical,
-                                             min_date=MIN_DATE, max_games=25)
+                                             min_date=MIN_DATE)
             player_samples.extend(samples)
-        # Cap at 25 per player to avoid class imbalance
-        if len(player_samples) > 25:
-            np.random.seed(42)
-            indices = np.random.choice(len(player_samples), 25, replace=False)
-            player_samples = [player_samples[i] for i in indices]
         if len(player_samples) < 10:
             print(f"  {canonical}: {len(player_samples)} valid games — SKIPPED (< 10)")
             sys.stdout.flush()
@@ -85,7 +80,8 @@ def main():
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
-    clf = RandomForestClassifier(n_estimators=200, max_depth=10, random_state=42, n_jobs=-1)
+    clf = RandomForestClassifier(n_estimators=200, max_depth=10, random_state=42,
+                                    class_weight="balanced", n_jobs=-1)
     loo = LeaveOneOut()
     predictions = cross_val_predict(clf, X_scaled, y, cv=loo)
 

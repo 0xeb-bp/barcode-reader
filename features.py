@@ -15,6 +15,8 @@ SCREP_PATH = Path.home() / "go/bin/screp"
 DB_PATH = Path(__file__).parent / "data" / "replays.db"
 FRAME_MS = 42
 FRAMES_PER_MINUTE = (1000 / FRAME_MS) * 60
+MIN_GAME_MINUTES = 4
+MIN_COMMANDS = 100
 
 # Action category mapping - abstracts race-specific actions
 ACTION_CATEGORIES = {
@@ -89,11 +91,11 @@ def extract_abstracted_ngrams(commands: list, n: int) -> Counter:
 
 def extract_features(commands: list, game_frames: int) -> tuple:
     """Extract base features + raw n-gram counters (for two-pass selection)."""
-    if len(commands) < 100:
+    if len(commands) < MIN_COMMANDS:
         return None, None
 
     game_minutes = (game_frames * FRAME_MS) / 1000 / 60
-    if game_minutes < 3:
+    if game_minutes < MIN_GAME_MINUTES:
         return None, None
 
     features = {}
@@ -201,13 +203,33 @@ def extract_features(commands: list, game_frames: int) -> tuple:
     queued = sum(1 for c in commands if c.get("Queued", False))
     features["queued_ratio"] = queued / len(commands)
 
+    # === SELECTION PATTERNS ===
     selections = [c for c in commands if c["Type"]["Name"] == "Select"]
+    select_adds = [c for c in commands if c["Type"]["Name"] == "Select Add"]
     if selections:
         sizes = [len(c.get("UnitTags", [])) for c in selections if "UnitTags" in c]
         if sizes:
             features["select_size_mean"] = statistics.mean(sizes)
             features["select_size_std"] = statistics.stdev(sizes) if len(sizes) > 1 else 0
         features["selection_action_ratio"] = len(selections) / len(commands)
+
+        # Select Add ratio — shift-clicker vs drag-boxer vs pure hotkey
+        features["select_add_ratio"] = len(select_adds) / len(selections) if selections else 0
+
+        # Selection tempo — time gaps between consecutive select-type commands
+        select_cmds = [c for c in commands if c["Type"]["Name"] in ("Select", "Select Add", "Select Remove")]
+        if len(select_cmds) > 5:
+            sel_gaps_ms = [(select_cmds[i]["Frame"] - select_cmds[i-1]["Frame"]) * FRAME_MS
+                          for i in range(1, len(select_cmds))]
+            features["select_gap_mean"] = statistics.mean(sel_gaps_ms)
+            features["select_gap_median"] = statistics.median(sel_gaps_ms)
+            features["reselect_burst_ratio"] = sum(1 for g in sel_gaps_ms if g < 200) / len(sel_gaps_ms)
+
+    # TODO: Selection size distribution shape (binned) — disabled, may correlate with race/game-state
+    # pct_select_1    = count(size == 1)  / total    # single click
+    # pct_select_2_4  = count(2 <= s <= 4)  / total  # small drag or double-click
+    # pct_select_5_8  = count(5 <= s <= 8)  / total  # medium drag box
+    # pct_select_9_12 = count(9 <= s <= 12) / total  # fat drag box (BW max 12)
 
     features["apm"] = len(commands) / game_minutes
 
