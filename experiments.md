@@ -393,6 +393,56 @@ ACTION_CATEGORIES = {
 
 ---
 
+## Experiment 10: Modern Era, Prod Collapse, 16 Players
+**Date**: Feb 2026
+**Features**: Race-neutral + abstracted n-grams + consecutive Prod collapse
+**Hyperparameters**: max_depth=10, n_estimators=200, StandardScaler
+**Feature count**: 189
+**Training data**: Modern era only (>=2025-01-01), 25 samples/player max
+
+| Metric | Value |
+|--------|-------|
+| Samples | 322 (16 players) |
+| Accuracy | **99.1%** |
+
+**Per-player accuracy:**
+- 100%: Ample, Best, Fantasy, Flash, Larva, Rain, Rush, Scan, Sharp, Sky, SoulKey, soO, Stork, Tyson (14/16)
+- 95.5%: BishOp (21/22)
+- 90.0%: EffOrt (18/20)
+
+**Notes**: Consecutive Prod collapse removed race-mechanical queuing signal from n-grams. Modern era only gave much cleaner data than all-eras training.
+
+---
+
+## Experiment 11: Modern Era, 20 Players (Added Speed, Air, yOOn, Artosis)
+**Date**: Feb 2026
+**Features**: Same as Exp 10
+**Hyperparameters**: max_depth=10, n_estimators=200, StandardScaler
+**Feature count**: 189
+**Training data**: Modern era only (>=2025-01-01), 25 samples/player max
+
+| Metric | Value |
+|--------|-------|
+| Samples | 407 (20 players) |
+| Accuracy | **99.0%** |
+
+**Per-player accuracy:**
+- 100%: Air (21/21), Ample (22/22), Artosis (18/18), Best (23/23), Fantasy (23/23), Flash (14/14), Larva (16/16), Rain (20/20), Rush (17/17), Scan (23/23), Sharp (24/24), Sky (23/23), SoulKey (11/11), soO (22/22), Speed (20/20), Stork (24/24), Tyson (24/24)
+- 95.5%: BishOp (21/22)
+- 95.0%: yOOn (19/20)
+- 90.0%: EffOrt (18/20)
+
+**Top features:**
+1. `ehkg2_3_3` (0.022) - early hotkey group 3 double-tap
+2. `ehkg2_4_4` (0.021) - early hotkey group 4 double-tap
+3. `ehkg2_2_2` (0.021) - early hotkey group 2 double-tap
+4. `ehkg3_2_2_2` (0.020) - early hotkey group 2 triple-tap
+5. `early_rapid_ratio` (0.019) - early game speed
+
+**Notes**: Added 4 new labeled players (Speed, Air, yOOn, Artosis). Rich skipped (only 7 valid modern games). All 4 new players at 100% except yOOn (95%). Accuracy held steady at 99.0% despite 25% more players. Early hotkey group patterns dominate feature importance.
+
+---
+
 ## Ideas to Try
 - [x] Abstracted n-grams (Experiment 4)
 - [x] Hyperparameter tuning (Experiment 5)
