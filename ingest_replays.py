@@ -386,27 +386,15 @@ def main():
         print(f"\n{'='*60}")
         print(f"Ingesting new replays from: {to_ingest_dir}")
         print("="*60)
-        ingest_new(conn, to_ingest_dir, data_dir / "cwal_replays")
+        ingest_new(conn, to_ingest_dir, data_dir / "replays")
     else:
-        # Full re-ingest (first run or explicit)
-        review_dir = Path(__file__).parent / "replays_to_review"
-
-        dirs_to_ingest = [
-            data_dir / "poc_2008_2023",
-            data_dir / "cwal_replays",
-            data_dir / "bisu_archive",
-            data_dir / "flash_archive",
-            review_dir / "680 Progamer reps",
-            review_dir / "ygosu",
-            review_dir / "Star replays from Korea",
-        ]
-
-        for d in dirs_to_ingest:
-            if d.exists():
-                print(f"\n{'='*60}")
-                print(f"Ingesting: {d}")
-                print("="*60)
-                ingest_directory(conn, d)
+        # Full re-ingest from consolidated replays dir
+        replays_dir = data_dir / "replays"
+        if replays_dir.exists():
+            print(f"\n{'='*60}")
+            print(f"Ingesting: {replays_dir}")
+            print("="*60)
+            ingest_directory(conn, replays_dir)
 
     stats(conn)
     conn.close()
