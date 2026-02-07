@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""cwal.gg ladder API tool for Gosu Unveiled."""
+"""cwal.gg ladder API tool for Barcode Reader."""
 
 import argparse
 import re
@@ -93,6 +93,25 @@ def format_date(ts):
 # API functions (return raw JSON, reusable from other scripts)
 # ---------------------------------------------------------------------------
 
+def api_match_count(alias, gateway=DEFAULT_GATEWAY):
+    """Get total match count for a player (HEAD request with count=exact)."""
+    url = f"{SUPABASE_URL}/rest/v1/player_matches"
+    params = {
+        "alias": f"eq.{alias}",
+        "gateway": f"eq.{gateway}",
+        "limit": 1,
+    }
+    headers = get_headers()
+    headers["Prefer"] = "count=exact"
+    resp = requests.head(url, headers=headers, params=params)
+    resp.raise_for_status()
+    cr = resp.headers.get("content-range", "")
+    # content-range: 0-0/22 or */0
+    if "/" in cr:
+        return int(cr.split("/")[1])
+    return 0
+
+
 def api_matches(alias, gateway=DEFAULT_GATEWAY, limit=PAGE_SIZE, offset=0):
     """Fetch match history page for a player."""
     url = f"{SUPABASE_URL}/rest/v1/player_matches"
@@ -153,6 +172,23 @@ def api_search(query, gateway=DEFAULT_GATEWAY):
     resp = requests.get(url, headers=get_headers(), params=params)
     resp.raise_for_status()
     return resp.json()
+
+
+def api_aurora_id(alias, gateway=DEFAULT_GATEWAY):
+    """Look up aurora_id for a player alias from their match history."""
+    url = f"{SUPABASE_URL}/rest/v1/player_matches"
+    params = {
+        "select": "aurora_id",
+        "alias": f"eq.{alias}",
+        "gateway": f"eq.{gateway}",
+        "limit": 1,
+    }
+    resp = requests.get(url, headers=get_headers(), params=params)
+    resp.raise_for_status()
+    rows = resp.json()
+    if not rows:
+        return None
+    return rows[0]["aurora_id"]
 
 
 def api_handles(battlenet_account):
@@ -332,9 +368,26 @@ def cmd_search(args):
 
 
 def cmd_handles(args):
-    """Look up all handles for a battlenet_account ID."""
-    print(f"Looking up battlenet_account={args.battlenet_account}...")
-    handles = api_handles(args.battlenet_account)
+    """Look up all handles for a player (by alias or battlenet_account ID)."""
+    query = args.player
+    # If numeric, treat as battlenet_account directly
+    if query.isdigit():
+        battlenet_account = int(query)
+        print(f"Looking up battlenet_account={battlenet_account}...")
+    else:
+        # Look up aurora_id from alias, trying all gateways
+        gateways = [args.gateway] + [g for g in [30, 10, 20, 45, 11] if g != args.gateway]
+        battlenet_account = None
+        for gw in gateways:
+            print(f"Looking up aurora_id for '{query}' (gateway={gw})...")
+            battlenet_account = api_aurora_id(query, gateway=gw)
+            if battlenet_account is not None:
+                print(f"Found battlenet_account={battlenet_account} (gateway {gw})")
+                break
+        if battlenet_account is None:
+            print(f"No matches found for '{query}' on any gateway.")
+            return
+    handles = api_handles(battlenet_account)
 
     if not handles:
         print("No handles found for that account.")
@@ -356,6 +409,19 @@ def cmd_handles(args):
         print(f"{standing:>4} {alias:<22} {race:<10} {rating:>6} {wl:<10} {gw:>7}")
 
 
+def cmd_count(args):
+    """Get total match count for a player on cwal.gg."""
+    alias = args.player
+    gateways = [args.gateway] + [g for g in [30, 10, 20, 45, 11] if g != args.gateway]
+    for gw in gateways:
+        count = api_match_count(alias, gateway=gw)
+        if count > 0:
+            gw_names = {30: "Korea", 10: "US West", 20: "US East", 45: "Europe", 11: "US West (11)"}
+            print(f"{alias}: {count} games on {gw_names.get(gw, f'gw {gw}')}")
+            return
+    print(f"{alias}: 0 games (checked all gateways)")
+
+
 # ---------------------------------------------------------------------------
 # CLI setup
 # ---------------------------------------------------------------------------
@@ -363,7 +429,7 @@ def cmd_handles(args):
 def main():
     parser = argparse.ArgumentParser(
         prog="cwal",
-        description="cwal.gg ladder API tool for Gosu Unveiled",
+        description="cwal.gg ladder API tool for Barcode Reader",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -402,9 +468,15 @@ def main():
     p_search.set_defaults(func=cmd_search)
 
     # -- handles --
-    p_handles = sub.add_parser("handles", help="Look up all handles for a battlenet_account ID")
-    p_handles.add_argument("battlenet_account", help="battlenet_account ID (numeric)")
+    p_handles = sub.add_parser("handles", help="Look up all handles for a player (alias or account ID)")
+    p_handles.add_argument("player", help="Player alias or battlenet_account ID (numeric)")
+    p_handles.add_argument("--gateway", type=int, default=DEFAULT_GATEWAY, help=f"Gateway ID (default {DEFAULT_GATEWAY}=Korea)")
     p_handles.set_defaults(func=cmd_handles)
+
+    p_count = sub.add_parser("count", help="Get total match count for a player on cwal.gg")
+    p_count.add_argument("player", help="Player alias")
+    p_count.add_argument("--gateway", type=int, default=DEFAULT_GATEWAY, help=f"Gateway ID (default {DEFAULT_GATEWAY}=Korea)")
+    p_count.set_defaults(func=cmd_count)
 
     args = parser.parse_args()
     args.func(args)
