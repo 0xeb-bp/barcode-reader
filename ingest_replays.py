@@ -60,16 +60,6 @@ def init_db():
         pass  # column already exists
 
     c.execute('''
-        CREATE TABLE IF NOT EXISTS player_aliases (
-            id INTEGER PRIMARY KEY,
-            canonical_name TEXT,
-            alias TEXT UNIQUE,
-            confidence REAL,
-            source TEXT
-        )
-    ''')
-
-    c.execute('''
         CREATE TABLE IF NOT EXISTS player_identities (
             id INTEGER PRIMARY KEY,
             canonical_name TEXT NOT NULL,
@@ -86,17 +76,9 @@ def init_db():
     except sqlite3.OperationalError:
         pass  # column already exists
 
-    # Drop obsolete valid_from/valid_to columns from player_aliases
-    for col in ("valid_from", "valid_to"):
-        try:
-            c.execute(f"ALTER TABLE player_aliases DROP COLUMN {col}")
-        except sqlite3.OperationalError:
-            pass  # column doesn't exist or already dropped
-
     # Index for fast lookups
     c.execute('CREATE INDEX IF NOT EXISTS idx_player_name ON players(player_name)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_game_date ON replays(game_date)')
-    c.execute('CREATE INDEX IF NOT EXISTS idx_alias ON player_aliases(alias)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_player_aurora_id ON players(aurora_id)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_replay_match_id ON replays(match_id)')
 
@@ -312,8 +294,8 @@ def stats(conn):
     for row in c.fetchall():
         print(f"  {row[0]}: {row[1]}")
 
-    c.execute("SELECT COUNT(*) FROM player_aliases")
-    print(f"\nKnown aliases: {c.fetchone()[0]}")
+    c.execute("SELECT COUNT(*) FROM player_identities")
+    print(f"\nLabeled players: {c.fetchone()[0]}")
 
 
 def load_scrape_metadata(to_ingest_dir: Path) -> dict:

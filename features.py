@@ -365,30 +365,6 @@ def extract_player_samples(conn, player_name: str, label: str = None,
     return samples
 
 
-def get_pro_aliases(conn, min_games=10):
-    """Legacy: Get all confirmed pros with their aliases, filtered by game count."""
-    c = conn.cursor()
-    c.execute("SELECT canonical_name, alias FROM player_aliases WHERE confidence >= 1.0")
-
-    pro_aliases = defaultdict(list)
-    for canonical, alias in c.fetchall():
-        pro_aliases[canonical].append(alias)
-
-    result = []
-    for canonical, aliases in pro_aliases.items():
-        placeholders = ",".join(["?"] * len(aliases))
-        c.execute(f"""
-            SELECT COUNT(DISTINCT p.replay_id)
-            FROM players p
-            WHERE p.player_name IN ({placeholders}) AND p.is_human = 1
-        """, aliases)
-        total = c.fetchone()[0]
-        if total >= min_games:
-            result.append((canonical, aliases, total))
-
-    result.sort(key=lambda x: -x[2])
-    return result
-
 
 def get_pro_identities(conn, min_games=10):
     """Get all confirmed pros from player_identities, filtered by modern-era game count.

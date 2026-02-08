@@ -57,7 +57,7 @@ barcode-reader/
 - **replays** — one row per replay file: `id, file_hash, file_path, file_name, source_dir, map_name, game_date, duration_seconds, frames, version, created_at, winner_team, match_id`
 - **players** — one row per player per replay: `id, replay_id, slot_id, player_name, race, is_human, start_x, start_y, start_direction, aurora_id`
 - **player_identities** — maps aurora_ids to canonical pro names (training/predict source of truth): `id, canonical_name, aurora_id (UNIQUE), source, notes, created_at`
-- **player_aliases** — legacy display-name reference (NOT used for training/predict): `id, canonical_name, alias, confidence, source, aurora_id`
+- **player_aliases** — REMOVED (legacy table, no longer exists)
 
 ## Current Model
 - **Random Forest**: depth=10, trees=200, StandardScaler, LOO cross-validation
@@ -94,6 +94,10 @@ These are account-confirmed identities (via aurora_id) NOT yet in player_identit
 - `llIIll1ll1lI` = Jaedong (aurora_id 13968871, gateway 11) — NOTE: Jaedong already has aurora_id 13968871 via jd2321232 alias; this is the SAME aurora_id so already merged
 - `C9_HyuK9` = likely HyuK (same C9 tag, Zerg, but different account from C9_PSM — confirm via aurora_id or prediction)
 - `wkelkqwlewqe` = sSak — RESOLVED: aurora_id 18372656 auto-merges with JSA_sSak1 (183 games total)
+
+## StarCraft Replay Folder
+- SC:R replays path: `/mnt/c/Users/lmrdb/Documents/StarCraft/Maps/Replays/`
+- Copy a replay for viewing: `cp data/replays/<file>.rep "/mnt/c/Users/lmrdb/Documents/StarCraft/Maps/Replays/"`
 
 ## cwal.gg API Notes
 - Duration in `player_matches` is in **seconds** (decimal, e.g. 417.396 = 6:57)

@@ -50,17 +50,15 @@ def get_unlabeled_players(conn, min_games=MIN_GAMES, min_date=MIN_DATE):
     """, (min_date, min_games))
     aurora_players = c.fetchall()
 
-    # Fallback: players without aurora_id and not in player_aliases
+    # Fallback: players without aurora_id and not in player_identities
     c.execute("""
         SELECT p.player_name,
                COUNT(DISTINCT p.replay_id) as cnt,
                GROUP_CONCAT(DISTINCT p.race) as races
         FROM players p
-        LEFT JOIN player_aliases pa ON p.player_name = pa.alias
         LEFT JOIN player_identities pi ON p.aurora_id = pi.aurora_id
         JOIN replays r ON r.id = p.replay_id
-        WHERE pa.id IS NULL
-          AND pi.id IS NULL
+        WHERE pi.id IS NULL
           AND p.aurora_id IS NULL
           AND p.is_human = 1
           AND r.game_date >= ?
