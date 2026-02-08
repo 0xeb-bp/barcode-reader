@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 """
-Load trained model and predict on all unlabeled players.
+Load trained model and predict player identity from replays.
+
+Usage:
+  python predict.py                        # all unlabeled players
+  python predict.py --aurora-id 19619537   # specific bnet account
+  python predict.py --name qweqewqqe       # specific player name
 """
 
+import argparse
 import json
 import sqlite3
 import sys
@@ -22,6 +28,169 @@ PREDICTIONS_PATH = DB_PATH.parent / "predictions.json"
 MIN_GAMES = 10
 MIN_DATE = "2025-01-01"  # Modern era only, same as training
 
+
+def load_model():
+    """Load trained model from disk."""
+    if not MODEL_PATH.exists():
+        print(f"No model found at {MODEL_PATH}. Run train.py first.")
+        sys.exit(1)
+
+    model = joblib.load(MODEL_PATH)
+    print("Loading model...")
+    print(f"  Trained: {model['trained_at']}")
+    print(f"  Accuracy: {model['accuracy']:.1%}")
+    print(f"  Classes: {list(model['classes'])}")
+    print(f"  Features: {len(model['feature_names'])}")
+    return model
+
+
+def predict_samples(samples, model):
+    """Run the full prediction pipeline on extracted samples.
+
+    Handles ngram projection, scaling, and classification.
+    Returns None if not enough samples, otherwise a dict with:
+      prediction, confidence, avg_prob, all_preds, games_analyzed, per_game
+    """
+    if len(samples) < 3:
+        return None
+
+    clf = model["clf"]
+    scaler = model["scaler"]
+    feature_names = model["feature_names"]
+    global_ngrams = model["global_ngrams"]
+
+    # Apply n-gram features (the step that must not be skipped)
+    for s in samples:
+        apply_ngram_features(s["features"], s["raw_ngrams"], global_ngrams)
+
+    # Build feature matrix and scale
+    X = np.array([[s["features"].get(f, 0) for f in feature_names] for s in samples])
+    X_scaled = scaler.transform(X)
+
+    # Predict
+    preds = clf.predict(X_scaled)
+    probs = clf.predict_proba(X_scaled)
+
+    # Aggregate
+    pred_counts = Counter(preds)
+    top_pred, top_count = pred_counts.most_common(1)[0]
+    confidence = top_count / len(preds)
+
+    class_idx = list(clf.classes_).index(top_pred)
+    avg_prob = float(np.mean([p[class_idx] for p in probs]))
+
+    # Top classes by average probability
+    avg_probs = {
+        cls: float(np.mean([p[i] for p in probs]))
+        for i, cls in enumerate(clf.classes_)
+    }
+
+    return {
+        "prediction": top_pred,
+        "confidence": confidence,
+        "avg_prob": avg_prob,
+        "all_preds": dict(pred_counts),
+        "avg_probs": avg_probs,
+        "games_analyzed": len(samples),
+    }
+
+
+# --- Single-player prediction ---
+
+def predict_by_aurora_id(conn, model, aurora_id):
+    """Predict identity for a specific aurora_id."""
+    # Look up display names
+    c = conn.cursor()
+    c.execute("""
+        SELECT GROUP_CONCAT(DISTINCT p.player_name),
+               GROUP_CONCAT(DISTINCT p.race),
+               COUNT(DISTINCT p.replay_id)
+        FROM players p
+        JOIN replays r ON r.id = p.replay_id
+        WHERE p.aurora_id = ? AND p.is_human = 1 AND r.game_date >= ?
+    """, (aurora_id, MIN_DATE))
+    row = c.fetchone()
+    if not row or not row[0]:
+        print(f"No games found for aurora_id {aurora_id}")
+        return
+
+    names, races, game_count = row
+    print(f"\nPlayer: {names} [aurora:{aurora_id}] ({races}, {game_count} games)")
+
+    samples = extract_player_samples_by_aurora(
+        conn, [aurora_id], label=None, min_date=MIN_DATE)
+    result = predict_samples(samples, model)
+
+    if not result:
+        print(f"Not enough valid samples (need 3, got {len(samples)})")
+        return
+
+    print_single_result(result)
+
+
+def predict_by_name(conn, model, name):
+    """Predict identity for a specific player name."""
+    # Check if this name has an aurora_id we should use instead
+    c = conn.cursor()
+    c.execute("""
+        SELECT DISTINCT aurora_id FROM players
+        WHERE player_name = ? AND aurora_id IS NOT NULL
+    """, (name,))
+    aurora_ids = [row[0] for row in c.fetchall()]
+
+    if len(aurora_ids) == 1:
+        print(f"(found aurora_id {aurora_ids[0]} for '{name}', using that)")
+        predict_by_aurora_id(conn, model, aurora_ids[0])
+        return
+
+    if len(aurora_ids) > 1:
+        print(f"Warning: '{name}' has multiple aurora_ids: {aurora_ids}")
+        print(f"Use --aurora-id to specify which one.")
+        return
+
+    # No aurora_id, use name-based extraction
+    c.execute("""
+        SELECT GROUP_CONCAT(DISTINCT p.race), COUNT(DISTINCT p.replay_id)
+        FROM players p
+        JOIN replays r ON r.id = p.replay_id
+        WHERE p.player_name = ? AND p.is_human = 1 AND r.game_date >= ?
+    """, (name, MIN_DATE))
+    row = c.fetchone()
+    if not row or not row[1]:
+        print(f"No games found for '{name}'")
+        return
+
+    races, game_count = row
+    print(f"\nPlayer: {name} ({races}, {game_count} games)")
+
+    samples = extract_player_samples(conn, name, min_date=MIN_DATE, max_games=200)
+    result = predict_samples(samples, model)
+
+    if not result:
+        print(f"Not enough valid samples (need 3, got {len(samples)})")
+        return
+
+    print_single_result(result)
+
+
+def print_single_result(result):
+    """Print prediction result for a single player."""
+    print(f"\n  Prediction: {result['prediction']}")
+    print(f"  Confidence: {result['confidence']:.0%} "
+          f"({result['all_preds'][result['prediction']]}/{result['games_analyzed']} games)")
+    print(f"  Avg probability: {result['avg_prob']:.1%}")
+
+    if len(result['all_preds']) > 1:
+        print(f"  All votes: {result['all_preds']}")
+
+    # Top 5 by avg probability
+    top5 = sorted(result['avg_probs'].items(), key=lambda x: -x[1])[:5]
+    print(f"\n  Top 5 by avg probability:")
+    for cls, prob in top5:
+        print(f"    {cls:<15} {prob:.1%}")
+
+
+# --- All-unlabeled prediction ---
 
 def get_unlabeled_players(conn, min_games=MIN_GAMES, min_date=MIN_DATE):
     """Get unlabeled players with min_games+ modern games.
@@ -71,27 +240,8 @@ def get_unlabeled_players(conn, min_games=MIN_GAMES, min_date=MIN_DATE):
     return aurora_players, name_players
 
 
-def main():
-    # Load model
-    if not MODEL_PATH.exists():
-        print(f"No model found at {MODEL_PATH}. Run train.py first.")
-        sys.exit(1)
-
-    print("Loading model...")
-    model = joblib.load(MODEL_PATH)
-    clf = model["clf"]
-    scaler = model["scaler"]
-    feature_names = model["feature_names"]
-    global_ngrams = model["global_ngrams"]
-
-    print(f"  Trained: {model['trained_at']}")
-    print(f"  Accuracy: {model['accuracy']:.1%}")
-    print(f"  Classes: {model['classes']}")
-    print(f"  Features: {len(feature_names)}")
-
-    conn = sqlite3.connect(DB_PATH)
-
-    # Get unlabeled players
+def predict_all_unlabeled(conn, model):
+    """Predict all unlabeled players and save results."""
     aurora_players, name_players = get_unlabeled_players(conn, MIN_GAMES)
     total_players = len(aurora_players) + len(name_players)
     print(f"\nUnlabeled players with {MIN_GAMES}+ games: {total_players}")
@@ -109,25 +259,9 @@ def main():
 
         samples = extract_player_samples_by_aurora(
             conn, [aurora_id], label=None, min_date=MIN_DATE)
-
-        for s in samples:
-            apply_ngram_features(s["features"], s["raw_ngrams"], global_ngrams)
-
-        if len(samples) < 3:
+        result = predict_samples(samples, model)
+        if not result:
             continue
-
-        X = np.array([[s["features"].get(f, 0) for f in feature_names] for s in samples])
-        X_scaled = scaler.transform(X)
-
-        preds = clf.predict(X_scaled)
-        probs = clf.predict_proba(X_scaled)
-
-        pred_counts = Counter(preds)
-        top_pred, top_count = pred_counts.most_common(1)[0]
-        confidence = top_count / len(preds)
-
-        class_idx = list(clf.classes_).index(top_pred)
-        avg_prob = float(np.mean([p[class_idx] for p in probs]))
 
         display_name = names.split(",")[0] if names else f"aurora:{aurora_id}"
         all_predictions.append({
@@ -136,11 +270,7 @@ def main():
             "display_names": names.split(",") if names else [],
             "races": races,
             "total_games": game_count,
-            "games_analyzed": len(samples),
-            "prediction": top_pred,
-            "confidence": confidence,
-            "avg_prob": avg_prob,
-            "all_preds": dict(pred_counts),
+            **result,
         })
 
     # Name-based fallback predictions
@@ -151,25 +281,9 @@ def main():
         idx += 1
 
         samples = extract_player_samples(conn, player_name, min_date=MIN_DATE, max_games=20)
-
-        for s in samples:
-            apply_ngram_features(s["features"], s["raw_ngrams"], global_ngrams)
-
-        if len(samples) < 3:
+        result = predict_samples(samples, model)
+        if not result:
             continue
-
-        X = np.array([[s["features"].get(f, 0) for f in feature_names] for s in samples])
-        X_scaled = scaler.transform(X)
-
-        preds = clf.predict(X_scaled)
-        probs = clf.predict_proba(X_scaled)
-
-        pred_counts = Counter(preds)
-        top_pred, top_count = pred_counts.most_common(1)[0]
-        confidence = top_count / len(preds)
-
-        class_idx = list(clf.classes_).index(top_pred)
-        avg_prob = float(np.mean([p[class_idx] for p in probs]))
 
         all_predictions.append({
             "player": player_name,
@@ -177,17 +291,13 @@ def main():
             "display_names": [player_name],
             "races": races,
             "total_games": game_count,
-            "games_analyzed": len(samples),
-            "prediction": top_pred,
-            "confidence": confidence,
-            "avg_prob": avg_prob,
-            "all_preds": dict(pred_counts),
+            **result,
         })
 
     # Sort by confidence
     all_predictions.sort(key=lambda x: (-x["confidence"], -x["avg_prob"]))
 
-    # Print results
+    # Print results table
     print("\n" + "=" * 100)
     print("PREDICTIONS (sorted by confidence)")
     print("=" * 100)
@@ -213,17 +323,36 @@ def main():
         print(f"    Avg probability: {p['avg_prob']:.0%}")
         print(f"    All predictions: {p['all_preds']}")
 
-    # Save to JSON
+    # Save to JSON (strip avg_probs to keep file clean)
+    save_preds = [{k: v for k, v in p.items() if k != "avg_probs"} for p in all_predictions]
     with open(PREDICTIONS_PATH, "w") as f:
         json.dump({
             "model_trained_at": model["trained_at"],
             "model_accuracy": model["accuracy"],
             "predicted_at": datetime.now().isoformat(),
             "min_games": MIN_GAMES,
-            "total_players": len(all_predictions),
-            "predictions": all_predictions,
+            "total_players": len(save_preds),
+            "predictions": save_preds,
         }, f, indent=2)
     print(f"\nPredictions saved to: {PREDICTIONS_PATH}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Predict player identity from replays")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--aurora-id", type=int, help="Predict for a specific aurora_id")
+    group.add_argument("--name", type=str, help="Predict for a specific player name")
+    args = parser.parse_args()
+
+    model = load_model()
+    conn = sqlite3.connect(DB_PATH)
+
+    if args.aurora_id:
+        predict_by_aurora_id(conn, model, args.aurora_id)
+    elif args.name:
+        predict_by_name(conn, model, args.name)
+    else:
+        predict_all_unlabeled(conn, model)
 
     conn.close()
 
