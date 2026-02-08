@@ -13,7 +13,8 @@ import numpy as np
 import joblib
 
 from features import (
-    DB_PATH, extract_player_samples, apply_ngram_features,
+    DB_PATH, extract_player_samples, extract_player_samples_by_aurora,
+    apply_ngram_features,
 )
 
 MODEL_PATH = DB_PATH.parent / "model.joblib"
@@ -23,21 +24,53 @@ MIN_DATE = "2025-01-01"  # Modern era only, same as training
 
 
 def get_unlabeled_players(conn, min_games=MIN_GAMES, min_date=MIN_DATE):
-    """Get all players not in player_aliases with min_games+ modern games."""
+    """Get unlabeled players with min_games+ modern games.
+    Returns two lists:
+      - aurora_id-based: (aurora_id, [display_names], game_count, races)
+      - name-based fallback: (player_name, game_count, races) for players without aurora_id
+    """
     c = conn.cursor()
+
+    # Players with aurora_id not in player_identities
     c.execute("""
-        SELECT p.player_name, COUNT(*) as cnt, GROUP_CONCAT(DISTINCT p.race) as races
+        SELECT p.aurora_id,
+               GROUP_CONCAT(DISTINCT p.player_name) as names,
+               COUNT(DISTINCT p.replay_id) as cnt,
+               GROUP_CONCAT(DISTINCT p.race) as races
+        FROM players p
+        LEFT JOIN player_identities pi ON p.aurora_id = pi.aurora_id
+        JOIN replays r ON r.id = p.replay_id
+        WHERE pi.id IS NULL
+          AND p.aurora_id IS NOT NULL
+          AND p.is_human = 1
+          AND r.game_date >= ?
+        GROUP BY p.aurora_id
+        HAVING cnt >= ?
+        ORDER BY cnt DESC
+    """, (min_date, min_games))
+    aurora_players = c.fetchall()
+
+    # Fallback: players without aurora_id and not in player_aliases
+    c.execute("""
+        SELECT p.player_name,
+               COUNT(DISTINCT p.replay_id) as cnt,
+               GROUP_CONCAT(DISTINCT p.race) as races
         FROM players p
         LEFT JOIN player_aliases pa ON p.player_name = pa.alias
+        LEFT JOIN player_identities pi ON p.aurora_id = pi.aurora_id
         JOIN replays r ON r.id = p.replay_id
         WHERE pa.id IS NULL
+          AND pi.id IS NULL
+          AND p.aurora_id IS NULL
           AND p.is_human = 1
           AND r.game_date >= ?
         GROUP BY p.player_name
         HAVING cnt >= ?
         ORDER BY cnt DESC
     """, (min_date, min_games))
-    return c.fetchall()
+    name_players = c.fetchall()
+
+    return aurora_players, name_players
 
 
 def main():
@@ -61,34 +94,78 @@ def main():
     conn = sqlite3.connect(DB_PATH)
 
     # Get unlabeled players
-    players = get_unlabeled_players(conn, MIN_GAMES)
-    print(f"\nUnlabeled players with {MIN_GAMES}+ games: {len(players)}")
+    aurora_players, name_players = get_unlabeled_players(conn, MIN_GAMES)
+    total_players = len(aurora_players) + len(name_players)
+    print(f"\nUnlabeled players with {MIN_GAMES}+ games: {total_players}")
+    print(f"  Aurora_id-based: {len(aurora_players)}, Name-based fallback: {len(name_players)}")
 
     all_predictions = []
+    idx = 0
 
-    for idx, (player_name, game_count, races) in enumerate(players):
+    # Aurora_id-based predictions
+    for aurora_id, names, game_count, races in aurora_players:
         if idx % 20 == 0:
-            print(f"  Processing {idx+1}/{len(players)}...")
+            print(f"  Processing {idx+1}/{total_players}...")
             sys.stdout.flush()
+        idx += 1
 
-        samples = extract_player_samples(conn, player_name, min_date=MIN_DATE, max_games=20)
+        samples = extract_player_samples_by_aurora(
+            conn, [aurora_id], label=None, min_date=MIN_DATE)
 
-        # Apply global n-grams
         for s in samples:
             apply_ngram_features(s["features"], s["raw_ngrams"], global_ngrams)
 
         if len(samples) < 3:
             continue
 
-        # Build feature matrix with same feature names as training
         X = np.array([[s["features"].get(f, 0) for f in feature_names] for s in samples])
         X_scaled = scaler.transform(X)
 
-        # Predict
         preds = clf.predict(X_scaled)
         probs = clf.predict_proba(X_scaled)
 
-        # Aggregate
+        pred_counts = Counter(preds)
+        top_pred, top_count = pred_counts.most_common(1)[0]
+        confidence = top_count / len(preds)
+
+        class_idx = list(clf.classes_).index(top_pred)
+        avg_prob = float(np.mean([p[class_idx] for p in probs]))
+
+        display_name = names.split(",")[0] if names else f"aurora:{aurora_id}"
+        all_predictions.append({
+            "player": display_name,
+            "aurora_id": aurora_id,
+            "display_names": names.split(",") if names else [],
+            "races": races,
+            "total_games": game_count,
+            "games_analyzed": len(samples),
+            "prediction": top_pred,
+            "confidence": confidence,
+            "avg_prob": avg_prob,
+            "all_preds": dict(pred_counts),
+        })
+
+    # Name-based fallback predictions
+    for player_name, game_count, races in name_players:
+        if idx % 20 == 0:
+            print(f"  Processing {idx+1}/{total_players}...")
+            sys.stdout.flush()
+        idx += 1
+
+        samples = extract_player_samples(conn, player_name, min_date=MIN_DATE, max_games=20)
+
+        for s in samples:
+            apply_ngram_features(s["features"], s["raw_ngrams"], global_ngrams)
+
+        if len(samples) < 3:
+            continue
+
+        X = np.array([[s["features"].get(f, 0) for f in feature_names] for s in samples])
+        X_scaled = scaler.transform(X)
+
+        preds = clf.predict(X_scaled)
+        probs = clf.predict_proba(X_scaled)
+
         pred_counts = Counter(preds)
         top_pred, top_count = pred_counts.most_common(1)[0]
         confidence = top_count / len(preds)
@@ -98,6 +175,8 @@ def main():
 
         all_predictions.append({
             "player": player_name,
+            "aurora_id": None,
+            "display_names": [player_name],
             "races": races,
             "total_games": game_count,
             "games_analyzed": len(samples),
@@ -129,7 +208,9 @@ def main():
     print("=" * 100)
 
     for p in high_conf:
-        print(f"\n  {p['player']} ({p['races']}) -> {p['prediction']}")
+        names_str = ", ".join(p.get("display_names", [p["player"]]))
+        aurora_str = f" [aurora:{p['aurora_id']}]" if p.get("aurora_id") else ""
+        print(f"\n  {names_str}{aurora_str} ({p['races']}) -> {p['prediction']}")
         print(f"    Confidence: {p['confidence']:.0%} ({p['games_analyzed']} games analyzed)")
         print(f"    Avg probability: {p['avg_prob']:.0%}")
         print(f"    All predictions: {p['all_preds']}")

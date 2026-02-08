@@ -290,7 +290,7 @@ def apply_ngram_features(features, raw_ngrams, global_ngrams):
 
 
 def get_player_replays(conn, player_name: str, year: str = None, min_date: str = None):
-    """Get replay paths for a player, optionally filtered by year or min_date."""
+    """Legacy: Get replay paths for a player by display name."""
     c = conn.cursor()
     if year:
         c.execute("""
@@ -324,7 +324,7 @@ def get_player_replays(conn, player_name: str, year: str = None, min_date: str =
 def extract_player_samples(conn, player_name: str, label: str = None,
                            year: str = None, min_date: str = None,
                            max_games: int = 30):
-    """Extract feature samples for a player."""
+    """Legacy: Extract feature samples for a player by display name."""
     replays = get_player_replays(conn, player_name, year=year, min_date=min_date)
     if label is None:
         label = player_name
@@ -366,7 +366,7 @@ def extract_player_samples(conn, player_name: str, label: str = None,
 
 
 def get_pro_aliases(conn, min_games=10):
-    """Get all confirmed pros with their aliases, filtered by game count."""
+    """Legacy: Get all confirmed pros with their aliases, filtered by game count."""
     c = conn.cursor()
     c.execute("SELECT canonical_name, alias FROM player_aliases WHERE confidence >= 1.0")
 
@@ -388,6 +388,101 @@ def get_pro_aliases(conn, min_games=10):
 
     result.sort(key=lambda x: -x[2])
     return result
+
+
+def get_pro_identities(conn, min_games=10):
+    """Get all confirmed pros from player_identities, filtered by modern-era game count.
+    Returns list of (canonical_name, [aurora_ids], game_count)."""
+    c = conn.cursor()
+    c.execute("SELECT canonical_name, aurora_id FROM player_identities")
+
+    pros = defaultdict(list)
+    for canonical, aurora_id in c.fetchall():
+        pros[canonical].append(aurora_id)
+
+    result = []
+    for canonical, aurora_ids in pros.items():
+        placeholders = ",".join(["?"] * len(aurora_ids))
+        c.execute(f"""
+            SELECT COUNT(DISTINCT p.replay_id)
+            FROM players p
+            JOIN replays r ON r.id = p.replay_id
+            WHERE p.aurora_id IN ({placeholders})
+              AND p.is_human = 1
+              AND r.game_date >= '2025-01-01'
+        """, aurora_ids)
+        total = c.fetchone()[0]
+        if total >= min_games:
+            result.append((canonical, aurora_ids, total))
+
+    result.sort(key=lambda x: -x[2])
+    return result
+
+
+def get_player_replays_by_aurora(conn, aurora_ids, min_date=None):
+    """Get replay paths for a player by aurora_id(s).
+    Returns (file_path, replay_id, player_name) — player_name needed to find
+    the right player when parsing the .rep file."""
+    c = conn.cursor()
+    placeholders = ",".join(["?"] * len(aurora_ids))
+    if min_date:
+        c.execute(f"""
+            SELECT r.file_path, r.id, p.player_name
+            FROM replays r
+            JOIN players p ON r.id = p.replay_id
+            WHERE p.aurora_id IN ({placeholders})
+              AND p.is_human = 1
+              AND r.game_date >= ?
+        """, aurora_ids + [min_date])
+    else:
+        c.execute(f"""
+            SELECT r.file_path, r.id, p.player_name
+            FROM replays r
+            JOIN players p ON r.id = p.replay_id
+            WHERE p.aurora_id IN ({placeholders})
+              AND p.is_human = 1
+        """, aurora_ids)
+    return c.fetchall()
+
+
+def extract_player_samples_by_aurora(conn, aurora_ids, label, min_date=None):
+    """Extract feature samples for a player by aurora_id(s)."""
+    replays = get_player_replays_by_aurora(conn, aurora_ids, min_date=min_date)
+    samples = []
+
+    for file_path, replay_id, player_name in replays:
+        path = Path(file_path)
+        if not path.exists():
+            continue
+
+        try:
+            data = parse_replay(path)
+            commands = data.get("Commands", {}).get("Cmds", [])
+            game_frames = data["Header"]["Frames"]
+
+            for player in data["Header"]["Players"]:
+                if player["Type"]["Name"] != "Human":
+                    continue
+                if player["Name"] != player_name:
+                    continue
+
+                player_cmds = [c for c in commands if c["PlayerID"] == player["ID"]]
+                features, raw_ngrams = extract_features(player_cmds, game_frames)
+
+                if features:
+                    samples.append({
+                        "features": features,
+                        "raw_ngrams": raw_ngrams,
+                        "label": label,
+                        "alias": player_name,
+                        "race": player["Race"]["Name"],
+                        "replay_id": replay_id,
+                        "file": path.name,
+                    })
+        except Exception:
+            pass
+
+    return samples
 
 
 def create_feature_matrix(samples, feature_names=None):

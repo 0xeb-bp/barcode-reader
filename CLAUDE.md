@@ -8,6 +8,7 @@ When the user uses ML terminology (correctly or incorrectly), briefly correct or
 - `train.py` — Train model, LOO cross-validation, save to `data/model.joblib`
 - `predict.py` — Load saved model, predict on all unlabeled players (10+ games)
 - `ingest_replays.py` — Replay ingestion pipeline (to_ingest → replays)
+- `backfill_aurora_ids.py` — Migration/backfill script for aurora_ids (Tier 1: offline, Tier 2: API)
 - `cwal.py` — CLI tool for cwal.gg API (matches, scrape, rankings, search, handles)
 - `experiments.md` — **MUST UPDATE** after every training iteration
 
@@ -18,6 +19,7 @@ barcode-reader/
 ├── train.py                 # Train model + LOO CV
 ├── predict.py               # Predict unlabeled players
 ├── ingest_replays.py        # Ingest to_ingest/ → replays/
+├── backfill_aurora_ids.py   # Aurora_id migration/backfill
 ├── cwal.py                  # cwal.gg API CLI tool
 ├── experiments.md           # Experiment log (MUST UPDATE after training)
 ├── CLAUDE.md                # This file
@@ -43,18 +45,19 @@ barcode-reader/
 - With `class_weight="balanced"`, all available replays are used — no need to cap or overflow
 
 ## Data Labeling Rules
-- This is data for training a classification model. It must be **HIGH FIDELITY**. Never alias or label without 100% confidence that the mapping is correct.
-- **NEVER add player_aliases without explicit user confirmation.** Only add the exact aliases the user tells you.
-- Don't guess or infer additional aliases from similar names in the database.
+- This is data for training a classification model. It must be **HIGH FIDELITY**. Never label without 100% confidence that the mapping is correct.
+- **NEVER add player_identities without explicit user confirmation.** Only add the exact aurora_id→canonical_name mappings the user tells you.
+- Don't guess or infer identity from similar names in the database.
 
 ## Scraping Rules
 - Scrape all available replays for labeled players — more data is better with `class_weight="balanced"`.
 - For initial exploration of an unlabeled player, `--limit 50` is fine.
 
 ## Database Schema (data/replays.db)
-- **replays** — one row per replay file: `id, file_hash, file_path, file_name, source_dir, map_name, game_date, duration_seconds, frames, version, created_at, winner_team`
-- **players** — one row per player per replay: `id, replay_id, slot_id, player_name, race, is_human, start_x, start_y, start_direction`
-- **player_aliases** — maps in-game names to canonical pro names: `id, canonical_name, alias, confidence, source, aurora_id, valid_from, valid_to`
+- **replays** — one row per replay file: `id, file_hash, file_path, file_name, source_dir, map_name, game_date, duration_seconds, frames, version, created_at, winner_team, match_id`
+- **players** — one row per player per replay: `id, replay_id, slot_id, player_name, race, is_human, start_x, start_y, start_direction, aurora_id`
+- **player_identities** — maps aurora_ids to canonical pro names (training/predict source of truth): `id, canonical_name, aurora_id (UNIQUE), source, notes, created_at`
+- **player_aliases** — legacy display-name reference (NOT used for training/predict): `id, canonical_name, alias, confidence, source, aurora_id`
 
 ## Current Model
 - **Random Forest**: depth=10, trees=200, StandardScaler, LOO cross-validation
@@ -65,22 +68,32 @@ barcode-reader/
 - Consecutive Prod collapse to reduce race-mechanical signal
 
 ## Training & Prediction Thresholds
-- **Training**: Auto-discovers all labeled players (in `player_aliases`) with 10+ valid modern-era games. No per-player cap — uses `class_weight="balanced"` to handle class imbalance.
-- **Prediction**: Runs on all unlabeled players with 10+ modern-era games
+- **Training**: Auto-discovers all labeled players (in `player_identities`) with 10+ valid modern-era games via aurora_id join. No per-player cap — uses `class_weight="balanced"` to handle class imbalance. Alt accounts auto-merge (same aurora_id → same identity).
+- **Prediction**: Runs on all unlabeled players with 10+ modern-era games. Groups by aurora_id where available, falls back to player_name grouping for players without aurora_id.
 - **Filtering**: Single gate in `features.py` — games must be ≥ `MIN_GAME_MINUTES` (4) and ≥ `MIN_COMMANDS` (100)
+
+## Data Pipeline
+1. **Scrape** (`cwal.py scrape <alias>`) — downloads `.rep` files to `data/to_ingest/`, writes `_metadata.jsonl` with aurora_ids for both players per match
+2. **Ingest** (`python ingest_replays.py`) — parses replays with screp, stores in DB, reads `_metadata.jsonl` to attach aurora_ids to the `players` table, extracts match_id from filename, moves files to `data/replays/`, deletes metadata file after
+3. **Identity** — `player_identities` maps aurora_ids to canonical pro names. Training/predict join on `players.aurora_id → player_identities.aurora_id`. One canonical name can have multiple aurora_ids (alt accounts auto-merge).
+4. Replays do NOT store aurora_ids — only display names. Aurora_ids come from cwal.gg API and are carried through via `_metadata.jsonl`.
+5. **Backfill** (`python backfill_aurora_ids.py`) — one-time migration or periodic refresh. Tier 1 (offline): backfills match_id + aurora_ids by name. Tier 2 (`--api`): fetches opponent aurora_ids from cwal.gg.
 
 ## Workflow: Adding a New Player
 1. Find their cwal.gg alias: `cwal.py search <name>`
-2. Scrape replays: `cwal.py scrape <alias> --limit 50`
-3. Add alias to DB (only with user confirmation): INSERT INTO player_aliases
-4. Ingest: `python ingest_replays.py`
-5. Retrain: `python train.py`
-6. Update experiments.md with results
+2. Check game count: `cwal.py count <alias>`
+3. Scrape replays: `cwal.py scrape <alias>` (scrapes all, writes metadata)
+4. Ingest: `python ingest_replays.py` (reads metadata, stores aurora_ids)
+5. Look up aurora_id: `cwal.py handles <alias>` or check `players` table
+6. Add identity to DB (only with user confirmation): `INSERT INTO player_identities (canonical_name, aurora_id, source, created_at) VALUES (?, ?, 'manual', datetime('now'))`
+7. Retrain: `python train.py`
+8. Update experiments.md with results
 
 ## Blind Validation Queue
-These are account-confirmed identities (via aurora_id) NOT yet aliased. Re-predict and check accuracy before aliasing.
-- `llIIll1ll1lI` = Jaedong (aurora_id 13968871, gateway 11)
+These are account-confirmed identities (via aurora_id) NOT yet in player_identities. Re-predict and check accuracy before adding.
+- `llIIll1ll1lI` = Jaedong (aurora_id 13968871, gateway 11) — NOTE: Jaedong already has aurora_id 13968871 via jd2321232 alias; this is the SAME aurora_id so already merged
 - `C9_HyuK9` = likely HyuK (same C9 tag, Zerg, but different account from C9_PSM — confirm via aurora_id or prediction)
+- `wkelkqwlewqe` = sSak — RESOLVED: aurora_id 18372656 auto-merges with JSA_sSak1 (183 games total)
 
 ## cwal.gg API Notes
 - Duration in `player_matches` is in **seconds** (decimal, e.g. 417.396 = 6:57)

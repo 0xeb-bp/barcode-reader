@@ -1,2710 +1,3809 @@
 {
-  "model_trained_at": "2026-02-06T18:40:02.161229",
-  "model_accuracy": 0.9901719901719902,
-  "predicted_at": "2026-02-06T18:47:18.391463",
+  "model_trained_at": "2026-02-07T16:11:48.604617",
+  "model_accuracy": 0.9856373429084381,
+  "predicted_at": "2026-02-07T16:30:09.749011",
   "min_games": 10,
-  "total_players": 197,
+  "total_players": 213,
   "predictions": [
     {
       "player": "aewinruvop",
+      "aurora_id": null,
+      "display_names": [
+        "aewinruvop"
+      ],
       "races": "Terran",
       "total_games": 13,
       "games_analyzed": 12,
       "prediction": "Rush",
       "confidence": 1.0,
-      "avg_prob": 0.8274757375037068,
+      "avg_prob": 0.8721149620587028,
       "all_preds": {
         "Rush": 12
       }
     },
     {
+      "player": "llIIIIllIIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "llIIIIllIIlIlI"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 9,
+      "prediction": "Stork",
+      "confidence": 1.0,
+      "avg_prob": 0.8351857990938458,
+      "all_preds": {
+        "Stork": 9
+      }
+    },
+    {
       "player": "dlqwkdckdl",
+      "aurora_id": null,
+      "display_names": [
+        "dlqwkdckdl"
+      ],
       "races": "Protoss",
-      "total_games": 12,
-      "games_analyzed": 12,
+      "total_games": 14,
+      "games_analyzed": 14,
       "prediction": "Air",
       "confidence": 1.0,
-      "avg_prob": 0.8218693113677499,
+      "avg_prob": 0.8304010484583095,
       "all_preds": {
-        "Air": 12
-      }
-    },
-    {
-      "player": "agzxcvbvzbxcbvc",
-      "races": "Protoss",
-      "total_games": 110,
-      "games_analyzed": 15,
-      "prediction": "Air",
-      "confidence": 1.0,
-      "avg_prob": 0.7996873816295167,
-      "all_preds": {
-        "Air": 15
-      }
-    },
-    {
-      "player": "ImSky.",
-      "races": "Protoss",
-      "total_games": 100,
-      "games_analyzed": 15,
-      "prediction": "Sky",
-      "confidence": 1.0,
-      "avg_prob": 0.7821791953403487,
-      "all_preds": {
-        "Sky": 15
-      }
-    },
-    {
-      "player": "zerosugarmarine",
-      "races": "Terran",
-      "total_games": 12,
-      "games_analyzed": 12,
-      "prediction": "Scan",
-      "confidence": 1.0,
-      "avg_prob": 0.7789683720599939,
-      "all_preds": {
-        "Scan": 12
+        "Air": 14
       }
     },
     {
       "player": "baldaction",
+      "aurora_id": null,
+      "display_names": [
+        "baldaction"
+      ],
       "races": "Zerg",
       "total_games": 54,
       "games_analyzed": 18,
       "prediction": "soO",
       "confidence": 1.0,
-      "avg_prob": 0.7759459821297349,
+      "avg_prob": 0.8130380906705592,
       "all_preds": {
         "soO": 18
       }
     },
     {
       "player": "dustmqgkwk!!!",
+      "aurora_id": null,
+      "display_names": [
+        "dustmqgkwk!!!"
+      ],
       "races": "Terran",
-      "total_games": 51,
-      "games_analyzed": 16,
+      "total_games": 52,
+      "games_analyzed": 14,
       "prediction": "Rush",
       "confidence": 1.0,
-      "avg_prob": 0.7720243408959346,
+      "avg_prob": 0.8116704076134532,
       "all_preds": {
-        "Rush": 16
+        "Rush": 14
       }
     },
     {
-      "player": "Iackofbasic",
+      "player": "zerosugarmarine",
+      "aurora_id": null,
+      "display_names": [
+        "zerosugarmarine"
+      ],
       "races": "Terran",
-      "total_games": 49,
-      "games_analyzed": 18,
+      "total_games": 12,
+      "games_analyzed": 12,
       "prediction": "Scan",
       "confidence": 1.0,
-      "avg_prob": 0.7534543351182605,
+      "avg_prob": 0.8048819815626382,
       "all_preds": {
-        "Scan": 18
+        "Scan": 12
       }
     },
     {
       "player": "lllllllIIIIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "lllllllIIIIlIlI"
+      ],
       "races": "Zerg",
       "total_games": 106,
-      "games_analyzed": 20,
-      "prediction": "soO",
-      "confidence": 1.0,
-      "avg_prob": 0.7423919856992127,
-      "all_preds": {
-        "soO": 20
-      }
-    },
-    {
-      "player": "lIIIlllIIllllll",
-      "races": "Protoss",
-      "total_games": 105,
-      "games_analyzed": 19,
-      "prediction": "Sky",
-      "confidence": 1.0,
-      "avg_prob": 0.7334333926801023,
-      "all_preds": {
-        "Sky": 19
-      }
-    },
-    {
-      "player": "awdfzxvczvccv12",
-      "races": "Protoss",
-      "total_games": 109,
-      "games_analyzed": 19,
-      "prediction": "Air",
-      "confidence": 1.0,
-      "avg_prob": 0.7327857519966443,
-      "all_preds": {
-        "Air": 19
-      }
-    },
-    {
-      "player": "MiniMaxii",
-      "races": "Protoss,Zerg",
-      "total_games": 31,
-      "games_analyzed": 17,
-      "prediction": "Rain",
-      "confidence": 1.0,
-      "avg_prob": 0.7183871105953532,
-      "all_preds": {
-        "Rain": 17
-      }
-    },
-    {
-      "player": "lililllilillill",
-      "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 12,
-      "prediction": "soO",
-      "confidence": 1.0,
-      "avg_prob": 0.7157322638035922,
-      "all_preds": {
-        "soO": 12
-      }
-    },
-    {
-      "player": "lillljilililili",
-      "races": "Zerg",
-      "total_games": 62,
       "games_analyzed": 19,
       "prediction": "soO",
       "confidence": 1.0,
-      "avg_prob": 0.7128061794837652,
+      "avg_prob": 0.7956172080625866,
       "all_preds": {
         "soO": 19
       }
     },
     {
-      "player": "NaengMingNing",
+      "player": "lllIIIlHllIIIll",
+      "aurora_id": null,
+      "display_names": [
+        "lllIIIlHllIIIll"
+      ],
+      "races": "Protoss,Zerg",
+      "total_games": 47,
+      "games_analyzed": 17,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.7940239316907219,
+      "all_preds": {
+        "ProMise": 17
+      }
+    },
+    {
+      "player": "vfwqdgfvuyqdwfg",
+      "aurora_id": null,
+      "display_names": [
+        "vfwqdgfvuyqdwfg"
+      ],
+      "races": "Protoss",
+      "total_games": 13,
+      "games_analyzed": 7,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.7908640615825285,
+      "all_preds": {
+        "ProMise": 7
+      }
+    },
+    {
+      "player": "lillljilililili",
+      "aurora_id": null,
+      "display_names": [
+        "lillljilililili"
+      ],
+      "races": "Zerg",
+      "total_games": 62,
+      "games_analyzed": 19,
+      "prediction": "soO",
+      "confidence": 1.0,
+      "avg_prob": 0.7639324402976135,
+      "all_preds": {
+        "soO": 19
+      }
+    },
+    {
+      "player": "agzxcvbvzbxcbvc",
+      "aurora_id": null,
+      "display_names": [
+        "agzxcvbvzbxcbvc"
+      ],
+      "races": "Protoss",
+      "total_games": 113,
+      "games_analyzed": 15,
+      "prediction": "Air",
+      "confidence": 1.0,
+      "avg_prob": 0.7514855931161526,
+      "all_preds": {
+        "Air": 15
+      }
+    },
+    {
+      "player": "MiniMaxii",
+      "aurora_id": null,
+      "display_names": [
+        "MiniMaxii"
+      ],
+      "races": "Protoss,Zerg",
+      "total_games": 31,
+      "games_analyzed": 17,
+      "prediction": "Rain",
+      "confidence": 1.0,
+      "avg_prob": 0.7386672099765508,
+      "all_preds": {
+        "Rain": 17
+      }
+    },
+    {
+      "player": "llIIll1ll1lI",
+      "aurora_id": null,
+      "display_names": [
+        "llIIll1ll1lI"
+      ],
+      "races": "Zerg",
+      "total_games": 100,
+      "games_analyzed": 17,
+      "prediction": "Jaedong",
+      "confidence": 1.0,
+      "avg_prob": 0.7363080932454834,
+      "all_preds": {
+        "Jaedong": 17
+      }
+    },
+    {
+      "player": "Iackofbasic",
+      "aurora_id": null,
+      "display_names": [
+        "Iackofbasic"
+      ],
       "races": "Terran",
-      "total_games": 12,
-      "games_analyzed": 8,
-      "prediction": "Ample",
+      "total_games": 49,
+      "games_analyzed": 17,
+      "prediction": "Scan",
       "confidence": 1.0,
-      "avg_prob": 0.7111156935352007,
+      "avg_prob": 0.7318211917007394,
       "all_preds": {
-        "Ample": 8
+        "Scan": 17
       }
     },
     {
-      "player": "l|I|l|I|l|I|",
-      "races": "Zerg",
-      "total_games": 52,
-      "games_analyzed": 20,
-      "prediction": "BishOp",
-      "confidence": 1.0,
-      "avg_prob": 0.5637466957835506,
-      "all_preds": {
-        "BishOp": 20
-      }
-    },
-    {
-      "player": "l|I|l|I|l|I",
+      "player": "IlllllIl1llllll",
+      "aurora_id": null,
+      "display_names": [
+        "IlllllIl1llllll"
+      ],
       "races": "Zerg,Protoss",
-      "total_games": 16,
-      "games_analyzed": 13,
-      "prediction": "BishOp",
-      "confidence": 1.0,
-      "avg_prob": 0.5081595787151812,
-      "all_preds": {
-        "BishOp": 13
-      }
-    },
-    {
-      "player": "hohobangga",
-      "races": "Zerg",
-      "total_games": 16,
-      "games_analyzed": 16,
+      "total_games": 109,
+      "games_analyzed": 14,
       "prediction": "yOOn",
       "confidence": 1.0,
-      "avg_prob": 0.48056111128766305,
+      "avg_prob": 0.724465359742404,
       "all_preds": {
-        "yOOn": 16
+        "yOOn": 14
       }
     },
     {
-      "player": "BeastHippo",
-      "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 10,
-      "prediction": "Stork",
+      "player": "ImSky.",
+      "aurora_id": null,
+      "display_names": [
+        "ImSky."
+      ],
+      "races": "Protoss",
+      "total_games": 100,
+      "games_analyzed": 14,
+      "prediction": "Sky",
       "confidence": 1.0,
-      "avg_prob": 0.47227644244811373,
+      "avg_prob": 0.7121844444357005,
       "all_preds": {
-        "Stork": 10
+        "Sky": 14
+      }
+    },
+    {
+      "player": "awdfzxvczvccv12",
+      "aurora_id": null,
+      "display_names": [
+        "awdfzxvczvccv12"
+      ],
+      "races": "Protoss",
+      "total_games": 109,
+      "games_analyzed": 18,
+      "prediction": "Air",
+      "confidence": 1.0,
+      "avg_prob": 0.6820074775402805,
+      "all_preds": {
+        "Air": 18
+      }
+    },
+    {
+      "player": "NaengMingNing",
+      "aurora_id": null,
+      "display_names": [
+        "NaengMingNing"
+      ],
+      "races": "Terran",
+      "total_games": 15,
+      "games_analyzed": 11,
+      "prediction": "Ample",
+      "confidence": 1.0,
+      "avg_prob": 0.6607271572420935,
+      "all_preds": {
+        "Ample": 11
+      }
+    },
+    {
+      "player": "lIIIlllIIllllll",
+      "aurora_id": null,
+      "display_names": [
+        "lIIIlllIIllllll"
+      ],
+      "races": "Protoss",
+      "total_games": 107,
+      "games_analyzed": 19,
+      "prediction": "Sky",
+      "confidence": 1.0,
+      "avg_prob": 0.6475534638940355,
+      "all_preds": {
+        "Sky": 19
+      }
+    },
+    {
+      "player": "lilil...lililil",
+      "aurora_id": null,
+      "display_names": [
+        "lilil...lililil"
+      ],
+      "races": "Terran,Protoss",
+      "total_games": 46,
+      "games_analyzed": 18,
+      "prediction": "sSak",
+      "confidence": 1.0,
+      "avg_prob": 0.6237842150773372,
+      "all_preds": {
+        "sSak": 18
+      }
+    },
+    {
+      "player": "lIIlllIlIlIIIll",
+      "aurora_id": null,
+      "display_names": [
+        "lIIlllIlIlIIIll"
+      ],
+      "races": "Protoss",
+      "total_games": 13,
+      "games_analyzed": 13,
+      "prediction": "Sky",
+      "confidence": 1.0,
+      "avg_prob": 0.6185988608449886,
+      "all_preds": {
+        "Sky": 13
+      }
+    },
+    {
+      "player": "lllIIIIllIIllll",
+      "aurora_id": null,
+      "display_names": [
+        "lllIIIIllIIllll"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 11,
+      "prediction": "Sky",
+      "confidence": 1.0,
+      "avg_prob": 0.609740424390218,
+      "all_preds": {
+        "Sky": 11
+      }
+    },
+    {
+      "player": "1zxdasd3",
+      "aurora_id": null,
+      "display_names": [
+        "1zxdasd3"
+      ],
+      "races": "Protoss,Terran,Zerg",
+      "total_games": 23,
+      "games_analyzed": 19,
+      "prediction": "sSak",
+      "confidence": 1.0,
+      "avg_prob": 0.5766060359080458,
+      "all_preds": {
+        "sSak": 19
+      }
+    },
+    {
+      "player": "llIIIlIIIllIIII",
+      "aurora_id": null,
+      "display_names": [
+        "llIIIlIIIllIIII"
+      ],
+      "races": "Terran",
+      "total_games": 21,
+      "games_analyzed": 19,
+      "prediction": "Shuttle",
+      "confidence": 1.0,
+      "avg_prob": 0.49105912288979564,
+      "all_preds": {
+        "Shuttle": 19
+      }
+    },
+    {
+      "player": "hjvvwer",
+      "aurora_id": null,
+      "display_names": [
+        "hjvvwer"
+      ],
+      "races": "Protoss",
+      "total_games": 17,
+      "games_analyzed": 15,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.419600143434553,
+      "all_preds": {
+        "ProMise": 15
+      }
+    },
+    {
+      "player": "vmfosemtnlq",
+      "aurora_id": null,
+      "display_names": [
+        "vmfosemtnlq"
+      ],
+      "races": "Protoss",
+      "total_games": 70,
+      "games_analyzed": 15,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.39139442287493786,
+      "all_preds": {
+        "ProMise": 15
       }
     },
     {
       "player": "chobo01010",
+      "aurora_id": null,
+      "display_names": [
+        "chobo01010"
+      ],
       "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 12,
+      "total_games": 15,
+      "games_analyzed": 14,
       "prediction": "yOOn",
       "confidence": 1.0,
-      "avg_prob": 0.47162057413144615,
+      "avg_prob": 0.37888740478819377,
       "all_preds": {
-        "yOOn": 12
-      }
-    },
-    {
-      "player": "IllIIIIlIlllIl",
-      "races": "Terran",
-      "total_games": 11,
-      "games_analyzed": 10,
-      "prediction": "Stork",
-      "confidence": 1.0,
-      "avg_prob": 0.44744998406161296,
-      "all_preds": {
-        "Stork": 10
-      }
-    },
-    {
-      "player": "Wave`Fresh",
-      "races": "Protoss",
-      "total_games": 13,
-      "games_analyzed": 13,
-      "prediction": "Stork",
-      "confidence": 1.0,
-      "avg_prob": 0.3898893450008719,
-      "all_preds": {
-        "Stork": 13
+        "yOOn": 14
       }
     },
     {
       "player": "Maya[kS]",
+      "aurora_id": null,
+      "display_names": [
+        "Maya[kS]"
+      ],
       "races": "Terran",
       "total_games": 39,
-      "games_analyzed": 18,
-      "prediction": "Flash",
-      "confidence": 1.0,
-      "avg_prob": 0.38548222863404813,
-      "all_preds": {
-        "Flash": 18
-      }
-    },
-    {
-      "player": "lIIlIllIlIIlIIl",
-      "races": "Terran,Zerg,Protoss",
-      "total_games": 60,
-      "games_analyzed": 16,
-      "prediction": "soO",
-      "confidence": 1.0,
-      "avg_prob": 0.37747865224676785,
-      "all_preds": {
-        "soO": 16
-      }
-    },
-    {
-      "player": "IIIIIlllIIlllIl",
-      "races": "Protoss",
-      "total_games": 28,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 1.0,
-      "avg_prob": 0.3692653936770143,
-      "all_preds": {
-        "Best": 18
-      }
-    },
-    {
-      "player": "JSA_Mohanayo",
-      "races": "Protoss,Zerg",
-      "total_games": 16,
-      "games_analyzed": 15,
-      "prediction": "BishOp",
-      "confidence": 1.0,
-      "avg_prob": 0.34403528513579423,
-      "all_preds": {
-        "BishOp": 15
-      }
-    },
-    {
-      "player": "lllIllIIIlIlIlI",
-      "races": "Protoss",
-      "total_games": 11,
-      "games_analyzed": 10,
-      "prediction": "Sky",
-      "confidence": 1.0,
-      "avg_prob": 0.3426570364531646,
-      "all_preds": {
-        "Sky": 10
-      }
-    },
-    {
-      "player": "llllllIIllIllll",
-      "races": "Protoss",
-      "total_games": 101,
-      "games_analyzed": 19,
-      "prediction": "Best",
-      "confidence": 1.0,
-      "avg_prob": 0.3291308063044845,
-      "all_preds": {
-        "Best": 19
-      }
-    },
-    {
-      "player": "Wico`asdaf",
-      "races": "Protoss",
-      "total_games": 15,
-      "games_analyzed": 8,
-      "prediction": "Best",
-      "confidence": 1.0,
-      "avg_prob": 0.31563496211713127,
-      "all_preds": {
-        "Best": 8
-      }
-    },
-    {
-      "player": "Yahweh",
-      "races": "Protoss",
-      "total_games": 31,
-      "games_analyzed": 17,
-      "prediction": "Best",
-      "confidence": 1.0,
-      "avg_prob": 0.3117781178528647,
-      "all_preds": {
-        "Best": 17
-      }
-    },
-    {
-      "player": "3050_Rainy",
-      "races": "Protoss",
-      "total_games": 10,
-      "games_analyzed": 10,
-      "prediction": "Air",
-      "confidence": 1.0,
-      "avg_prob": 0.3085959492481202,
-      "all_preds": {
-        "Air": 10
-      }
-    },
-    {
-      "player": "IllIllIlllIIIII",
-      "races": "Terran,Protoss",
-      "total_games": 14,
-      "games_analyzed": 12,
-      "prediction": "Fantasy",
-      "confidence": 1.0,
-      "avg_prob": 0.29900814661436664,
-      "all_preds": {
-        "Fantasy": 12
-      }
-    },
-    {
-      "player": "angle",
-      "races": "Protoss",
-      "total_games": 17,
-      "games_analyzed": 16,
-      "prediction": "Best",
-      "confidence": 1.0,
-      "avg_prob": 0.29829938332079525,
-      "all_preds": {
-        "Best": 16
-      }
-    },
-    {
-      "player": "BGM_alen",
-      "races": "Zerg",
-      "total_games": 116,
-      "games_analyzed": 18,
-      "prediction": "Sky",
-      "confidence": 1.0,
-      "avg_prob": 0.2982982191175281,
-      "all_preds": {
-        "Sky": 18
-      }
-    },
-    {
-      "player": "lllIllIIIIlIlI",
-      "races": "Zerg,Terran",
-      "total_games": 103,
-      "games_analyzed": 19,
-      "prediction": "Flash",
-      "confidence": 1.0,
-      "avg_prob": 0.29706029049321026,
-      "all_preds": {
-        "Flash": 19
-      }
-    },
-    {
-      "player": "IllIIIIlllIIIll",
-      "races": "Protoss,Terran",
-      "total_games": 63,
-      "games_analyzed": 16,
-      "prediction": "Fantasy",
-      "confidence": 1.0,
-      "avg_prob": 0.2963397824337143,
-      "all_preds": {
-        "Fantasy": 16
-      }
-    },
-    {
-      "player": "Mstz_herO`",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 9,
-      "prediction": "yOOn",
-      "confidence": 1.0,
-      "avg_prob": 0.2735381960808377,
-      "all_preds": {
-        "yOOn": 9
-      }
-    },
-    {
-      "player": "POLICEONETOP",
-      "races": "Terran",
-      "total_games": 13,
-      "games_analyzed": 12,
-      "prediction": "Flash",
-      "confidence": 1.0,
-      "avg_prob": 0.2720254230151018,
-      "all_preds": {
-        "Flash": 12
-      }
-    },
-    {
-      "player": "llllIllIlIlIlIl",
-      "races": "Protoss,Terran",
-      "total_games": 103,
       "games_analyzed": 17,
       "prediction": "Flash",
       "confidence": 1.0,
-      "avg_prob": 0.27079693936663063,
+      "avg_prob": 0.3700071773828476,
       "all_preds": {
         "Flash": 17
       }
     },
     {
-      "player": "wG_Shine",
-      "races": "Zerg,Terran",
+      "player": "|1|",
+      "aurora_id": null,
+      "display_names": [
+        "|1|"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 11,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.366909698615742,
+      "all_preds": {
+        "ProMise": 11
+      }
+    },
+    {
+      "player": "l|I|l|I|l|I|",
+      "aurora_id": null,
+      "display_names": [
+        "l|I|l|I|l|I|"
+      ],
+      "races": "Zerg",
+      "total_games": 52,
+      "games_analyzed": 16,
+      "prediction": "BishOp",
+      "confidence": 1.0,
+      "avg_prob": 0.36216605462461615,
+      "all_preds": {
+        "BishOp": 16
+      }
+    },
+    {
+      "player": "wG_ZeLoT",
+      "aurora_id": null,
+      "display_names": [
+        "wG_ZeLoT"
+      ],
+      "races": "Zerg",
+      "total_games": 10,
+      "games_analyzed": 4,
+      "prediction": "yOOn",
+      "confidence": 1.0,
+      "avg_prob": 0.356038584705395,
+      "all_preds": {
+        "yOOn": 4
+      }
+    },
+    {
+      "player": "lllllIlIIIlIl",
+      "aurora_id": null,
+      "display_names": [
+        "lllllIlIIIlIl"
+      ],
+      "races": "Zerg",
       "total_games": 101,
       "games_analyzed": 16,
-      "prediction": "Flash",
+      "prediction": "SoulKey",
       "confidence": 1.0,
-      "avg_prob": 0.2702564437376742,
+      "avg_prob": 0.3426472246145423,
       "all_preds": {
-        "Flash": 16
+        "SoulKey": 16
       }
     },
     {
-      "player": "wico`1127",
-      "races": "Terran",
-      "total_games": 102,
-      "games_analyzed": 19,
-      "prediction": "Flash",
-      "confidence": 1.0,
-      "avg_prob": 0.25418402852767175,
-      "all_preds": {
-        "Flash": 19
-      }
-    },
-    {
-      "player": "IIllIIlllIIlll1",
-      "races": "Zerg,Protoss",
-      "total_games": 101,
-      "games_analyzed": 7,
-      "prediction": "yOOn",
-      "confidence": 1.0,
-      "avg_prob": 0.23973599752786656,
-      "all_preds": {
-        "yOOn": 7
-      }
-    },
-    {
-      "player": "INO_Action",
+      "player": "hohobangga",
+      "aurora_id": null,
+      "display_names": [
+        "hohobangga"
+      ],
       "races": "Zerg",
-      "total_games": 10,
-      "games_analyzed": 9,
-      "prediction": "soO",
-      "confidence": 1.0,
-      "avg_prob": 0.23088547664919165,
-      "all_preds": {
-        "soO": 9
-      }
-    },
-    {
-      "player": "BangaruUngSooni",
-      "races": "Zerg",
-      "total_games": 103,
-      "games_analyzed": 17,
-      "prediction": "BishOp",
-      "confidence": 1.0,
-      "avg_prob": 0.22603750566394037,
-      "all_preds": {
-        "BishOp": 17
-      }
-    },
-    {
-      "player": "TuF`TT",
-      "races": "Terran",
-      "total_games": 43,
-      "games_analyzed": 20,
-      "prediction": "Fantasy",
-      "confidence": 1.0,
-      "avg_prob": 0.21968215294886292,
-      "all_preds": {
-        "Fantasy": 20
-      }
-    },
-    {
-      "player": "IllllIIIIIIIIlI",
-      "races": "Terran",
-      "total_games": 105,
-      "games_analyzed": 18,
-      "prediction": "Fantasy",
-      "confidence": 1.0,
-      "avg_prob": 0.21343020805162718,
-      "all_preds": {
-        "Fantasy": 18
-      }
-    },
-    {
-      "player": "NCS_GuRaMise",
-      "races": "Protoss",
-      "total_games": 10,
-      "games_analyzed": 8,
-      "prediction": "Flash",
-      "confidence": 1.0,
-      "avg_prob": 0.19171668794671487,
-      "all_preds": {
-        "Flash": 8
-      }
-    },
-    {
-      "player": "IIIIIIIIIlII",
-      "races": "Terran",
-      "total_games": 21,
-      "games_analyzed": 20,
-      "prediction": "Best",
-      "confidence": 0.95,
-      "avg_prob": 0.3830275458636501,
-      "all_preds": {
-        "Best": 19,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "IIlIllllIlII",
-      "races": "Zerg",
-      "total_games": 56,
-      "games_analyzed": 20,
-      "prediction": "Best",
-      "confidence": 0.95,
-      "avg_prob": 0.1934632823285152,
-      "all_preds": {
-        "Best": 19,
-        "BishOp": 1
-      }
-    },
-    {
-      "player": "lllllllllll`net",
-      "races": "Protoss",
-      "total_games": 54,
-      "games_analyzed": 19,
-      "prediction": "Fantasy",
-      "confidence": 0.9473684210526315,
-      "avg_prob": 0.4663910901520862,
-      "all_preds": {
-        "Fantasy": 18,
-        "Air": 1
-      }
-    },
-    {
-      "player": "IllllIlIIIlI",
-      "races": "Protoss,Zerg,Terran",
-      "total_games": 101,
-      "games_analyzed": 19,
-      "prediction": "BishOp",
-      "confidence": 0.9473684210526315,
-      "avg_prob": 0.3481050968573599,
-      "all_preds": {
-        "BishOp": 18,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "llIIllIIlIIlIlI",
-      "races": "Protoss,Terran",
-      "total_games": 113,
-      "games_analyzed": 19,
-      "prediction": "Best",
-      "confidence": 0.9473684210526315,
-      "avg_prob": 0.31921793855591707,
-      "all_preds": {
-        "Best": 18,
-        "Speed": 1
-      }
-    },
-    {
-      "player": "liiiiiil!il!l!",
-      "races": "Terran",
-      "total_games": 19,
-      "games_analyzed": 18,
-      "prediction": "Flash",
-      "confidence": 0.9444444444444444,
-      "avg_prob": 0.21926944722814667,
-      "all_preds": {
-        "Flash": 17,
-        "Scan": 1
-      }
-    },
-    {
-      "player": "imscv",
-      "races": "Terran",
-      "total_games": 42,
-      "games_analyzed": 18,
-      "prediction": "Fantasy",
-      "confidence": 0.9444444444444444,
-      "avg_prob": 0.2003669970770587,
-      "all_preds": {
-        "Fantasy": 17,
-        "Sharp": 1
-      }
-    },
-    {
-      "player": "wico``````",
-      "races": "Protoss,Terran",
-      "total_games": 99,
-      "games_analyzed": 17,
-      "prediction": "Flash",
-      "confidence": 0.9411764705882353,
-      "avg_prob": 0.23213582029372215,
-      "all_preds": {
-        "Flash": 16,
-        "Artosis": 1
-      }
-    },
-    {
-      "player": "BBiDDaDDuE",
-      "races": "Zerg,Protoss",
-      "total_games": 117,
-      "games_analyzed": 17,
-      "prediction": "Sky",
-      "confidence": 0.9411764705882353,
-      "avg_prob": 0.1974691483747163,
-      "all_preds": {
-        "Sky": 16,
-        "Rush": 1
-      }
-    },
-    {
-      "player": "IlllllIl1llllll",
-      "races": "Zerg,Protoss",
-      "total_games": 109,
+      "total_games": 16,
       "games_analyzed": 15,
       "prediction": "yOOn",
-      "confidence": 0.9333333333333333,
-      "avg_prob": 0.7096181869351885,
+      "confidence": 1.0,
+      "avg_prob": 0.32318885483134324,
       "all_preds": {
-        "yOOn": 14,
-        "Sky": 1
+        "yOOn": 15
       }
     },
     {
-      "player": "TimeisgoId",
-      "races": "Zerg",
-      "total_games": 26,
-      "games_analyzed": 14,
-      "prediction": "Sky",
-      "confidence": 0.9285714285714286,
-      "avg_prob": 0.2100279412941937,
-      "all_preds": {
-        "Sky": 13,
-        "BishOp": 1
-      }
-    },
-    {
-      "player": "IIlIlIIIlIIIll",
-      "races": "Terran,Zerg,Protoss",
-      "total_games": 99,
-      "games_analyzed": 13,
-      "prediction": "Flash",
-      "confidence": 0.9230769230769231,
-      "avg_prob": 0.3419120545351741,
-      "all_preds": {
-        "Flash": 12,
-        "Artosis": 1
-      }
-    },
-    {
-      "player": "&-Qriginal",
+      "player": "By_CooKie",
+      "aurora_id": null,
+      "display_names": [
+        "By_CooKie"
+      ],
       "races": "Terran",
-      "total_games": 15,
-      "games_analyzed": 13,
-      "prediction": "Flash",
-      "confidence": 0.9230769230769231,
-      "avg_prob": 0.2808373791615729,
-      "all_preds": {
-        "Flash": 12,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "IIllllIIllIIlI",
-      "races": "Zerg",
-      "total_games": 19,
-      "games_analyzed": 13,
-      "prediction": "Fantasy",
-      "confidence": 0.9230769230769231,
-      "avg_prob": 0.25913465813891384,
-      "all_preds": {
-        "Fantasy": 12,
-        "Air": 1
-      }
-    },
-    {
-      "player": "DIC_Noob13",
-      "races": "Protoss",
-      "total_games": 14,
-      "games_analyzed": 11,
-      "prediction": "BishOp",
-      "confidence": 0.9090909090909091,
-      "avg_prob": 0.3423816357853418,
-      "all_preds": {
-        "BishOp": 10,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "SSU_ZeLoT",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 11,
-      "prediction": "Best",
-      "confidence": 0.9090909090909091,
-      "avg_prob": 0.19437189284662804,
-      "all_preds": {
-        "Best": 10,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "lllIlIllIIllIl",
-      "races": "Protoss",
-      "total_games": 11,
-      "games_analyzed": 10,
-      "prediction": "Flash",
-      "confidence": 0.9,
-      "avg_prob": 0.2818674089545983,
-      "all_preds": {
-        "Flash": 9,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "MBU_Movie",
-      "races": "Protoss",
-      "total_games": 11,
-      "games_analyzed": 10,
-      "prediction": "Flash",
-      "confidence": 0.9,
-      "avg_prob": 0.23242573067926334,
-      "all_preds": {
-        "Flash": 9,
-        "Best": 1
-      }
-    },
-    {
-      "player": "lllllIIlIIIIII",
-      "races": "Zerg,Protoss",
-      "total_games": 36,
+      "total_games": 92,
       "games_analyzed": 18,
-      "prediction": "Rush",
-      "confidence": 0.8888888888888888,
-      "avg_prob": 0.2351202503336147,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.32118974850066717,
       "all_preds": {
-        "Best": 2,
-        "Rush": 16
+        "ProMise": 18
       }
     },
     {
-      "player": "IIlIlIllllIIIl1",
-      "races": "Zerg",
-      "total_games": 111,
-      "games_analyzed": 17,
+      "player": "l|I|l|I|l|I",
+      "aurora_id": null,
+      "display_names": [
+        "l|I|l|I|l|I"
+      ],
+      "races": "Zerg,Protoss",
+      "total_games": 20,
+      "games_analyzed": 15,
       "prediction": "BishOp",
-      "confidence": 0.8823529411764706,
-      "avg_prob": 0.24503156508194154,
+      "confidence": 1.0,
+      "avg_prob": 0.310070457410194,
       "all_preds": {
-        "Best": 2,
         "BishOp": 15
       }
     },
     {
-      "player": "Wico`agree",
-      "races": "Zerg",
+      "player": "bts4885",
+      "aurora_id": null,
+      "display_names": [
+        "bts4885"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 45,
+      "games_analyzed": 15,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.30837726860396625,
+      "all_preds": {
+        "ProMise": 15
+      }
+    },
+    {
+      "player": "lllIllIIIIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "lllIllIIIIlIlI"
+      ],
+      "races": "Zerg,Terran",
       "total_games": 104,
-      "games_analyzed": 17,
-      "prediction": "Sky",
-      "confidence": 0.8823529411764706,
-      "avg_prob": 0.19745538888010808,
-      "all_preds": {
-        "Sky": 15,
-        "BishOp": 1,
-        "Air": 1
-      }
-    },
-    {
-      "player": "IlIllIlIIIIllII",
-      "races": "Zerg",
-      "total_games": 70,
-      "games_analyzed": 16,
-      "prediction": "Fantasy",
-      "confidence": 0.875,
-      "avg_prob": 0.27021967018528315,
-      "all_preds": {
-        "Fantasy": 14,
-        "yOOn": 1,
-        "Air": 1
-      }
-    },
-    {
-      "player": "tmxkdjfudnjdu",
-      "races": "Protoss",
-      "total_games": 18,
-      "games_analyzed": 16,
-      "prediction": "Best",
-      "confidence": 0.875,
-      "avg_prob": 0.20286244258679575,
-      "all_preds": {
-        "Best": 14,
-        "Tyson": 2
-      }
-    },
-    {
-      "player": "MAlSONKlTSUNE",
-      "races": "Protoss",
-      "total_games": 24,
-      "games_analyzed": 14,
-      "prediction": "Best",
-      "confidence": 0.8571428571428571,
-      "avg_prob": 0.2505468498171222,
-      "all_preds": {
-        "Best": 12,
-        "Tyson": 1,
-        "BishOp": 1
-      }
-    },
-    {
-      "player": "ExcessiveLy",
-      "races": "Protoss",
-      "total_games": 16,
-      "games_analyzed": 13,
-      "prediction": "Sky",
-      "confidence": 0.8461538461538461,
-      "avg_prob": 0.2510973393780001,
-      "all_preds": {
-        "Sky": 11,
-        "Artosis": 2
-      }
-    },
-    {
-      "player": "hjvvwer",
-      "races": "Protoss",
-      "total_games": 15,
-      "games_analyzed": 13,
-      "prediction": "Rush",
-      "confidence": 0.8461538461538461,
-      "avg_prob": 0.15658667600633314,
-      "all_preds": {
-        "Rush": 11,
-        "Ample": 1,
-        "Flash": 1
-      }
-    },
-    {
-      "player": "llIllIl",
-      "races": "Zerg,Protoss,Terran",
-      "total_games": 42,
-      "games_analyzed": 19,
-      "prediction": "yOOn",
-      "confidence": 0.8421052631578947,
-      "avg_prob": 0.17551011962035867,
-      "all_preds": {
-        "yOOn": 16,
-        "soO": 1,
-        "Tyson": 2
-      }
-    },
-    {
-      "player": "IVHv",
-      "races": "Terran",
-      "total_games": 21,
-      "games_analyzed": 19,
-      "prediction": "Best",
-      "confidence": 0.8421052631578947,
-      "avg_prob": 0.1640902178944942,
-      "all_preds": {
-        "Best": 16,
-        "Sharp": 2,
-        "BishOp": 1
-      }
-    },
-    {
-      "player": "lIIIlIIlIIllII",
-      "races": "Protoss,Zerg",
-      "total_games": 99,
-      "games_analyzed": 18,
-      "prediction": "Scan",
-      "confidence": 0.8333333333333334,
-      "avg_prob": 0.21439397790151316,
-      "all_preds": {
-        "SoulKey": 1,
-        "Scan": 15,
-        "soO": 1,
-        "Air": 1
-      }
-    },
-    {
-      "player": "llIlllIllIl1",
-      "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 12,
-      "prediction": "yOOn",
-      "confidence": 0.8333333333333334,
-      "avg_prob": 0.19955953990500697,
-      "all_preds": {
-        "yOOn": 10,
-        "Larva": 1,
-        "Tyson": 1
-      }
-    },
-    {
-      "player": "liilil1l1i1li1l",
-      "races": "Terran",
-      "total_games": 59,
-      "games_analyzed": 18,
-      "prediction": "Rush",
-      "confidence": 0.8333333333333334,
-      "avg_prob": 0.19900393122172053,
-      "all_preds": {
-        "Scan": 2,
-        "Rush": 15,
-        "Air": 1
-      }
-    },
-    {
-      "player": "IIIIIIllllIIll0",
-      "races": "Terran,Protoss",
-      "total_games": 81,
-      "games_analyzed": 17,
-      "prediction": "Fantasy",
-      "confidence": 0.8235294117647058,
-      "avg_prob": 0.28107353281687436,
-      "all_preds": {
-        "Fantasy": 14,
-        "Air": 1,
-        "SoulKey": 2
-      }
-    },
-    {
-      "player": "AX_GGoGGoMa",
-      "races": "Zerg",
-      "total_games": 18,
-      "games_analyzed": 17,
-      "prediction": "EffOrt",
-      "confidence": 0.8235294117647058,
-      "avg_prob": 0.2741928798228254,
-      "all_preds": {
-        "EffOrt": 14,
-        "soO": 3
-      }
-    },
-    {
-      "player": "llIIll1ll1lI",
-      "races": "Zerg",
-      "total_games": 100,
-      "games_analyzed": 17,
-      "prediction": "yOOn",
-      "confidence": 0.8235294117647058,
-      "avg_prob": 0.23024207111884687,
-      "all_preds": {
-        "yOOn": 14,
-        "Larva": 3
-      }
-    },
-    {
-      "player": "lllIIIlHllIIIll",
-      "races": "Protoss,Zerg",
-      "total_games": 47,
-      "games_analyzed": 17,
+      "games_analyzed": 15,
       "prediction": "Flash",
-      "confidence": 0.8235294117647058,
-      "avg_prob": 0.20451793325210255,
+      "confidence": 1.0,
+      "avg_prob": 0.30228784193833574,
       "all_preds": {
-        "Flash": 14,
-        "Scan": 3
+        "Flash": 15
       }
     },
     {
-      "player": "IlIlIIllIllIlI",
+      "player": "qfpr23",
+      "aurora_id": null,
+      "display_names": [
+        "qfpr23"
+      ],
+      "races": "Zerg",
+      "total_games": 17,
+      "games_analyzed": 5,
+      "prediction": "snOw",
+      "confidence": 1.0,
+      "avg_prob": 0.3007141377856436,
+      "all_preds": {
+        "snOw": 5
+      }
+    },
+    {
+      "player": "kimsabuho",
+      "aurora_id": null,
+      "display_names": [
+        "kimsabuho"
+      ],
+      "races": "Terran,Zerg,Protoss",
+      "total_games": 104,
+      "games_analyzed": 15,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.2996448195981036,
+      "all_preds": {
+        "ProMise": 15
+      }
+    },
+    {
+      "player": "angle",
+      "aurora_id": null,
+      "display_names": [
+        "angle"
+      ],
+      "races": "Protoss",
+      "total_games": 22,
+      "games_analyzed": 18,
+      "prediction": "Best",
+      "confidence": 1.0,
+      "avg_prob": 0.2973733822834959,
+      "all_preds": {
+        "Best": 18
+      }
+    },
+    {
+      "player": "POLICEONETOP",
+      "aurora_id": null,
+      "display_names": [
+        "POLICEONETOP"
+      ],
+      "races": "Terran",
+      "total_games": 13,
+      "games_analyzed": 10,
+      "prediction": "Flash",
+      "confidence": 1.0,
+      "avg_prob": 0.2841344133224063,
+      "all_preds": {
+        "Flash": 10
+      }
+    },
+    {
+      "player": "BBiDDaDDuE",
+      "aurora_id": null,
+      "display_names": [
+        "BBiDDaDDuE"
+      ],
+      "races": "Zerg,Protoss",
+      "total_games": 118,
+      "games_analyzed": 15,
+      "prediction": "sSak",
+      "confidence": 1.0,
+      "avg_prob": 0.25440087114234705,
+      "all_preds": {
+        "sSak": 15
+      }
+    },
+    {
+      "player": "IllIIIIIIlIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "IllIIIIIIlIlIlI"
+      ],
+      "races": "Terran",
+      "total_games": 12,
+      "games_analyzed": 10,
+      "prediction": "Flash",
+      "confidence": 1.0,
+      "avg_prob": 0.23767835994157038,
+      "all_preds": {
+        "Flash": 10
+      }
+    },
+    {
+      "player": "WhereIsMySide",
+      "aurora_id": null,
+      "display_names": [
+        "WhereIsMySide"
+      ],
       "races": "Zerg",
       "total_games": 11,
-      "games_analyzed": 11,
-      "prediction": "soO",
-      "confidence": 0.8181818181818182,
-      "avg_prob": 0.22717738507762952,
+      "games_analyzed": 8,
+      "prediction": "Jaedong",
+      "confidence": 1.0,
+      "avg_prob": 0.23656411273347994,
       "all_preds": {
-        "soO": 9,
-        "Larva": 2
+        "Jaedong": 8
       }
     },
     {
-      "player": "IllllIlIIIlIlll",
-      "races": "Protoss",
-      "total_games": 27,
-      "games_analyzed": 20,
-      "prediction": "Best",
-      "confidence": 0.8,
-      "avg_prob": 0.22861760095750516,
-      "all_preds": {
-        "Best": 16,
-        "Sharp": 4
-      }
-    },
-    {
-      "player": "xdnjcj",
+      "player": "liiiiiil!il!l!",
+      "aurora_id": null,
+      "display_names": [
+        "liiiiiil!il!l!"
+      ],
       "races": "Terran",
-      "total_games": 44,
-      "games_analyzed": 15,
-      "prediction": "Best",
-      "confidence": 0.8,
-      "avg_prob": 0.16629847077385698,
-      "all_preds": {
-        "BishOp": 1,
-        "Best": 12,
-        "Rain": 1,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "IIllIIIIlllIIl1",
-      "races": "Zerg,Protoss",
-      "total_games": 112,
-      "games_analyzed": 19,
-      "prediction": "yOOn",
-      "confidence": 0.7894736842105263,
-      "avg_prob": 0.22753974018345846,
-      "all_preds": {
-        "yOOn": 15,
-        "SoulKey": 2,
-        "Stork": 2
-      }
-    },
-    {
-      "player": "wkelkqwlewqe",
-      "races": "Terran",
-      "total_games": 21,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 0.7777777777777778,
-      "avg_prob": 0.2704566898457896,
-      "all_preds": {
-        "Best": 14,
-        "BishOp": 1,
-        "Speed": 1,
-        "Ample": 1,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "llIIlllllIIIllI",
-      "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 9,
-      "prediction": "Fantasy",
-      "confidence": 0.7777777777777778,
-      "avg_prob": 0.26372094601160295,
-      "all_preds": {
-        "yOOn": 1,
-        "Fantasy": 7,
-        "Air": 1
-      }
-    },
-    {
-      "player": "Gyeo`GLE",
-      "races": "Zerg,Terran",
-      "total_games": 100,
+      "total_games": 19,
       "games_analyzed": 18,
       "prediction": "Flash",
-      "confidence": 0.7777777777777778,
-      "avg_prob": 0.2226975238642537,
+      "confidence": 1.0,
+      "avg_prob": 0.22521249991627046,
       "all_preds": {
-        "Flash": 14,
-        "EffOrt": 3,
-        "soO": 1
-      }
-    },
-    {
-      "player": "Wico`Lucky",
-      "races": "Protoss",
-      "total_games": 14,
-      "games_analyzed": 13,
-      "prediction": "BishOp",
-      "confidence": 0.7692307692307693,
-      "avg_prob": 0.3123565583157196,
-      "all_preds": {
-        "BishOp": 10,
-        "Best": 3
-      }
-    },
-    {
-      "player": "lIllllllllIl1",
-      "races": "Zerg,Terran",
-      "total_games": 13,
-      "games_analyzed": 13,
-      "prediction": "yOOn",
-      "confidence": 0.7692307692307693,
-      "avg_prob": 0.17949671562379346,
-      "all_preds": {
-        "yOOn": 10,
-        "Tyson": 1,
-        "Sky": 1,
-        "Flash": 1
-      }
-    },
-    {
-      "player": "AX_GGoMa",
-      "races": "Zerg",
-      "total_games": 40,
-      "games_analyzed": 17,
-      "prediction": "EffOrt",
-      "confidence": 0.7647058823529411,
-      "avg_prob": 0.2674986156203291,
-      "all_preds": {
-        "EffOrt": 13,
-        "soO": 4
-      }
-    },
-    {
-      "player": "llIlllI",
-      "races": "Zerg,Protoss",
-      "total_games": 29,
-      "games_analyzed": 17,
-      "prediction": "yOOn",
-      "confidence": 0.7647058823529411,
-      "avg_prob": 0.17315175362661656,
-      "all_preds": {
-        "yOOn": 13,
-        "SoulKey": 1,
-        "soO": 1,
-        "Larva": 1,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "K_JyJ4",
-      "races": "Protoss,Terran,Zerg",
-      "total_games": 82,
-      "games_analyzed": 20,
-      "prediction": "BishOp",
-      "confidence": 0.75,
-      "avg_prob": 0.5605960101912006,
-      "all_preds": {
-        "BishOp": 15,
-        "Fantasy": 2,
-        "yOOn": 2,
-        "SoulKey": 1
-      }
-    },
-    {
-      "player": "MBU_Shine",
-      "races": "Terran,Zerg",
-      "total_games": 101,
-      "games_analyzed": 16,
-      "prediction": "Flash",
-      "confidence": 0.75,
-      "avg_prob": 0.23612643744321932,
-      "all_preds": {
-        "EffOrt": 4,
-        "Flash": 12
-      }
-    },
-    {
-      "player": "llIIIlIIIllIIII",
-      "races": "Terran",
-      "total_games": 21,
-      "games_analyzed": 20,
-      "prediction": "Speed",
-      "confidence": 0.75,
-      "avg_prob": 0.20137806716051282,
-      "all_preds": {
-        "Speed": 15,
-        "Sky": 4,
-        "BishOp": 1
+        "Flash": 18
       }
     },
     {
       "player": "euiqoruojfal",
+      "aurora_id": null,
+      "display_names": [
+        "euiqoruojfal"
+      ],
       "races": "Protoss",
       "total_games": 12,
-      "games_analyzed": 8,
+      "games_analyzed": 7,
       "prediction": "Flash",
-      "confidence": 0.75,
-      "avg_prob": 0.1884700999904324,
+      "confidence": 1.0,
+      "avg_prob": 0.206929498286217,
       "all_preds": {
-        "Flash": 6,
-        "Tyson": 1,
-        "Best": 1
+        "Flash": 7
       }
     },
     {
-      "player": "lllllli112l",
-      "races": "Protoss",
-      "total_games": 101,
-      "games_analyzed": 19,
-      "prediction": "BishOp",
-      "confidence": 0.7368421052631579,
-      "avg_prob": 0.30961779560281444,
-      "all_preds": {
-        "BishOp": 14,
-        "Speed": 5
-      }
-    },
-    {
-      "player": "FemaleValkyrie",
-      "races": "Protoss",
-      "total_games": 25,
-      "games_analyzed": 19,
-      "prediction": "Sky",
-      "confidence": 0.7368421052631579,
-      "avg_prob": 0.2419236832941191,
-      "all_preds": {
-        "Sky": 14,
-        "Artosis": 5
-      }
-    },
-    {
-      "player": "lIIIIlllIIIlll",
-      "races": "Protoss",
+      "player": "Spxar",
+      "aurora_id": null,
+      "display_names": [
+        "Spxar"
+      ],
+      "races": "Terran",
       "total_games": 11,
-      "games_analyzed": 11,
-      "prediction": "Fantasy",
-      "confidence": 0.7272727272727273,
-      "avg_prob": 0.2890010336775506,
-      "all_preds": {
-        "Fantasy": 8,
-        "Sky": 2,
-        "Flash": 1
-      }
-    },
-    {
-      "player": "llIIllIIIlIIIlI",
-      "races": "Zerg",
-      "total_games": 14,
-      "games_analyzed": 11,
+      "games_analyzed": 9,
       "prediction": "Best",
-      "confidence": 0.7272727272727273,
-      "avg_prob": 0.15206223452646822,
+      "confidence": 1.0,
+      "avg_prob": 0.18322540733085352,
       "all_preds": {
-        "Best": 8,
-        "Sky": 1,
-        "yOOn": 2
+        "Best": 9
       }
     },
     {
-      "player": "NCS_Tshu",
-      "races": "Protoss",
-      "total_games": 14,
-      "games_analyzed": 14,
-      "prediction": "Speed",
-      "confidence": 0.7142857142857143,
-      "avg_prob": 0.16555257843038929,
+      "player": "lIllz",
+      "aurora_id": null,
+      "display_names": [
+        "lIllz"
+      ],
+      "races": "Terran",
+      "total_games": 11,
+      "games_analyzed": 10,
+      "prediction": "ProMise",
+      "confidence": 1.0,
+      "avg_prob": 0.17762414196412218,
       "all_preds": {
-        "Speed": 10,
-        "Best": 3,
+        "ProMise": 10
+      }
+    },
+    {
+      "player": "SCU_human",
+      "aurora_id": null,
+      "display_names": [
+        "SCU_human"
+      ],
+      "races": "Terran",
+      "total_games": 52,
+      "games_analyzed": 18,
+      "prediction": "snOw",
+      "confidence": 0.9444444444444444,
+      "avg_prob": 0.32299705488811475,
+      "all_preds": {
+        "snOw": 17,
         "Tyson": 1
       }
     },
     {
+      "player": "lllIIllIIllII",
+      "aurora_id": null,
+      "display_names": [
+        "lllIIllIIllII"
+      ],
+      "races": "Terran",
+      "total_games": 105,
+      "games_analyzed": 18,
+      "prediction": "Best",
+      "confidence": 0.9444444444444444,
+      "avg_prob": 0.16048410340889502,
+      "all_preds": {
+        "Best": 17,
+        "EffOrt": 1
+      }
+    },
+    {
+      "player": "lIlllIllIllIl1",
+      "aurora_id": null,
+      "display_names": [
+        "lIlllIllIllIl1"
+      ],
+      "races": "Zerg,Terran,Protoss",
+      "total_games": 100,
+      "games_analyzed": 17,
+      "prediction": "Jaedong",
+      "confidence": 0.9411764705882353,
+      "avg_prob": 0.30738728123184217,
+      "all_preds": {
+        "Jaedong": 16,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "Yahweh",
+      "aurora_id": null,
+      "display_names": [
+        "Yahweh"
+      ],
+      "races": "Protoss",
+      "total_games": 31,
+      "games_analyzed": 17,
+      "prediction": "Best",
+      "confidence": 0.9411764705882353,
+      "avg_prob": 0.29539610148696116,
+      "all_preds": {
+        "Best": 16,
+        "Rain": 1
+      }
+    },
+    {
+      "player": "Famas2[WHITE]",
+      "aurora_id": null,
+      "display_names": [
+        "Famas2[WHITE]"
+      ],
+      "races": "Terran",
+      "total_games": 19,
+      "games_analyzed": 15,
+      "prediction": "Rain",
+      "confidence": 0.9333333333333333,
+      "avg_prob": 0.29254797650526515,
+      "all_preds": {
+        "Rain": 14,
+        "Jaedong": 1
+      }
+    },
+    {
+      "player": "ByungAri",
+      "aurora_id": null,
+      "display_names": [
+        "ByungAri"
+      ],
+      "races": "Zerg",
+      "total_games": 30,
+      "games_analyzed": 15,
+      "prediction": "sSak",
+      "confidence": 0.9333333333333333,
+      "avg_prob": 0.25018675036323607,
+      "all_preds": {
+        "sSak": 14,
+        "Sky": 1
+      }
+    },
+    {
+      "player": "IIIIIllllIIIIIl",
+      "aurora_id": null,
+      "display_names": [
+        "IIIIIllllIIIIIl"
+      ],
+      "races": "Zerg",
+      "total_games": 15,
+      "games_analyzed": 15,
+      "prediction": "SoulKey",
+      "confidence": 0.9333333333333333,
+      "avg_prob": 0.22448648334633206,
+      "all_preds": {
+        "SoulKey": 14,
+        "soO": 1
+      }
+    },
+    {
+      "player": "YB_Lightt",
+      "aurora_id": null,
+      "display_names": [
+        "YB_Lightt"
+      ],
+      "races": "Terran,Zerg",
+      "total_games": 15,
+      "games_analyzed": 14,
+      "prediction": "ProMise",
+      "confidence": 0.9285714285714286,
+      "avg_prob": 0.2313904890662489,
+      "all_preds": {
+        "ProMise": 13,
+        "Best": 1
+      }
+    },
+    {
+      "player": "wG_Shine",
+      "aurora_id": null,
+      "display_names": [
+        "wG_Shine"
+      ],
+      "races": "Zerg,Terran",
+      "total_games": 103,
+      "games_analyzed": 13,
+      "prediction": "Flash",
+      "confidence": 0.9230769230769231,
+      "avg_prob": 0.2787581025271684,
+      "all_preds": {
+        "Flash": 12,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "lllIllIIIlIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "lllIllIIIlIlIlI"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 11,
+      "prediction": "Sky",
+      "confidence": 0.9090909090909091,
+      "avg_prob": 0.29652308347552325,
+      "all_preds": {
+        "Sky": 10,
+        "Artosis": 1
+      }
+    },
+    {
+      "player": "ssssowhat",
+      "aurora_id": null,
+      "display_names": [
+        "ssssowhat"
+      ],
+      "races": "Zerg",
+      "total_games": 12,
+      "games_analyzed": 11,
+      "prediction": "yOOn",
+      "confidence": 0.9090909090909091,
+      "avg_prob": 0.18017281134535784,
+      "all_preds": {
+        "yOOn": 10,
+        "Stork": 1
+      }
+    },
+    {
+      "player": "Mstz_herO`",
+      "aurora_id": null,
+      "display_names": [
+        "Mstz_herO`"
+      ],
+      "races": "Zerg",
+      "total_games": 12,
+      "games_analyzed": 10,
+      "prediction": "yOOn",
+      "confidence": 0.9,
+      "avg_prob": 0.2748851766909587,
+      "all_preds": {
+        "yOOn": 9,
+        "Jaedong": 1
+      }
+    },
+    {
+      "player": "IIlIllllIlII",
+      "aurora_id": null,
+      "display_names": [
+        "IIlIllllIlII"
+      ],
+      "races": "Zerg",
+      "total_games": 56,
+      "games_analyzed": 20,
+      "prediction": "Best",
+      "confidence": 0.9,
+      "avg_prob": 0.15606106131489622,
+      "all_preds": {
+        "Best": 18,
+        "sSak": 1,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "lllllllllll`net",
+      "aurora_id": null,
+      "display_names": [
+        "lllllllllll`net"
+      ],
+      "races": "Protoss",
+      "total_games": 59,
+      "games_analyzed": 19,
+      "prediction": "Fantasy",
+      "confidence": 0.8947368421052632,
+      "avg_prob": 0.29997741214537865,
+      "all_preds": {
+        "Fantasy": 17,
+        "Air": 1,
+        "gypsy": 1
+      }
+    },
+    {
+      "player": "lllIlIllIIllIl",
+      "aurora_id": null,
+      "display_names": [
+        "lllIlIllIIllIl"
+      ],
+      "races": "Protoss",
+      "total_games": 11,
+      "games_analyzed": 9,
+      "prediction": "Flash",
+      "confidence": 0.8888888888888888,
+      "avg_prob": 0.2816103527299346,
+      "all_preds": {
+        "Flash": 8,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "IllllIlIIIlIlll",
+      "aurora_id": null,
+      "display_names": [
+        "IllllIlIIIlIlll"
+      ],
+      "races": "Protoss",
+      "total_games": 28,
+      "games_analyzed": 18,
+      "prediction": "Best",
+      "confidence": 0.8888888888888888,
+      "avg_prob": 0.23385269285500737,
+      "all_preds": {
+        "Best": 16,
+        "Shuttle": 2
+      }
+    },
+    {
+      "player": "MBU_Movie",
+      "aurora_id": null,
+      "display_names": [
+        "MBU_Movie"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 9,
+      "prediction": "Flash",
+      "confidence": 0.8888888888888888,
+      "avg_prob": 0.20387918132475502,
+      "all_preds": {
+        "Flash": 8,
+        "snOw": 1
+      }
+    },
+    {
+      "player": "C9_Whyman",
+      "aurora_id": null,
+      "display_names": [
+        "C9_Whyman"
+      ],
+      "races": "Protoss",
+      "total_games": 42,
+      "games_analyzed": 18,
+      "prediction": "ProMise",
+      "confidence": 0.8888888888888888,
+      "avg_prob": 0.17682004103302346,
+      "all_preds": {
+        "ProMise": 16,
+        "Ample": 1,
+        "Sky": 1
+      }
+    },
+    {
+      "player": "SSecertZerg",
+      "aurora_id": null,
+      "display_names": [
+        "SSecertZerg"
+      ],
+      "races": "Zerg",
+      "total_games": 18,
+      "games_analyzed": 17,
+      "prediction": "Jaedong",
+      "confidence": 0.8823529411764706,
+      "avg_prob": 0.24788969720309972,
+      "all_preds": {
+        "Jaedong": 15,
+        "gypsy": 1,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "JSU_susik",
+      "aurora_id": null,
+      "display_names": [
+        "JSU_susik"
+      ],
+      "races": "Terran,Zerg,Protoss",
+      "total_games": 39,
+      "games_analyzed": 17,
+      "prediction": "Jaedong",
+      "confidence": 0.8823529411764706,
+      "avg_prob": 0.23209398154304597,
+      "all_preds": {
+        "Rain": 1,
+        "Jaedong": 15,
+        "soO": 1
+      }
+    },
+    {
+      "player": "123i0912i39100",
+      "aurora_id": null,
+      "display_names": [
+        "123i0912i39100"
+      ],
+      "races": "Zerg",
+      "total_games": 33,
+      "games_analyzed": 17,
+      "prediction": "snOw",
+      "confidence": 0.8823529411764706,
+      "avg_prob": 0.17322069680470822,
+      "all_preds": {
+        "SoulKey": 1,
+        "snOw": 15,
+        "Jaedong": 1
+      }
+    },
+    {
+      "player": "liilil1l1i1li1l",
+      "aurora_id": null,
+      "display_names": [
+        "liilil1l1i1li1l"
+      ],
+      "races": "Terran",
+      "total_games": 59,
+      "games_analyzed": 17,
+      "prediction": "Rush",
+      "confidence": 0.8823529411764706,
+      "avg_prob": 0.15941971641072683,
+      "all_preds": {
+        "Rush": 15,
+        "Air": 1,
+        "Scan": 1
+      }
+    },
+    {
+      "player": "lIIlIllIlIIlIIl",
+      "aurora_id": null,
+      "display_names": [
+        "lIIlIllIlIIlIIl"
+      ],
+      "races": "Terran,Zerg,Protoss",
+      "total_games": 60,
+      "games_analyzed": 16,
+      "prediction": "soO",
+      "confidence": 0.875,
+      "avg_prob": 0.3584310504137832,
+      "all_preds": {
+        "soO": 14,
+        "Larva": 2
+      }
+    },
+    {
+      "player": "Wico`asdaf",
+      "aurora_id": null,
+      "display_names": [
+        "Wico`asdaf"
+      ],
+      "races": "Protoss",
+      "total_games": 15,
+      "games_analyzed": 8,
+      "prediction": "Best",
+      "confidence": 0.875,
+      "avg_prob": 0.21844442704065176,
+      "all_preds": {
+        "Best": 7,
+        "snOw": 1
+      }
+    },
+    {
+      "player": "vmtkrl2ghrl",
+      "aurora_id": null,
+      "display_names": [
+        "vmtkrl2ghrl"
+      ],
+      "races": "Zerg",
+      "total_games": 23,
+      "games_analyzed": 16,
+      "prediction": "SoulKey",
+      "confidence": 0.875,
+      "avg_prob": 0.17563942247660685,
+      "all_preds": {
+        "SoulKey": 14,
+        "Best": 1,
+        "sSak": 1
+      }
+    },
+    {
+      "player": "IIIIIIllllIIll0",
+      "aurora_id": null,
+      "display_names": [
+        "IIIIIIllllIIll0"
+      ],
+      "races": "Terran,Protoss",
+      "total_games": 81,
+      "games_analyzed": 15,
+      "prediction": "Fantasy",
+      "confidence": 0.8666666666666667,
+      "avg_prob": 0.18134667844559788,
+      "all_preds": {
+        "Fantasy": 13,
+        "Scan": 1,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "IllIIIIlIlllIl",
+      "aurora_id": null,
+      "display_names": [
+        "IllIIIIlIlllIl"
+      ],
+      "races": "Terran",
+      "total_games": 11,
+      "games_analyzed": 7,
+      "prediction": "Stork",
+      "confidence": 0.8571428571428571,
+      "avg_prob": 0.34423180410498777,
+      "all_preds": {
+        "Shuttle": 1,
+        "Stork": 6
+      }
+    },
+    {
+      "player": "IIllIIlllIIlll1",
+      "aurora_id": null,
+      "display_names": [
+        "IIllIIlllIIlll1"
+      ],
+      "races": "Zerg,Protoss",
+      "total_games": 101,
+      "games_analyzed": 7,
+      "prediction": "Jaedong",
+      "confidence": 0.8571428571428571,
+      "avg_prob": 0.2854078129771333,
+      "all_preds": {
+        "Jaedong": 6,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "TimeisgoId",
+      "aurora_id": null,
+      "display_names": [
+        "TimeisgoId"
+      ],
+      "races": "Zerg",
+      "total_games": 27,
+      "games_analyzed": 14,
+      "prediction": "sSak",
+      "confidence": 0.8571428571428571,
+      "avg_prob": 0.2541525923716511,
+      "all_preds": {
+        "Sky": 2,
+        "sSak": 12
+      }
+    },
+    {
+      "player": "000717",
+      "aurora_id": null,
+      "display_names": [
+        "000717"
+      ],
+      "races": "Zerg",
+      "total_games": 12,
+      "games_analyzed": 7,
+      "prediction": "SoulKey",
+      "confidence": 0.8571428571428571,
+      "avg_prob": 0.18549497581913257,
+      "all_preds": {
+        "SoulKey": 6,
+        "Fantasy": 1
+      }
+    },
+    {
+      "player": "IIIIIIIIIlII",
+      "aurora_id": null,
+      "display_names": [
+        "IIIIIIIIIlII"
+      ],
+      "races": "Terran",
+      "total_games": 21,
+      "games_analyzed": 20,
+      "prediction": "Best",
+      "confidence": 0.85,
+      "avg_prob": 0.28882208424106437,
+      "all_preds": {
+        "Best": 17,
+        "sSak": 3
+      }
+    },
+    {
+      "player": "IIllIllIllIll1",
+      "aurora_id": null,
+      "display_names": [
+        "IIllIllIllIll1"
+      ],
+      "races": "Protoss",
+      "total_games": 14,
+      "games_analyzed": 13,
+      "prediction": "Speed",
+      "confidence": 0.8461538461538461,
+      "avg_prob": 0.23697904272696654,
+      "all_preds": {
+        "Speed": 11,
+        "BishOp": 1,
+        "Ample": 1
+      }
+    },
+    {
+      "player": "&-Qriginal",
+      "aurora_id": null,
+      "display_names": [
+        "&-Qriginal"
+      ],
+      "races": "Terran",
+      "total_games": 15,
+      "games_analyzed": 13,
+      "prediction": "Flash",
+      "confidence": 0.8461538461538461,
+      "avg_prob": 0.22500422369446466,
+      "all_preds": {
+        "Flash": 11,
+        "Sky": 1,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "i!iI!i!i!i!i!i!",
+      "aurora_id": null,
+      "display_names": [
+        "i!iI!i!i!i!i!i!"
+      ],
+      "races": "Protoss",
+      "total_games": 14,
+      "games_analyzed": 13,
+      "prediction": "EffOrt",
+      "confidence": 0.8461538461538461,
+      "avg_prob": 0.19550427205656057,
+      "all_preds": {
+        "Larva": 1,
+        "EffOrt": 11,
+        "soO": 1
+      }
+    },
+    {
+      "player": "llIIllIIlIIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "llIIllIIlIIlIlI"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 114,
+      "games_analyzed": 19,
+      "prediction": "Best",
+      "confidence": 0.8421052631578947,
+      "avg_prob": 0.24979534334833073,
+      "all_preds": {
+        "Best": 16,
+        "sSak": 3
+      }
+    },
+    {
+      "player": "IIlIlIIIlIIIll",
+      "aurora_id": null,
+      "display_names": [
+        "IIlIlIIIlIIIll"
+      ],
+      "races": "Terran,Zerg,Protoss",
+      "total_games": 99,
+      "games_analyzed": 12,
+      "prediction": "Flash",
+      "confidence": 0.8333333333333334,
+      "avg_prob": 0.29551300709924777,
+      "all_preds": {
+        "Flash": 10,
+        "Artosis": 1,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "IllllIlIIIlI",
+      "aurora_id": null,
+      "display_names": [
+        "IllllIlIIIlI"
+      ],
+      "races": "Protoss,Zerg,Terran",
+      "total_games": 101,
+      "games_analyzed": 18,
+      "prediction": "BishOp",
+      "confidence": 0.8333333333333334,
+      "avg_prob": 0.2772815442786303,
+      "all_preds": {
+        "BishOp": 15,
+        "Sky": 1,
+        "sSak": 1,
+        "Speed": 1
+      }
+    },
+    {
+      "player": "wico`1127",
+      "aurora_id": null,
+      "display_names": [
+        "wico`1127"
+      ],
+      "races": "Terran",
+      "total_games": 102,
+      "games_analyzed": 18,
+      "prediction": "Flash",
+      "confidence": 0.8333333333333334,
+      "avg_prob": 0.22806867530449082,
+      "all_preds": {
+        "Flash": 15,
+        "Artosis": 2,
+        "Scan": 1
+      }
+    },
+    {
+      "player": "lIIIlIIlIIllII",
+      "aurora_id": null,
+      "display_names": [
+        "lIIIlIIlIIllII"
+      ],
+      "races": "Protoss,Zerg",
+      "total_games": 99,
+      "games_analyzed": 17,
+      "prediction": "Scan",
+      "confidence": 0.8235294117647058,
+      "avg_prob": 0.15551334959944582,
+      "all_preds": {
+        "SoulKey": 2,
+        "Scan": 14,
+        "soO": 1
+      }
+    },
+    {
+      "player": "JSU_Motive",
+      "aurora_id": null,
+      "display_names": [
+        "JSU_Motive"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 52,
+      "games_analyzed": 11,
+      "prediction": "Best",
+      "confidence": 0.8181818181818182,
+      "avg_prob": 0.2234616905648896,
+      "all_preds": {
+        "Best": 9,
+        "EffOrt": 2
+      }
+    },
+    {
+      "player": "IlIlIIllIllIlI",
+      "aurora_id": null,
+      "display_names": [
+        "IlIlIIllIllIlI"
+      ],
+      "races": "Zerg",
+      "total_games": 16,
+      "games_analyzed": 16,
+      "prediction": "soO",
+      "confidence": 0.8125,
+      "avg_prob": 0.2908915193624086,
+      "all_preds": {
+        "soO": 13,
+        "Larva": 3
+      }
+    },
+    {
+      "player": "wico``````",
+      "aurora_id": null,
+      "display_names": [
+        "wico``````"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 99,
+      "games_analyzed": 16,
+      "prediction": "Flash",
+      "confidence": 0.8125,
+      "avg_prob": 0.22127439921408382,
+      "all_preds": {
+        "Flash": 13,
+        "Artosis": 2,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "sssddd33333",
+      "aurora_id": null,
+      "display_names": [
+        "sssddd33333"
+      ],
+      "races": "Zerg",
+      "total_games": 11,
+      "games_analyzed": 10,
+      "prediction": "Jaedong",
+      "confidence": 0.8,
+      "avg_prob": 0.29995325855524396,
+      "all_preds": {
+        "Jaedong": 8,
+        "SoulKey": 2
+      }
+    },
+    {
+      "player": "DIC_Noob13",
+      "aurora_id": null,
+      "display_names": [
+        "DIC_Noob13"
+      ],
+      "races": "Protoss",
+      "total_games": 14,
+      "games_analyzed": 10,
+      "prediction": "BishOp",
+      "confidence": 0.8,
+      "avg_prob": 0.25158836198538104,
+      "all_preds": {
+        "BishOp": 8,
+        "Rush": 1,
+        "Speed": 1
+      }
+    },
+    {
+      "player": "xdnjcj",
+      "aurora_id": null,
+      "display_names": [
+        "xdnjcj"
+      ],
+      "races": "Terran",
+      "total_games": 44,
+      "games_analyzed": 15,
+      "prediction": "ProMise",
+      "confidence": 0.8,
+      "avg_prob": 0.1535420915927145,
+      "all_preds": {
+        "ProMise": 12,
+        "sSak": 1,
+        "BishOp": 1,
+        "Best": 1
+      }
+    },
+    {
+      "player": "MBU_Shine",
+      "aurora_id": null,
+      "display_names": [
+        "MBU_Shine"
+      ],
+      "races": "Terran,Zerg",
+      "total_games": 110,
+      "games_analyzed": 14,
+      "prediction": "Flash",
+      "confidence": 0.7857142857142857,
+      "avg_prob": 0.23001606772086683,
+      "all_preds": {
+        "EffOrt": 2,
+        "Flash": 11,
+        "soO": 1
+      }
+    },
+    {
+      "player": "K_JyJ4",
+      "aurora_id": null,
+      "display_names": [
+        "K_JyJ4"
+      ],
+      "races": "Protoss,Terran,Zerg",
+      "total_games": 82,
+      "games_analyzed": 18,
+      "prediction": "BishOp",
+      "confidence": 0.7777777777777778,
+      "avg_prob": 0.5413836510690815,
+      "all_preds": {
+        "BishOp": 14,
+        "Jaedong": 4
+      }
+    },
+    {
+      "player": "llIllIl",
+      "aurora_id": null,
+      "display_names": [
+        "llIllIl"
+      ],
+      "races": "Zerg,Protoss,Terran",
+      "total_games": 42,
+      "games_analyzed": 18,
+      "prediction": "Jaedong",
+      "confidence": 0.7777777777777778,
+      "avg_prob": 0.24343797466831651,
+      "all_preds": {
+        "Jaedong": 14,
+        "Shuttle": 4
+      }
+    },
+    {
+      "player": "IllIllllIllII",
+      "aurora_id": null,
+      "display_names": [
+        "IllIllllIllII"
+      ],
+      "races": "Protoss",
+      "total_games": 58,
+      "games_analyzed": 18,
+      "prediction": "Best",
+      "confidence": 0.7777777777777778,
+      "avg_prob": 0.20054111233767313,
+      "all_preds": {
+        "Sky": 1,
+        "Best": 14,
+        "BishOp": 3
+      }
+    },
+    {
+      "player": "agreewithagree",
+      "aurora_id": null,
+      "display_names": [
+        "agreewithagree"
+      ],
+      "races": "Zerg",
+      "total_games": 10,
+      "games_analyzed": 9,
+      "prediction": "sSak",
+      "confidence": 0.7777777777777778,
+      "avg_prob": 0.13361461194944957,
+      "all_preds": {
+        "sSak": 7,
+        "BishOp": 1,
+        "Sky": 1
+      }
+    },
+    {
+      "player": "Obitos's_Way",
+      "aurora_id": null,
+      "display_names": [
+        "Obitos's_Way"
+      ],
+      "races": "Zerg",
+      "total_games": 14,
+      "games_analyzed": 13,
+      "prediction": "Shuttle",
+      "confidence": 0.7692307692307693,
+      "avg_prob": 0.25543741957228205,
+      "all_preds": {
+        "gypsy": 1,
+        "Shuttle": 10,
+        "Rain": 2
+      }
+    },
+    {
+      "player": "IIllIIIIlllIIl1",
+      "aurora_id": null,
+      "display_names": [
+        "IIllIIIIlllIIl1"
+      ],
+      "races": "Zerg,Protoss",
+      "total_games": 112,
+      "games_analyzed": 17,
+      "prediction": "Jaedong",
+      "confidence": 0.7647058823529411,
+      "avg_prob": 0.29327672648996633,
+      "all_preds": {
+        "Jaedong": 13,
+        "SoulKey": 2,
+        "Stork": 1,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "JSA_Mohanayo",
+      "aurora_id": null,
+      "display_names": [
+        "JSA_Mohanayo"
+      ],
+      "races": "Protoss,Zerg",
+      "total_games": 17,
+      "games_analyzed": 16,
+      "prediction": "BishOp",
+      "confidence": 0.75,
+      "avg_prob": 0.26726376841624255,
+      "all_preds": {
+        "BishOp": 12,
+        "sSak": 2,
+        "Speed": 1,
+        "Shuttle": 1
+      }
+    },
+    {
+      "player": "bab_1GGi",
+      "aurora_id": null,
+      "display_names": [
+        "bab_1GGi"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 10,
+      "games_analyzed": 4,
+      "prediction": "Rain",
+      "confidence": 0.75,
+      "avg_prob": 0.22850175246568438,
+      "all_preds": {
+        "Rain": 3,
+        "Best": 1
+      }
+    },
+    {
+      "player": "royaldsfsd",
+      "aurora_id": null,
+      "display_names": [
+        "royaldsfsd"
+      ],
+      "races": "Terran",
+      "total_games": 10,
+      "games_analyzed": 8,
+      "prediction": "Flash",
+      "confidence": 0.75,
+      "avg_prob": 0.12557504595702057,
+      "all_preds": {
+        "yOOn": 1,
+        "Flash": 6,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "JSA_NewSkey",
+      "aurora_id": null,
+      "display_names": [
+        "JSA_NewSkey"
+      ],
+      "races": "Terran",
+      "total_games": 20,
+      "games_analyzed": 15,
+      "prediction": "Flash",
+      "confidence": 0.7333333333333333,
+      "avg_prob": 0.2223759709565545,
+      "all_preds": {
+        "Flash": 11,
+        "ProMise": 2,
+        "Scan": 2
+      }
+    },
+    {
+      "player": "&-saber",
+      "aurora_id": null,
+      "display_names": [
+        "&-saber"
+      ],
+      "races": "Zerg",
+      "total_games": 11,
+      "games_analyzed": 11,
+      "prediction": "soO",
+      "confidence": 0.7272727272727273,
+      "avg_prob": 0.20997932750912993,
+      "all_preds": {
+        "gypsy": 1,
+        "soO": 8,
+        "EffOrt": 2
+      }
+    },
+    {
+      "player": "SSU_ZeLoT",
+      "aurora_id": null,
+      "display_names": [
+        "SSU_ZeLoT"
+      ],
+      "races": "Zerg",
+      "total_games": 11,
+      "games_analyzed": 11,
+      "prediction": "Best",
+      "confidence": 0.7272727272727273,
+      "avg_prob": 0.14870757404565202,
+      "all_preds": {
+        "Best": 8,
+        "SoulKey": 2,
+        "sSak": 1
+      }
+    },
+    {
+      "player": "00000O00000",
+      "aurora_id": null,
+      "display_names": [
+        "00000O00000"
+      ],
+      "races": "Terran,Protoss,Zerg",
+      "total_games": 13,
+      "games_analyzed": 7,
+      "prediction": "snOw",
+      "confidence": 0.7142857142857143,
+      "avg_prob": 0.2491231804407795,
+      "all_preds": {
+        "snOw": 5,
+        "Shuttle": 1,
+        "Artosis": 1
+      }
+    },
+    {
+      "player": "llIIlllllIIIllI",
+      "aurora_id": null,
+      "display_names": [
+        "llIIlllllIIIllI"
+      ],
+      "races": "Zerg",
+      "total_games": 18,
+      "games_analyzed": 14,
+      "prediction": "yOOn",
+      "confidence": 0.7142857142857143,
+      "avg_prob": 0.16089710391642045,
+      "all_preds": {
+        "yOOn": 10,
+        "Air": 2,
+        "Jaedong": 2
+      }
+    },
+    {
+      "player": "IlIIlIIIIIIIl",
+      "aurora_id": null,
+      "display_names": [
+        "IlIIlIIIIIIIl"
+      ],
+      "races": "Zerg",
+      "total_games": 102,
+      "games_analyzed": 17,
+      "prediction": "EffOrt",
+      "confidence": 0.7058823529411765,
+      "avg_prob": 0.34746155619072877,
+      "all_preds": {
+        "EffOrt": 12,
+        "Larva": 3,
+        "soO": 2
+      }
+    },
+    {
       "player": "ErOs_KBS",
+      "aurora_id": null,
+      "display_names": [
+        "ErOs_KBS"
+      ],
       "races": "Protoss",
       "total_games": 48,
       "games_analyzed": 17,
       "prediction": "EffOrt",
       "confidence": 0.7058823529411765,
-      "avg_prob": 0.2170438814817387,
+      "avg_prob": 0.20431936625815203,
       "all_preds": {
         "EffOrt": 12,
-        "soO": 4,
-        "Larva": 1
+        "soO": 5
       }
     },
     {
-      "player": "IIIIlIIIllIIIII",
-      "races": "Zerg",
-      "total_games": 98,
-      "games_analyzed": 17,
-      "prediction": "EffOrt",
-      "confidence": 0.7058823529411765,
-      "avg_prob": 0.18632473137604333,
-      "all_preds": {
-        "Sharp": 5,
-        "EffOrt": 12
-      }
-    },
-    {
-      "player": "i!iI!i!i!i!i!i!",
-      "races": "Protoss",
-      "total_games": 11,
-      "games_analyzed": 10,
-      "prediction": "soO",
-      "confidence": 0.7,
-      "avg_prob": 0.19271081702995638,
-      "all_preds": {
-        "soO": 7,
-        "EffOrt": 3
-      }
-    },
-    {
-      "player": "IIllIllIllIll1",
-      "races": "Protoss",
-      "total_games": 14,
-      "games_analyzed": 13,
-      "prediction": "Speed",
-      "confidence": 0.6923076923076923,
-      "avg_prob": 0.27784094331789655,
-      "all_preds": {
-        "Speed": 9,
-        "BishOp": 4
-      }
-    },
-    {
-      "player": "JSU_Motive",
-      "races": "Protoss,Terran",
-      "total_games": 52,
-      "games_analyzed": 13,
-      "prediction": "Best",
-      "confidence": 0.6923076923076923,
-      "avg_prob": 0.23391623313299106,
-      "all_preds": {
-        "Best": 9,
-        "EffOrt": 4
-      }
-    },
-    {
-      "player": "lllllIlIIIlIl",
-      "races": "Zerg",
-      "total_games": 101,
-      "games_analyzed": 16,
-      "prediction": "yOOn",
-      "confidence": 0.6875,
-      "avg_prob": 0.23314139315979548,
-      "all_preds": {
-        "Stork": 2,
-        "SoulKey": 3,
-        "yOOn": 11
-      }
-    },
-    {
-      "player": "JSA_NewSkey",
-      "races": "Terran",
-      "total_games": 20,
-      "games_analyzed": 16,
-      "prediction": "Flash",
-      "confidence": 0.6875,
-      "avg_prob": 0.19910892039372974,
-      "all_preds": {
-        "Flash": 11,
-        "Sharp": 1,
-        "Scan": 4
-      }
-    },
-    {
-      "player": "lilii1ilililili",
-      "races": "Terran",
-      "total_games": 46,
-      "games_analyzed": 16,
-      "prediction": "SoulKey",
-      "confidence": 0.6875,
-      "avg_prob": 0.157147919389994,
-      "all_preds": {
-        "SoulKey": 11,
-        "Scan": 3,
-        "Flash": 1,
-        "Best": 1
-      }
-    },
-    {
-      "player": "!lii!!lili!l!ii",
-      "races": "Zerg",
-      "total_games": 109,
-      "games_analyzed": 19,
-      "prediction": "SoulKey",
-      "confidence": 0.6842105263157895,
-      "avg_prob": 0.1918451793783417,
-      "all_preds": {
-        "yOOn": 6,
-        "SoulKey": 13
-      }
-    },
-    {
-      "player": "IIIllIllIIlII",
-      "races": "Terran",
-      "total_games": 113,
-      "games_analyzed": 6,
-      "prediction": "Best",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.3148359184464719,
-      "all_preds": {
-        "Best": 4,
-        "Sharp": 2
-      }
-    },
-    {
-      "player": "MYJAJI25CM^^",
-      "races": "Terran",
-      "total_games": 10,
-      "games_analyzed": 9,
-      "prediction": "Flash",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.2207322539317949,
-      "all_preds": {
-        "Flash": 6,
-        "Sky": 2,
-        "Artosis": 1
-      }
-    },
-    {
-      "player": "4325436546",
-      "races": "Zerg",
-      "total_games": 67,
-      "games_analyzed": 18,
-      "prediction": "SoulKey",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.19037290627416129,
-      "all_preds": {
-        "SoulKey": 12,
-        "yOOn": 6
-      }
-    },
-    {
-      "player": "scgotoboy",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 9,
-      "prediction": "Sky",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.1888870073721017,
-      "all_preds": {
-        "SoulKey": 1,
-        "soO": 1,
-        "Sky": 6,
-        "Larva": 1
-      }
-    },
-    {
-      "player": "agreewithagree",
-      "races": "Zerg",
-      "total_games": 10,
-      "games_analyzed": 9,
-      "prediction": "Sky",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.18346552520213963,
-      "all_preds": {
-        "Sky": 6,
-        "Fantasy": 1,
-        "BishOp": 1,
-        "Air": 1
-      }
-    },
-    {
-      "player": "ByungAri",
-      "races": "Zerg",
-      "total_games": 27,
-      "games_analyzed": 15,
-      "prediction": "Sky",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.17596940561243518,
-      "all_preds": {
-        "Speed": 5,
-        "Sky": 10
-      }
-    },
-    {
-      "player": "NCS_9Drone",
-      "races": "Zerg,Terran",
-      "total_games": 87,
-      "games_analyzed": 15,
-      "prediction": "Flash",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.17379987683374168,
-      "all_preds": {
-        "BishOp": 1,
-        "Flash": 10,
-        "Scan": 3,
-        "Best": 1
-      }
-    },
-    {
-      "player": "415_L",
-      "races": "Protoss",
-      "total_games": 14,
-      "games_analyzed": 12,
-      "prediction": "EffOrt",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.16563235558103362,
-      "all_preds": {
-        "soO": 3,
-        "EffOrt": 8,
-        "SoulKey": 1
-      }
-    },
-    {
-      "player": "lIlllIllIllIl1",
-      "races": "Zerg,Terran,Protoss",
-      "total_games": 100,
-      "games_analyzed": 18,
-      "prediction": "yOOn",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.16496639833736101,
-      "all_preds": {
-        "yOOn": 12,
-        "Stork": 2,
-        "SoulKey": 3,
-        "Fantasy": 1
-      }
-    },
-    {
-      "player": "djfqkrtk",
-      "races": "Zerg",
-      "total_games": 20,
-      "games_analyzed": 15,
-      "prediction": "Sky",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.16463931752397418,
-      "all_preds": {
-        "Sky": 10,
-        "BishOp": 1,
-        "Rain": 1,
-        "soO": 1,
-        "Best": 1,
-        "yOOn": 1
-      }
-    },
-    {
-      "player": "IIlIllIlIIIIIII",
-      "races": "Terran",
-      "total_games": 16,
-      "games_analyzed": 3,
-      "prediction": "EffOrt",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.14902759188906203,
-      "all_preds": {
-        "soO": 1,
-        "EffOrt": 2
-      }
-    },
-    {
-      "player": "vmtkrl2ghrl",
-      "races": "Zerg",
-      "total_games": 23,
-      "games_analyzed": 18,
-      "prediction": "Artosis",
-      "confidence": 0.6666666666666666,
-      "avg_prob": 0.14624442181843497,
-      "all_preds": {
-        "Artosis": 12,
-        "SoulKey": 4,
-        "soO": 1,
-        "Best": 1
-      }
-    },
-    {
-      "player": "SunF_Guoqian",
-      "races": "Protoss",
-      "total_games": 26,
-      "games_analyzed": 20,
-      "prediction": "Sky",
-      "confidence": 0.65,
-      "avg_prob": 0.23154888390374956,
-      "all_preds": {
-        "Sky": 13,
-        "Artosis": 7
-      }
-    },
-    {
-      "player": "llIlllIll1",
-      "races": "Terran,Zerg,Protoss",
-      "total_games": 26,
-      "games_analyzed": 20,
-      "prediction": "yOOn",
-      "confidence": 0.65,
-      "avg_prob": 0.1740125122551283,
-      "all_preds": {
-        "Sky": 1,
-        "yOOn": 13,
-        "Tyson": 5,
-        "Best": 1
-      }
-    },
-    {
-      "player": "&-saber",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 11,
-      "prediction": "soO",
-      "confidence": 0.6363636363636364,
-      "avg_prob": 0.20684372767449197,
-      "all_preds": {
-        "EffOrt": 4,
-        "soO": 7
-      }
-    },
-    {
-      "player": "ssssowhat",
-      "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 11,
-      "prediction": "yOOn",
-      "confidence": 0.6363636363636364,
-      "avg_prob": 0.15518401424643435,
-      "all_preds": {
-        "yOOn": 7,
-        "Larva": 3,
-        "Stork": 1
-      }
-    },
-    {
-      "player": "2342412313",
-      "races": "Protoss",
-      "total_games": 20,
-      "games_analyzed": 19,
-      "prediction": "BishOp",
-      "confidence": 0.631578947368421,
-      "avg_prob": 0.16662366419495706,
-      "all_preds": {
-        "Sky": 3,
-        "BishOp": 12,
-        "Ample": 1,
-        "Speed": 3
-      }
-    },
-    {
-      "player": "lllllIIIllIllIl",
-      "races": "Terran,Protoss",
-      "total_games": 100,
-      "games_analyzed": 16,
-      "prediction": "Flash",
-      "confidence": 0.625,
-      "avg_prob": 0.21359917787406882,
-      "all_preds": {
-        "Ample": 2,
-        "Sky": 1,
-        "Scan": 3,
-        "Flash": 10
-      }
-    },
-    {
-      "player": "bts4885",
-      "races": "Protoss,Terran",
-      "total_games": 45,
-      "games_analyzed": 16,
-      "prediction": "Flash",
-      "confidence": 0.625,
-      "avg_prob": 0.1807190753196771,
-      "all_preds": {
-        "Scan": 6,
-        "Flash": 10
-      }
-    },
-    {
-      "player": "00000O00000",
-      "races": "Terran,Protoss,Zerg",
-      "total_games": 13,
-      "games_analyzed": 8,
-      "prediction": "Artosis",
-      "confidence": 0.625,
-      "avg_prob": 0.16513392857142856,
-      "all_preds": {
-        "Artosis": 5,
-        "Tyson": 3
-      }
-    },
-    {
-      "player": "bestbisuminsnow",
-      "races": "Protoss",
-      "total_games": 38,
-      "games_analyzed": 18,
-      "prediction": "BishOp",
-      "confidence": 0.6111111111111112,
-      "avg_prob": 0.2988009180612694,
-      "all_preds": {
-        "Speed": 7,
-        "BishOp": 11
-      }
-    },
-    {
-      "player": "IllIllllIllII",
-      "races": "Protoss",
-      "total_games": 58,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 0.6111111111111112,
-      "avg_prob": 0.21758018557375794,
-      "all_preds": {
-        "Sky": 1,
-        "BishOp": 6,
-        "Best": 11
-      }
-    },
-    {
-      "player": "C9_Jaesung",
-      "races": "Terran",
-      "total_games": 68,
-      "games_analyzed": 18,
-      "prediction": "Rain",
-      "confidence": 0.6111111111111112,
-      "avg_prob": 0.18904955915669025,
-      "all_preds": {
-        "Rain": 11,
-        "Best": 6,
-        "Tyson": 1
-      }
-    },
-    {
-      "player": "[S.Tc]..Ares",
-      "races": "Terran",
-      "total_games": 10,
-      "games_analyzed": 10,
-      "prediction": "SoulKey",
-      "confidence": 0.6,
-      "avg_prob": 0.15980569711527043,
-      "all_preds": {
-        "SoulKey": 6,
-        "yOOn": 3,
-        "Scan": 1
-      }
-    },
-    {
-      "player": "3050_TnT",
-      "races": "Protoss",
-      "total_games": 10,
-      "games_analyzed": 10,
-      "prediction": "soO",
-      "confidence": 0.6,
-      "avg_prob": 0.1395746944460837,
-      "all_preds": {
-        "Larva": 4,
-        "soO": 6
-      }
-    },
-    {
-      "player": "lIllz",
-      "races": "Terran",
-      "total_games": 11,
-      "games_analyzed": 10,
-      "prediction": "Best",
-      "confidence": 0.6,
-      "avg_prob": 0.1291225515850516,
-      "all_preds": {
-        "Best": 6,
-        "Rain": 3,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "Famas2[WHITE]",
-      "races": "Terran",
-      "total_games": 19,
-      "games_analyzed": 17,
-      "prediction": "Rain",
-      "confidence": 0.5882352941176471,
-      "avg_prob": 0.2183280262481975,
-      "all_preds": {
-        "Rain": 10,
-        "Sharp": 3,
-        "Best": 3,
-        "Stork": 1
-      }
-    },
-    {
-      "player": "lilil...lililil",
-      "races": "Terran,Protoss",
-      "total_games": 46,
-      "games_analyzed": 19,
-      "prediction": "Best",
-      "confidence": 0.5789473684210527,
-      "avg_prob": 0.21694482363411388,
-      "all_preds": {
-        "Ample": 3,
-        "Best": 11,
-        "Speed": 2,
-        "Sky": 2,
-        "BishOp": 1
-      }
-    },
-    {
-      "player": "By_CooKie",
-      "races": "Terran",
-      "total_games": 91,
-      "games_analyzed": 19,
-      "prediction": "Sharp",
-      "confidence": 0.5789473684210527,
-      "avg_prob": 0.10796853156517174,
-      "all_preds": {
-        "Sharp": 11,
-        "Ample": 6,
-        "Flash": 1,
-        "yOOn": 1
-      }
-    },
-    {
-      "player": "Vmzcma",
-      "races": "Terran",
-      "total_games": 24,
-      "games_analyzed": 16,
-      "prediction": "Sky",
-      "confidence": 0.5625,
-      "avg_prob": 0.22202347304840975,
-      "all_preds": {
-        "Sky": 9,
-        "Ample": 6,
-        "Rush": 1
-      }
-    },
-    {
-      "player": "vmfosemtnlq",
-      "races": "Protoss",
-      "total_games": 70,
-      "games_analyzed": 16,
-      "prediction": "Rush",
-      "confidence": 0.5625,
-      "avg_prob": 0.14612995651865957,
-      "all_preds": {
-        "Flash": 3,
-        "Rush": 9,
-        "Ample": 2,
-        "Sky": 2
-      }
-    },
-    {
-      "player": "llIlIIllIIIlII",
-      "races": "Protoss",
-      "total_games": 16,
-      "games_analyzed": 16,
-      "prediction": "soO",
-      "confidence": 0.5625,
-      "avg_prob": 0.1395840099760603,
-      "all_preds": {
-        "soO": 9,
-        "Best": 2,
-        "Tyson": 1,
-        "Larva": 2,
-        "Scan": 1,
-        "Rain": 1
-      }
-    },
-    {
-      "player": "123i0912i39100",
-      "races": "Zerg",
-      "total_games": 33,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 0.5555555555555556,
-      "avg_prob": 0.14946404465796995,
-      "all_preds": {
-        "Sharp": 3,
-        "Best": 10,
-        "Sky": 4,
-        "Rain": 1
-      }
-    },
-    {
-      "player": "minahji",
-      "races": "Protoss,Terran",
-      "total_games": 42,
-      "games_analyzed": 18,
-      "prediction": "soO",
-      "confidence": 0.5555555555555556,
-      "avg_prob": 0.14822762095297218,
-      "all_preds": {
-        "soO": 10,
-        "Larva": 7,
-        "Best": 1
-      }
-    },
-    {
-      "player": "WhereIsMySide",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 9,
-      "prediction": "Rain",
-      "confidence": 0.5555555555555556,
-      "avg_prob": 0.14399696259717348,
-      "all_preds": {
-        "Rain": 5,
-        "yOOn": 3,
-        "Larva": 1
-      }
-    },
-    {
-      "player": "YB_Lightt",
-      "races": "Terran,Zerg",
-      "total_games": 10,
-      "games_analyzed": 9,
-      "prediction": "Scan",
-      "confidence": 0.5555555555555556,
-      "avg_prob": 0.10960000583210532,
-      "all_preds": {
-        "SoulKey": 2,
-        "Scan": 5,
-        "Best": 1,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "lIlIllIIlIllllI",
-      "races": "Terran,Zerg",
-      "total_games": 14,
-      "games_analyzed": 13,
-      "prediction": "BishOp",
-      "confidence": 0.5384615384615384,
-      "avg_prob": 0.23046184244939635,
-      "all_preds": {
-        "BishOp": 7,
-        "Ample": 2,
-        "EffOrt": 3,
-        "Larva": 1
-      }
-    },
-    {
-      "player": "lIlIIIIIIllllll",
-      "races": "Zerg,Protoss,Terran",
-      "total_games": 19,
-      "games_analyzed": 13,
-      "prediction": "Scan",
-      "confidence": 0.5384615384615384,
-      "avg_prob": 0.16286502130348285,
-      "all_preds": {
-        "Scan": 7,
-        "soO": 5,
-        "Best": 1
-      }
-    },
-    {
-      "player": "LMT_POLPO",
-      "races": "Protoss",
-      "total_games": 25,
-      "games_analyzed": 15,
-      "prediction": "Speed",
-      "confidence": 0.5333333333333333,
-      "avg_prob": 0.2433176162280704,
-      "all_preds": {
-        "BishOp": 4,
-        "Best": 3,
-        "Speed": 8
-      }
-    },
-    {
-      "player": "IlIIlIIIIIIIl",
-      "races": "Zerg",
-      "total_games": 101,
-      "games_analyzed": 17,
-      "prediction": "soO",
-      "confidence": 0.5294117647058824,
-      "avg_prob": 0.30476502294883595,
-      "all_preds": {
-        "EffOrt": 8,
-        "soO": 9
-      }
-    },
-    {
-      "player": "IIllIlIllIllIll",
-      "races": "Protoss",
-      "total_games": 50,
-      "games_analyzed": 17,
-      "prediction": "Speed",
-      "confidence": 0.5294117647058824,
-      "avg_prob": 0.18734404276240316,
-      "all_preds": {
-        "Speed": 9,
-        "Ample": 2,
-        "Rush": 4,
-        "Flash": 2
-      }
-    },
-    {
-      "player": "Galactic`HelloH",
-      "races": "Zerg",
-      "total_games": 17,
-      "games_analyzed": 17,
-      "prediction": "Sky",
-      "confidence": 0.5294117647058824,
-      "avg_prob": 0.15119129353396585,
-      "all_preds": {
-        "Best": 4,
-        "Sky": 9,
-        "Artosis": 2,
-        "Scan": 2
-      }
-    },
-    {
-      "player": "llvzcx",
-      "races": "Terran",
-      "total_games": 30,
-      "games_analyzed": 17,
-      "prediction": "Best",
-      "confidence": 0.5294117647058824,
-      "avg_prob": 0.144307778364396,
-      "all_preds": {
-        "Best": 9,
-        "BishOp": 4,
-        "Rain": 4
-      }
-    },
-    {
-      "player": "SST_YaK",
-      "races": "Protoss",
-      "total_games": 18,
-      "games_analyzed": 17,
-      "prediction": "Larva",
-      "confidence": 0.5294117647058824,
-      "avg_prob": 0.1395273100263015,
-      "all_preds": {
-        "Best": 2,
-        "Larva": 9,
-        "Tyson": 1,
-        "Rain": 1,
-        "soO": 4
-      }
-    },
-    {
-      "player": "40minGAME",
-      "races": "Terran",
-      "total_games": 28,
-      "games_analyzed": 19,
-      "prediction": "Best",
-      "confidence": 0.5263157894736842,
-      "avg_prob": 0.16798038866883536,
-      "all_preds": {
-        "Sharp": 1,
-        "Sky": 1,
-        "Tyson": 6,
-        "Best": 10,
-        "SoulKey": 1
-      }
-    },
-    {
-      "player": "NamuShield",
-      "races": "Protoss",
-      "total_games": 82,
-      "games_analyzed": 19,
-      "prediction": "Scan",
-      "confidence": 0.5263157894736842,
-      "avg_prob": 0.11937356554264449,
-      "all_preds": {
-        "Artosis": 1,
-        "Scan": 10,
-        "Best": 5,
-        "Ample": 2,
-        "Flash": 1
-      }
-    },
-    {
-      "player": "SCU_human",
-      "races": "Terran",
-      "total_games": 52,
-      "games_analyzed": 18,
-      "prediction": "Sharp",
-      "confidence": 0.5,
-      "avg_prob": 0.21859121540224483,
-      "all_preds": {
-        "Best": 8,
-        "Tyson": 1,
-        "Sharp": 9
-      }
-    },
-    {
-      "player": "IllllllllllllI",
-      "races": "Protoss",
-      "total_games": 19,
-      "games_analyzed": 18,
-      "prediction": "Tyson",
-      "confidence": 0.5,
-      "avg_prob": 0.2073126765564156,
-      "all_preds": {
-        "SoulKey": 4,
-        "Artosis": 4,
-        "Tyson": 9,
-        "Flash": 1
-      }
-    },
-    {
-      "player": "wico`ddd",
-      "races": "Terran,Zerg",
-      "total_games": 44,
-      "games_analyzed": 16,
-      "prediction": "Best",
-      "confidence": 0.5,
-      "avg_prob": 0.20448311564377006,
-      "all_preds": {
-        "Best": 8,
-        "Flash": 3,
-        "yOOn": 4,
-        "Rain": 1
-      }
-    },
-    {
-      "player": "okamle",
-      "races": "Zerg",
-      "total_games": 14,
-      "games_analyzed": 10,
-      "prediction": "Fantasy",
-      "confidence": 0.5,
-      "avg_prob": 0.20441045240396968,
-      "all_preds": {
-        "Fantasy": 5,
-        "Air": 5
-      }
-    },
-    {
-      "player": "BlackProbe`net",
-      "races": "Protoss",
-      "total_games": 102,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 0.5,
-      "avg_prob": 0.18106459041972306,
-      "all_preds": {
-        "Best": 9,
-        "Speed": 6,
-        "Rain": 3
-      }
-    },
-    {
-      "player": "3050_HiDdEN",
-      "races": "Zerg",
-      "total_games": 10,
-      "games_analyzed": 8,
-      "prediction": "Best",
-      "confidence": 0.5,
-      "avg_prob": 0.17820947427245737,
-      "all_preds": {
-        "Best": 4,
-        "yOOn": 1,
-        "BishOp": 1,
-        "EffOrt": 2
-      }
-    },
-    {
-      "player": "bab_1GGi",
-      "races": "Protoss,Terran",
-      "total_games": 10,
-      "games_analyzed": 6,
-      "prediction": "Rain",
-      "confidence": 0.5,
-      "avg_prob": 0.17806421903395475,
-      "all_preds": {
-        "Rain": 3,
-        "Best": 3
-      }
-    },
-    {
-      "player": "132u09aa0za09a0",
+      "player": "IIlIlIllllIIIl1",
+      "aurora_id": null,
+      "display_names": [
+        "IIlIlIllllIIIl1"
+      ],
       "races": "Zerg",
       "total_games": 111,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 0.5,
-      "avg_prob": 0.14988993164962447,
-      "all_preds": {
-        "Best": 9,
-        "Flash": 1,
-        "Sky": 4,
-        "Sharp": 4
-      }
-    },
-    {
-      "player": "lilili1ilililli",
-      "races": "Terran",
-      "total_games": 94,
-      "games_analyzed": 16,
-      "prediction": "SoulKey",
-      "confidence": 0.5,
-      "avg_prob": 0.13488373310620017,
-      "all_preds": {
-        "Scan": 7,
-        "SoulKey": 8,
-        "yOOn": 1
-      }
-    },
-    {
-      "player": "NCS_4M1234",
-      "races": "Terran",
-      "total_games": 38,
-      "games_analyzed": 19,
-      "prediction": "Ample",
-      "confidence": 0.47368421052631576,
-      "avg_prob": 0.20585280028118333,
-      "all_preds": {
-        "Ample": 9,
-        "Sky": 8,
-        "BishOp": 2
-      }
-    },
-    {
-      "player": "1zxdasd3",
-      "races": "Protoss,Terran,Zerg",
-      "total_games": 21,
-      "games_analyzed": 19,
-      "prediction": "Best",
-      "confidence": 0.47368421052631576,
-      "avg_prob": 0.19498548411963457,
-      "all_preds": {
-        "Rain": 1,
-        "Best": 9,
-        "Larva": 1,
-        "Speed": 2,
-        "Sky": 4,
-        "Tyson": 2
-      }
-    },
-    {
-      "player": "NCS_Gun",
-      "races": "Zerg",
-      "total_games": 67,
       "games_analyzed": 17,
-      "prediction": "soO",
-      "confidence": 0.47058823529411764,
-      "avg_prob": 0.17185910594273285,
-      "all_preds": {
-        "EffOrt": 2,
-        "soO": 8,
-        "Artosis": 2,
-        "Larva": 5
-      }
-    },
-    {
-      "player": "llIlIlIIllIlII",
-      "races": "Zerg,Terran",
-      "total_games": 103,
-      "games_analyzed": 17,
-      "prediction": "Sky",
-      "confidence": 0.47058823529411764,
-      "avg_prob": 0.12247577396218527,
-      "all_preds": {
-        "EffOrt": 5,
-        "Sky": 8,
-        "BishOp": 2,
-        "Flash": 1,
-        "Rush": 1
-      }
-    },
-    {
-      "player": "NZU_Saber",
-      "races": "Zerg",
-      "total_games": 17,
-      "games_analyzed": 15,
-      "prediction": "EffOrt",
-      "confidence": 0.4666666666666667,
-      "avg_prob": 0.1833004336316379,
-      "all_preds": {
-        "EffOrt": 7,
-        "soO": 6,
-        "yOOn": 1,
-        "Larva": 1
-      }
-    },
-    {
-      "player": "SSecertZerg",
-      "races": "Zerg",
-      "total_games": 14,
-      "games_analyzed": 13,
-      "prediction": "Air",
-      "confidence": 0.46153846153846156,
-      "avg_prob": 0.17986746880772092,
-      "all_preds": {
-        "Air": 6,
-        "Fantasy": 3,
-        "SoulKey": 2,
-        "yOOn": 2
-      }
-    },
-    {
-      "player": "ehdbgus",
-      "races": "Terran",
-      "total_games": 13,
-      "games_analyzed": 13,
-      "prediction": "soO",
-      "confidence": 0.46153846153846156,
-      "avg_prob": 0.1405321981547477,
-      "all_preds": {
-        "soO": 6,
-        "Larva": 5,
-        "SoulKey": 2
-      }
-    },
-    {
-      "player": "IIIIIllllIIIIIl",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 11,
-      "prediction": "SoulKey",
-      "confidence": 0.45454545454545453,
-      "avg_prob": 0.1627676876878519,
-      "all_preds": {
-        "Artosis": 3,
-        "SoulKey": 5,
-        "Best": 3
-      }
-    },
-    {
-      "player": "C9_Whyman",
-      "races": "Protoss",
-      "total_games": 42,
-      "games_analyzed": 18,
-      "prediction": "Ample",
-      "confidence": 0.4444444444444444,
-      "avg_prob": 0.15681144503947694,
-      "all_preds": {
-        "Ample": 8,
-        "Flash": 3,
-        "BishOp": 5,
-        "Sky": 2
-      }
-    },
-    {
-      "player": "lllIIllIIllII",
-      "races": "Terran",
-      "total_games": 105,
-      "games_analyzed": 18,
-      "prediction": "Best",
-      "confidence": 0.4444444444444444,
-      "avg_prob": 0.15050728517736411,
-      "all_preds": {
-        "Flash": 1,
-        "EffOrt": 7,
-        "Best": 8,
-        "Sharp": 2
-      }
-    },
-    {
-      "player": "rmfmrm[kS]",
-      "races": "Zerg",
-      "total_games": 17,
-      "games_analyzed": 16,
-      "prediction": "soO",
-      "confidence": 0.4375,
-      "avg_prob": 0.1399367807328803,
-      "all_preds": {
-        "soO": 7,
-        "EffOrt": 6,
-        "SoulKey": 2,
-        "Larva": 1
-      }
-    },
-    {
-      "player": "llIlIlllllIIIl",
-      "races": "Zerg",
-      "total_games": 14,
-      "games_analyzed": 14,
-      "prediction": "soO",
-      "confidence": 0.42857142857142855,
-      "avg_prob": 0.14190259048883916,
-      "all_preds": {
-        "soO": 6,
-        "Rain": 6,
-        "Larva": 2
-      }
-    },
-    {
-      "player": "C9_PSM",
-      "races": "Zerg",
-      "total_games": 13,
-      "games_analyzed": 7,
-      "prediction": "yOOn",
-      "confidence": 0.42857142857142855,
-      "avg_prob": 0.1107651176171386,
-      "all_preds": {
-        "BishOp": 1,
-        "yOOn": 3,
-        "Speed": 2,
-        "soO": 1
-      }
-    },
-    {
-      "player": "llIlIIIIIIlll",
-      "races": "Zerg",
-      "total_games": 68,
-      "games_analyzed": 17,
-      "prediction": "EffOrt",
-      "confidence": 0.4117647058823529,
-      "avg_prob": 0.13786801205095833,
-      "all_preds": {
-        "EffOrt": 7,
-        "Rain": 3,
-        "Larva": 3,
-        "soO": 3,
-        "yOOn": 1
-      }
-    },
-    {
-      "player": "IlllllIIlIllIIl",
-      "races": "Protoss",
-      "total_games": 36,
-      "games_analyzed": 18,
-      "prediction": "Sky",
-      "confidence": 0.3888888888888889,
-      "avg_prob": 0.15121941199524785,
-      "all_preds": {
-        "BishOp": 5,
-        "Best": 1,
-        "Sky": 7,
-        "Ample": 1,
-        "Speed": 2,
-        "Air": 2
-      }
-    },
-    {
-      "player": "llIllIllIlIlI",
-      "races": "Terran",
-      "total_games": 23,
-      "games_analyzed": 18,
       "prediction": "BishOp",
-      "confidence": 0.3888888888888889,
-      "avg_prob": 0.1445634752862185,
+      "confidence": 0.7058823529411765,
+      "avg_prob": 0.16241601850600926,
       "all_preds": {
-        "Best": 6,
-        "BishOp": 7,
-        "Speed": 3,
-        "Sky": 2
-      }
-    },
-    {
-      "player": "JSU_susik",
-      "races": "Terran,Zerg,Protoss",
-      "total_games": 37,
-      "games_analyzed": 18,
-      "prediction": "Larva",
-      "confidence": 0.3888888888888889,
-      "avg_prob": 0.10546329652167705,
-      "all_preds": {
-        "Rain": 4,
-        "yOOn": 4,
-        "SoulKey": 3,
-        "Larva": 7
-      }
-    },
-    {
-      "player": "IIIIlIIIllll",
-      "races": "Protoss",
-      "total_games": 10,
-      "games_analyzed": 8,
-      "prediction": "yOOn",
-      "confidence": 0.375,
-      "avg_prob": 0.11987428031584682,
-      "all_preds": {
-        "yOOn": 3,
-        "Stork": 2,
-        "SoulKey": 2,
-        "Fantasy": 1
-      }
-    },
-    {
-      "player": "JG_Quickly",
-      "races": "Protoss",
-      "total_games": 42,
-      "games_analyzed": 19,
-      "prediction": "Flash",
-      "confidence": 0.3684210526315789,
-      "avg_prob": 0.17546324093875879,
-      "all_preds": {
-        "Scan": 6,
-        "Flash": 7,
-        "Sky": 1,
-        "SoulKey": 5
-      }
-    },
-    {
-      "player": "IllllIIlIlIlll1",
-      "races": "Protoss",
-      "total_games": 16,
-      "games_analyzed": 11,
-      "prediction": "Sky",
-      "confidence": 0.36363636363636365,
-      "avg_prob": 0.15187082164152127,
-      "all_preds": {
-        "Sky": 4,
-        "Ample": 2,
-        "Flash": 2,
-        "Best": 2,
-        "Artosis": 1
-      }
-    },
-    {
-      "player": "Obitos's_Way",
-      "races": "Zerg",
-      "total_games": 12,
-      "games_analyzed": 11,
-      "prediction": "Air",
-      "confidence": 0.36363636363636365,
-      "avg_prob": 0.10956363636363635,
-      "all_preds": {
-        "Artosis": 1,
-        "Air": 4,
-        "BishOp": 3,
-        "Rain": 1,
-        "Sky": 2
-      }
-    },
-    {
-      "player": "Hanatan[WHITE]",
-      "races": "Terran,Zerg",
-      "total_games": 61,
-      "games_analyzed": 18,
-      "prediction": "BishOp",
-      "confidence": 0.3333333333333333,
-      "avg_prob": 0.15937896107777147,
-      "all_preds": {
-        "Speed": 5,
-        "BishOp": 6,
-        "Best": 5,
-        "Ample": 1,
-        "Sky": 1
-      }
-    },
-    {
-      "player": "qfpr23",
-      "races": "Zerg",
-      "total_games": 17,
-      "games_analyzed": 6,
-      "prediction": "Sharp",
-      "confidence": 0.3333333333333333,
-      "avg_prob": 0.12725772005772007,
-      "all_preds": {
-        "Sharp": 2,
-        "Sky": 1,
-        "Artosis": 1,
-        "Best": 1,
-        "Tyson": 1
-      }
-    },
-    {
-      "player": "C9_HyuK9",
-      "races": "Zerg",
-      "total_games": 11,
-      "games_analyzed": 9,
-      "prediction": "soO",
-      "confidence": 0.3333333333333333,
-      "avg_prob": 0.1251553060080809,
-      "all_preds": {
-        "soO": 3,
-        "EffOrt": 3,
-        "yOOn": 3
-      }
-    },
-    {
-      "player": "kimsabuho",
-      "races": "Terran,Zerg,Protoss",
-      "total_games": 100,
-      "games_analyzed": 16,
-      "prediction": "Ample",
-      "confidence": 0.3125,
-      "avg_prob": 0.09699429471249138,
-      "all_preds": {
-        "Ample": 5,
-        "Scan": 4,
-        "Sky": 4,
-        "SoulKey": 1,
-        "EffOrt": 1,
-        "Best": 1
-      }
-    },
-    {
-      "player": "Wave`Soma",
-      "races": "Zerg",
-      "total_games": 10,
-      "games_analyzed": 10,
-      "prediction": "Flash",
-      "confidence": 0.3,
-      "avg_prob": 0.14206277376849016,
-      "all_preds": {
-        "Flash": 3,
-        "yOOn": 2,
-        "BishOp": 3,
-        "Sky": 1,
+        "Best": 4,
+        "BishOp": 12,
         "EffOrt": 1
       }
     },
     {
-      "player": "Somamask",
+      "player": "INO_Action",
+      "aurora_id": null,
+      "display_names": [
+        "INO_Action"
+      ],
+      "races": "Zerg",
+      "total_games": 11,
+      "games_analyzed": 10,
+      "prediction": "soO",
+      "confidence": 0.7,
+      "avg_prob": 0.14278221208097494,
+      "all_preds": {
+        "Larva": 2,
+        "soO": 7,
+        "Jaedong": 1
+      }
+    },
+    {
+      "player": "Wico`Lucky",
+      "aurora_id": null,
+      "display_names": [
+        "Wico`Lucky"
+      ],
+      "races": "Protoss",
+      "total_games": 14,
+      "games_analyzed": 13,
+      "prediction": "BishOp",
+      "confidence": 0.6923076923076923,
+      "avg_prob": 0.26683466943817574,
+      "all_preds": {
+        "BishOp": 9,
+        "Speed": 3,
+        "sSak": 1
+      }
+    },
+    {
+      "player": "BlackProbe`net",
+      "aurora_id": null,
+      "display_names": [
+        "BlackProbe`net"
+      ],
+      "races": "Protoss",
+      "total_games": 102,
+      "games_analyzed": 16,
+      "prediction": "Best",
+      "confidence": 0.6875,
+      "avg_prob": 0.170001766167655,
+      "all_preds": {
+        "sSak": 4,
+        "Best": 11,
+        "Speed": 1
+      }
+    },
+    {
+      "player": "llIlllIll1",
+      "aurora_id": null,
+      "display_names": [
+        "llIlllIll1"
+      ],
+      "races": "Terran,Zerg,Protoss",
+      "total_games": 26,
+      "games_analyzed": 19,
+      "prediction": "Jaedong",
+      "confidence": 0.6842105263157895,
+      "avg_prob": 0.2170319855902014,
+      "all_preds": {
+        "Flash": 1,
+        "Jaedong": 13,
+        "yOOn": 1,
+        "Shuttle": 4
+      }
+    },
+    {
+      "player": "Woyzeck",
+      "aurora_id": null,
+      "display_names": [
+        "Woyzeck"
+      ],
+      "races": "Zerg",
+      "total_games": 10,
+      "games_analyzed": 9,
+      "prediction": "EffOrt",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.30885055247630633,
+      "all_preds": {
+        "EffOrt": 6,
+        "soO": 1,
+        "Larva": 2
+      }
+    },
+    {
+      "player": "BeastHippo",
+      "aurora_id": null,
+      "display_names": [
+        "BeastHippo"
+      ],
       "races": "Zerg",
       "total_games": 12,
-      "games_analyzed": 10,
-      "prediction": "BishOp",
-      "confidence": 0.3,
-      "avg_prob": 0.1356020452682533,
+      "games_analyzed": 9,
+      "prediction": "Stork",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.3034611561051133,
       "all_preds": {
-        "yOOn": 1,
+        "Stork": 6,
+        "Jaedong": 2,
+        "Shuttle": 1
+      }
+    },
+    {
+      "player": "3050_Rainy",
+      "aurora_id": null,
+      "display_names": [
+        "3050_Rainy"
+      ],
+      "races": "Protoss",
+      "total_games": 10,
+      "games_analyzed": 9,
+      "prediction": "Shuttle",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.23876168476768977,
+      "all_preds": {
+        "Air": 3,
+        "Shuttle": 6
+      }
+    },
+    {
+      "player": "lIllllllllIl1",
+      "aurora_id": null,
+      "display_names": [
+        "lIllllllllIl1"
+      ],
+      "races": "Zerg,Terran",
+      "total_games": 13,
+      "games_analyzed": 12,
+      "prediction": "Jaedong",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.2238001366264214,
+      "all_preds": {
+        "Shuttle": 2,
+        "Jaedong": 8,
+        "Flash": 2
+      }
+    },
+    {
+      "player": "Gyeo`GLE",
+      "aurora_id": null,
+      "display_names": [
+        "Gyeo`GLE"
+      ],
+      "races": "Zerg,Terran",
+      "total_games": 104,
+      "games_analyzed": 15,
+      "prediction": "Flash",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.21166227970781246,
+      "all_preds": {
+        "Flash": 10,
+        "soO": 3,
+        "Artosis": 1,
+        "EffOrt": 1
+      }
+    },
+    {
+      "player": "lIlIllIIlIllllI",
+      "aurora_id": null,
+      "display_names": [
+        "lIlIllIIlIllllI"
+      ],
+      "races": "Terran,Zerg",
+      "total_games": 16,
+      "games_analyzed": 15,
+      "prediction": "BishOp",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.20620047706212308,
+      "all_preds": {
+        "BishOp": 10,
+        "EffOrt": 3,
+        "Larva": 1,
+        "Ample": 1
+      }
+    },
+    {
+      "player": "[S.Tc]..Ares",
+      "aurora_id": null,
+      "display_names": [
+        "[S.Tc]..Ares"
+      ],
+      "races": "Terran",
+      "total_games": 13,
+      "games_analyzed": 12,
+      "prediction": "SoulKey",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.18119958811733616,
+      "all_preds": {
+        "SoulKey": 8,
+        "yOOn": 4
+      }
+    },
+    {
+      "player": "NCS_FMDS.",
+      "aurora_id": null,
+      "display_names": [
+        "NCS_FMDS."
+      ],
+      "races": "Terran",
+      "total_games": 11,
+      "games_analyzed": 9,
+      "prediction": "Rush",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.1432220445674256,
+      "all_preds": {
+        "Sky": 2,
+        "snOw": 1,
+        "Rush": 6
+      }
+    },
+    {
+      "player": "IVHv",
+      "aurora_id": null,
+      "display_names": [
+        "IVHv"
+      ],
+      "races": "Terran",
+      "total_games": 21,
+      "games_analyzed": 18,
+      "prediction": "ProMise",
+      "confidence": 0.6666666666666666,
+      "avg_prob": 0.12450982220303494,
+      "all_preds": {
+        "Best": 3,
+        "ProMise": 12,
+        "sSak": 1,
+        "BishOp": 2
+      }
+    },
+    {
+      "player": "llllIllIlIlIlIl",
+      "aurora_id": null,
+      "display_names": [
+        "llllIllIlIlIlIl"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 103,
+      "games_analyzed": 17,
+      "prediction": "ProMise",
+      "confidence": 0.6470588235294118,
+      "avg_prob": 0.2812208688074827,
+      "all_preds": {
+        "ProMise": 11,
+        "Flash": 6
+      }
+    },
+    {
+      "player": "IIIIIlllIIlllIl",
+      "aurora_id": null,
+      "display_names": [
+        "IIIIIlllIIlllIl"
+      ],
+      "races": "Protoss",
+      "total_games": 34,
+      "games_analyzed": 17,
+      "prediction": "sSak",
+      "confidence": 0.6470588235294118,
+      "avg_prob": 0.17530280057522551,
+      "all_preds": {
+        "sSak": 11,
+        "Best": 6
+      }
+    },
+    {
+      "player": "llvzcx",
+      "aurora_id": null,
+      "display_names": [
+        "llvzcx"
+      ],
+      "races": "Terran",
+      "total_games": 30,
+      "games_analyzed": 17,
+      "prediction": "ProMise",
+      "confidence": 0.6470588235294118,
+      "avg_prob": 0.13989217528233056,
+      "all_preds": {
+        "sSak": 2,
+        "ProMise": 11,
         "Best": 1,
-        "BishOp": 3,
-        "Flash": 3,
+        "BishOp": 3
+      }
+    },
+    {
+      "player": "Wico`agree",
+      "aurora_id": null,
+      "display_names": [
+        "Wico`agree"
+      ],
+      "races": "Zerg",
+      "total_games": 104,
+      "games_analyzed": 17,
+      "prediction": "sSak",
+      "confidence": 0.6470588235294118,
+      "avg_prob": 0.12337076570978066,
+      "all_preds": {
+        "sSak": 11,
+        "BishOp": 2,
+        "Air": 1,
+        "Sky": 1,
+        "Jaedong": 1,
+        "Ample": 1
+      }
+    },
+    {
+      "player": "IllIIllIIIlII",
+      "aurora_id": null,
+      "display_names": [
+        "IllIIllIIIlII"
+      ],
+      "races": "Protoss",
+      "total_games": 21,
+      "games_analyzed": 14,
+      "prediction": "Best",
+      "confidence": 0.6428571428571429,
+      "avg_prob": 0.2458431135165055,
+      "all_preds": {
+        "Best": 9,
+        "EffOrt": 5
+      }
+    },
+    {
+      "player": "IllIIIIlllIIIll",
+      "aurora_id": null,
+      "display_names": [
+        "IllIIIIlllIIIll"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 63,
+      "games_analyzed": 14,
+      "prediction": "Fantasy",
+      "confidence": 0.6428571428571429,
+      "avg_prob": 0.1785042314680261,
+      "all_preds": {
+        "Fantasy": 9,
+        "yOOn": 1,
+        "gypsy": 4
+      }
+    },
+    {
+      "player": "lIIIIlllIIIlll",
+      "aurora_id": null,
+      "display_names": [
+        "lIIIIlllIIIlll"
+      ],
+      "races": "Protoss",
+      "total_games": 11,
+      "games_analyzed": 11,
+      "prediction": "Fantasy",
+      "confidence": 0.6363636363636364,
+      "avg_prob": 0.14631587692835119,
+      "all_preds": {
+        "Fantasy": 7,
+        "ProMise": 2,
+        "Air": 1,
+        "Flash": 1
+      }
+    },
+    {
+      "player": "IllllIIlIlIlll1",
+      "aurora_id": null,
+      "display_names": [
+        "IllllIIlIlIlll1"
+      ],
+      "races": "Protoss",
+      "total_games": 17,
+      "games_analyzed": 11,
+      "prediction": "Flash",
+      "confidence": 0.6363636363636364,
+      "avg_prob": 0.14065641573100673,
+      "all_preds": {
+        "Sky": 3,
+        "Flash": 7,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "MBU_10002",
+      "aurora_id": null,
+      "display_names": [
+        "MBU_10002"
+      ],
+      "races": "Terran",
+      "total_games": 10,
+      "games_analyzed": 8,
+      "prediction": "Speed",
+      "confidence": 0.625,
+      "avg_prob": 0.18148416664837946,
+      "all_preds": {
+        "Rush": 1,
+        "Speed": 5,
+        "Ample": 1,
+        "BishOp": 1
+      }
+    },
+    {
+      "player": "3050_HiDdEN",
+      "aurora_id": null,
+      "display_names": [
+        "3050_HiDdEN"
+      ],
+      "races": "Zerg",
+      "total_games": 10,
+      "games_analyzed": 8,
+      "prediction": "Best",
+      "confidence": 0.625,
+      "avg_prob": 0.14099620727930018,
+      "all_preds": {
+        "Best": 5,
+        "yOOn": 3
+      }
+    },
+    {
+      "player": "132u09aa0za09a0",
+      "aurora_id": null,
+      "display_names": [
+        "132u09aa0za09a0"
+      ],
+      "races": "Zerg",
+      "total_games": 111,
+      "games_analyzed": 18,
+      "prediction": "snOw",
+      "confidence": 0.6111111111111112,
+      "avg_prob": 0.15709612557194572,
+      "all_preds": {
+        "snOw": 11,
+        "SoulKey": 1,
+        "Jaedong": 3,
+        "Best": 1,
         "Sky": 2
       }
     },
     {
-      "player": "NZU_Swirl",
-      "races": "Zerg",
-      "total_games": 13,
-      "games_analyzed": 10,
-      "prediction": "EffOrt",
-      "confidence": 0.3,
-      "avg_prob": 0.12989608801809333,
+      "player": "IIIllIllIIlII",
+      "aurora_id": null,
+      "display_names": [
+        "IIIllIllIIlII"
+      ],
+      "races": "Terran",
+      "total_games": 115,
+      "games_analyzed": 5,
+      "prediction": "Best",
+      "confidence": 0.6,
+      "avg_prob": 0.25593531185987495,
       "all_preds": {
-        "EffOrt": 3,
-        "Larva": 3,
-        "yOOn": 2,
-        "soO": 1,
-        "Rain": 1
+        "Rain": 2,
+        "Best": 3
       }
     },
     {
-      "player": "|1|",
+      "player": "llIlllI",
+      "aurora_id": null,
+      "display_names": [
+        "llIlllI"
+      ],
+      "races": "Zerg,Protoss",
+      "total_games": 29,
+      "games_analyzed": 15,
+      "prediction": "Jaedong",
+      "confidence": 0.6,
+      "avg_prob": 0.20358226671961327,
+      "all_preds": {
+        "Jaedong": 9,
+        "yOOn": 2,
+        "Shuttle": 1,
+        "gypsy": 1,
+        "Larva": 1,
+        "sSak": 1
+      }
+    },
+    {
+      "player": "LMT_POLPO",
+      "aurora_id": null,
+      "display_names": [
+        "LMT_POLPO"
+      ],
+      "races": "Protoss",
+      "total_games": 25,
+      "games_analyzed": 15,
+      "prediction": "Speed",
+      "confidence": 0.6,
+      "avg_prob": 0.19979155440128163,
+      "all_preds": {
+        "Best": 2,
+        "BishOp": 3,
+        "Speed": 9,
+        "sSak": 1
+      }
+    },
+    {
+      "player": "DIC_HB",
+      "aurora_id": null,
+      "display_names": [
+        "DIC_HB"
+      ],
+      "races": "Terran",
+      "total_games": 10,
+      "games_analyzed": 5,
+      "prediction": "soO",
+      "confidence": 0.6,
+      "avg_prob": 0.14390729934455693,
+      "all_preds": {
+        "soO": 3,
+        "Best": 2
+      }
+    },
+    {
+      "player": "llIlllIllIl1",
+      "aurora_id": null,
+      "display_names": [
+        "llIlllIllIl1"
+      ],
+      "races": "Zerg",
+      "total_games": 12,
+      "games_analyzed": 12,
+      "prediction": "Jaedong",
+      "confidence": 0.5833333333333334,
+      "avg_prob": 0.2593236951469392,
+      "all_preds": {
+        "Shuttle": 5,
+        "Jaedong": 7
+      }
+    },
+    {
+      "player": "AX_GGoGGoMa",
+      "aurora_id": null,
+      "display_names": [
+        "AX_GGoGGoMa"
+      ],
+      "races": "Zerg",
+      "total_games": 18,
+      "games_analyzed": 12,
+      "prediction": "soO",
+      "confidence": 0.5833333333333334,
+      "avg_prob": 0.20679985319860741,
+      "all_preds": {
+        "EffOrt": 4,
+        "Larva": 1,
+        "soO": 7
+      }
+    },
+    {
+      "player": "!lii!!lili!l!ii",
+      "aurora_id": null,
+      "display_names": [
+        "!lii!!lili!l!ii"
+      ],
+      "races": "Zerg",
+      "total_games": 110,
+      "games_analyzed": 19,
+      "prediction": "Jaedong",
+      "confidence": 0.5789473684210527,
+      "avg_prob": 0.2845621374760299,
+      "all_preds": {
+        "Jaedong": 11,
+        "SoulKey": 8
+      }
+    },
+    {
+      "player": "lllllli112l",
+      "aurora_id": null,
+      "display_names": [
+        "lllllli112l"
+      ],
+      "races": "Protoss",
+      "total_games": 107,
+      "games_analyzed": 19,
+      "prediction": "Speed",
+      "confidence": 0.5789473684210527,
+      "avg_prob": 0.24148393590549028,
+      "all_preds": {
+        "Speed": 11,
+        "Shuttle": 1,
+        "BishOp": 6,
+        "Best": 1
+      }
+    },
+    {
+      "player": "llllllIIllIllll",
+      "aurora_id": null,
+      "display_names": [
+        "llllllIIllIllll"
+      ],
+      "races": "Protoss",
+      "total_games": 101,
+      "games_analyzed": 19,
+      "prediction": "sSak",
+      "confidence": 0.5789473684210527,
+      "avg_prob": 0.1525288865802306,
+      "all_preds": {
+        "Best": 8,
+        "sSak": 11
+      }
+    },
+    {
+      "player": "llIlIIllIIIlII",
+      "aurora_id": null,
+      "display_names": [
+        "llIlIIllIIIlII"
+      ],
+      "races": "Protoss",
+      "total_games": 16,
+      "games_analyzed": 16,
+      "prediction": "Flash",
+      "confidence": 0.5625,
+      "avg_prob": 0.1237558886677932,
+      "all_preds": {
+        "Flash": 9,
+        "soO": 3,
+        "Larva": 4
+      }
+    },
+    {
+      "player": "4325436546",
+      "aurora_id": null,
+      "display_names": [
+        "4325436546"
+      ],
+      "races": "Zerg",
+      "total_games": 67,
+      "games_analyzed": 18,
+      "prediction": "SoulKey",
+      "confidence": 0.5555555555555556,
+      "avg_prob": 0.27667038730154725,
+      "all_preds": {
+        "SoulKey": 10,
+        "Jaedong": 8
+      }
+    },
+    {
+      "player": "3050_TnT",
+      "aurora_id": null,
+      "display_names": [
+        "3050_TnT"
+      ],
       "races": "Protoss",
       "total_games": 10,
-      "games_analyzed": 10,
+      "games_analyzed": 9,
       "prediction": "Flash",
-      "confidence": 0.3,
-      "avg_prob": 0.1268292285701868,
+      "confidence": 0.5555555555555556,
+      "avg_prob": 0.12853380609050646,
       "all_preds": {
-        "Flash": 3,
-        "SoulKey": 3,
-        "yOOn": 1,
+        "Flash": 5,
+        "gypsy": 1,
+        "Larva": 3
+      }
+    },
+    {
+      "player": "BGM_alen",
+      "aurora_id": null,
+      "display_names": [
+        "BGM_alen"
+      ],
+      "races": "Zerg",
+      "total_games": 118,
+      "games_analyzed": 18,
+      "prediction": "sSak",
+      "confidence": 0.5555555555555556,
+      "avg_prob": 0.11564325882818213,
+      "all_preds": {
+        "Sky": 8,
+        "sSak": 10
+      }
+    },
+    {
+      "player": "MYJAJI25CM^^",
+      "aurora_id": null,
+      "display_names": [
+        "MYJAJI25CM^^"
+      ],
+      "races": "Terran",
+      "total_games": 12,
+      "games_analyzed": 11,
+      "prediction": "Flash",
+      "confidence": 0.5454545454545454,
+      "avg_prob": 0.23035061402696552,
+      "all_preds": {
+        "Flash": 6,
+        "ProMise": 3,
+        "Sky": 1,
+        "Shuttle": 1
+      }
+    },
+    {
+      "player": "IllIllIlllIIIII",
+      "aurora_id": null,
+      "display_names": [
+        "IllIllIlllIIIII"
+      ],
+      "races": "Terran,Protoss",
+      "total_games": 14,
+      "games_analyzed": 11,
+      "prediction": "Fantasy",
+      "confidence": 0.5454545454545454,
+      "avg_prob": 0.16971927240309378,
+      "all_preds": {
+        "Fantasy": 6,
+        "Scan": 2,
+        "gypsy": 2,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "Wico`Bang9^^",
+      "aurora_id": null,
+      "display_names": [
+        "Wico`Bang9^^"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 11,
+      "prediction": "Best",
+      "confidence": 0.5454545454545454,
+      "avg_prob": 0.16221735252493183,
+      "all_preds": {
+        "Ample": 2,
+        "Best": 6,
+        "BishOp": 3
+      }
+    },
+    {
+      "player": "lIlIIIIIIllllll",
+      "aurora_id": null,
+      "display_names": [
+        "lIlIIIIIIllllll"
+      ],
+      "races": "Zerg,Protoss,Terran",
+      "total_games": 19,
+      "games_analyzed": 11,
+      "prediction": "Scan",
+      "confidence": 0.5454545454545454,
+      "avg_prob": 0.12341226559876307,
+      "all_preds": {
+        "Scan": 6,
+        "soO": 4,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "Wave`Fresh",
+      "aurora_id": null,
+      "display_names": [
+        "Wave`Fresh"
+      ],
+      "races": "Protoss",
+      "total_games": 13,
+      "games_analyzed": 13,
+      "prediction": "Stork",
+      "confidence": 0.5384615384615384,
+      "avg_prob": 0.22376738257677536,
+      "all_preds": {
+        "Stork": 7,
+        "yOOn": 3,
+        "SoulKey": 3
+      }
+    },
+    {
+      "player": "ehdbgus",
+      "aurora_id": null,
+      "display_names": [
+        "ehdbgus"
+      ],
+      "races": "Terran",
+      "total_games": 14,
+      "games_analyzed": 13,
+      "prediction": "Larva",
+      "confidence": 0.5384615384615384,
+      "avg_prob": 0.16268808410127555,
+      "all_preds": {
+        "gypsy": 5,
+        "Larva": 7,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "wico`ddd",
+      "aurora_id": null,
+      "display_names": [
+        "wico`ddd"
+      ],
+      "races": "Terran,Zerg",
+      "total_games": 44,
+      "games_analyzed": 15,
+      "prediction": "yOOn",
+      "confidence": 0.5333333333333333,
+      "avg_prob": 0.09012010221295384,
+      "all_preds": {
+        "Best": 7,
+        "yOOn": 8
+      }
+    },
+    {
+      "player": "minahji",
+      "aurora_id": null,
+      "display_names": [
+        "minahji"
+      ],
+      "races": "Protoss,Terran",
+      "total_games": 42,
+      "games_analyzed": 17,
+      "prediction": "Flash",
+      "confidence": 0.5294117647058824,
+      "avg_prob": 0.13043595151363177,
+      "all_preds": {
+        "Flash": 9,
+        "Larva": 6,
+        "soO": 2
+      }
+    },
+    {
+      "player": "bestbisuminsnow",
+      "aurora_id": null,
+      "display_names": [
+        "bestbisuminsnow"
+      ],
+      "races": "Protoss",
+      "total_games": 38,
+      "games_analyzed": 16,
+      "prediction": "BishOp",
+      "confidence": 0.5,
+      "avg_prob": 0.22186566793106127,
+      "all_preds": {
+        "Speed": 5,
+        "BishOp": 8,
         "Ample": 1,
-        "Stork": 1,
-        "Sky": 1
+        "Shuttle": 2
+      }
+    },
+    {
+      "player": "AX_GGoMa",
+      "aurora_id": null,
+      "display_names": [
+        "AX_GGoMa"
+      ],
+      "races": "Zerg",
+      "total_games": 40,
+      "games_analyzed": 16,
+      "prediction": "soO",
+      "confidence": 0.5,
+      "avg_prob": 0.19123251832279659,
+      "all_preds": {
+        "soO": 8,
+        "EffOrt": 7,
+        "Larva": 1
       }
     },
     {
       "player": "JJABJJE`net",
+      "aurora_id": null,
+      "display_names": [
+        "JJABJJE`net"
+      ],
       "races": "Zerg",
       "total_games": 10,
       "games_analyzed": 10,
-      "prediction": "Stork",
-      "confidence": 0.3,
-      "avg_prob": 0.12518349992835023,
+      "prediction": "SoulKey",
+      "confidence": 0.5,
+      "avg_prob": 0.17917048451579146,
       "all_preds": {
-        "Fantasy": 2,
-        "Stork": 3,
-        "yOOn": 2,
-        "SoulKey": 2,
+        "SoulKey": 5,
+        "Jaedong": 2,
+        "gypsy": 1,
+        "Stork": 1,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "lllllIIIllIllIl",
+      "aurora_id": null,
+      "display_names": [
+        "lllllIIIllIllIl"
+      ],
+      "races": "Terran,Protoss",
+      "total_games": 102,
+      "games_analyzed": 12,
+      "prediction": "ProMise",
+      "confidence": 0.5,
+      "avg_prob": 0.16104023693678968,
+      "all_preds": {
+        "ProMise": 6,
+        "Sky": 1,
+        "Scan": 4,
+        "Artosis": 1
+      }
+    },
+    {
+      "player": "tmxkdjfudnjdu",
+      "aurora_id": null,
+      "display_names": [
+        "tmxkdjfudnjdu"
+      ],
+      "races": "Protoss",
+      "total_games": 18,
+      "games_analyzed": 16,
+      "prediction": "sSak",
+      "confidence": 0.5,
+      "avg_prob": 0.16049149415742014,
+      "all_preds": {
+        "sSak": 8,
+        "Best": 4,
+        "Tyson": 2,
+        "Flash": 2
+      }
+    },
+    {
+      "player": "C9_Jaesung",
+      "aurora_id": null,
+      "display_names": [
+        "C9_Jaesung"
+      ],
+      "races": "Terran",
+      "total_games": 68,
+      "games_analyzed": 18,
+      "prediction": "Rain",
+      "confidence": 0.5,
+      "avg_prob": 0.1486743222770029,
+      "all_preds": {
+        "Rain": 9,
+        "Tyson": 3,
+        "Best": 6
+      }
+    },
+    {
+      "player": "IlllllIIlIllIIl",
+      "aurora_id": null,
+      "display_names": [
+        "IlllllIIlIllIIl"
+      ],
+      "races": "Protoss",
+      "total_games": 39,
+      "games_analyzed": 16,
+      "prediction": "sSak",
+      "confidence": 0.5,
+      "avg_prob": 0.14563216266347465,
+      "all_preds": {
+        "BishOp": 4,
+        "Best": 2,
+        "sSak": 8,
+        "Sky": 1,
         "Air": 1
       }
     },
     {
-      "player": "llllllll11lIIIl",
+      "player": "Vmzcma",
+      "aurora_id": null,
+      "display_names": [
+        "Vmzcma"
+      ],
       "races": "Terran",
-      "total_games": 13,
-      "games_analyzed": 7,
-      "prediction": "yOOn",
-      "confidence": 0.2857142857142857,
-      "avg_prob": 0.125153620075385,
+      "total_games": 24,
+      "games_analyzed": 16,
+      "prediction": "Rush",
+      "confidence": 0.5,
+      "avg_prob": 0.1436216118748047,
       "all_preds": {
-        "yOOn": 2,
+        "snOw": 4,
+        "Rush": 8,
+        "BishOp": 1,
+        "Sky": 1,
+        "Ample": 2
+      }
+    },
+    {
+      "player": "BangaruUngSooni",
+      "aurora_id": null,
+      "display_names": [
+        "BangaruUngSooni"
+      ],
+      "races": "Zerg",
+      "total_games": 103,
+      "games_analyzed": 16,
+      "prediction": "BishOp",
+      "confidence": 0.5,
+      "avg_prob": 0.13377575355923998,
+      "all_preds": {
+        "BishOp": 8,
+        "Best": 6,
+        "Rain": 1,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "lIllIIIIIIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "lIllIIIIIIlIlI"
+      ],
+      "races": "Zerg",
+      "total_games": 12,
+      "games_analyzed": 8,
+      "prediction": "soO",
+      "confidence": 0.5,
+      "avg_prob": 0.13371703700546728,
+      "all_preds": {
+        "soO": 4,
+        "Rain": 4
+      }
+    },
+    {
+      "player": "rmfmrm[kS]",
+      "aurora_id": null,
+      "display_names": [
+        "rmfmrm[kS]"
+      ],
+      "races": "Zerg",
+      "total_games": 19,
+      "games_analyzed": 18,
+      "prediction": "soO",
+      "confidence": 0.5,
+      "avg_prob": 0.1314765470028356,
+      "all_preds": {
+        "soO": 9,
+        "EffOrt": 4,
+        "SoulKey": 3,
+        "Rain": 1,
+        "Flash": 1
+      }
+    },
+    {
+      "player": "IIIIlIIIllIIIII",
+      "aurora_id": null,
+      "display_names": [
+        "IIIIlIIIllIIIII"
+      ],
+      "races": "Zerg",
+      "total_games": 100,
+      "games_analyzed": 16,
+      "prediction": "EffOrt",
+      "confidence": 0.5,
+      "avg_prob": 0.13097073977100815,
+      "all_preds": {
+        "Rain": 1,
+        "EffOrt": 8,
+        "Best": 1,
+        "yOOn": 6
+      }
+    },
+    {
+      "player": "C9_HyuK9",
+      "aurora_id": null,
+      "display_names": [
+        "C9_HyuK9"
+      ],
+      "races": "Zerg",
+      "total_games": 13,
+      "games_analyzed": 10,
+      "prediction": "soO",
+      "confidence": 0.5,
+      "avg_prob": 0.13049513613415092,
+      "all_preds": {
+        "soO": 5,
         "EffOrt": 1,
-        "Flash": 1,
-        "Scan": 1,
+        "yOOn": 3,
+        "Best": 1
+      }
+    },
+    {
+      "player": "IlIllIlIIIIllII",
+      "aurora_id": null,
+      "display_names": [
+        "IlIllIlIIIIllII"
+      ],
+      "races": "Zerg",
+      "total_games": 75,
+      "games_analyzed": 16,
+      "prediction": "yOOn",
+      "confidence": 0.5,
+      "avg_prob": 0.1284146251937443,
+      "all_preds": {
+        "ProMise": 1,
+        "Fantasy": 4,
+        "yOOn": 8,
+        "Jaedong": 2,
+        "snOw": 1
+      }
+    },
+    {
+      "player": "ExcessiveLy",
+      "aurora_id": null,
+      "display_names": [
+        "ExcessiveLy"
+      ],
+      "races": "Protoss",
+      "total_games": 17,
+      "games_analyzed": 14,
+      "prediction": "Artosis",
+      "confidence": 0.5,
+      "avg_prob": 0.1196936231889432,
+      "all_preds": {
+        "Artosis": 7,
+        "Shuttle": 1,
+        "Sky": 4,
+        "Rush": 2
+      }
+    },
+    {
+      "player": "PLN",
+      "aurora_id": null,
+      "display_names": [
+        "PLN"
+      ],
+      "races": "Protoss",
+      "total_games": 12,
+      "games_analyzed": 8,
+      "prediction": "gypsy",
+      "confidence": 0.5,
+      "avg_prob": 0.11546290638253184,
+      "all_preds": {
+        "gypsy": 4,
+        "Sky": 2,
+        "SoulKey": 1,
+        "Air": 1
+      }
+    },
+    {
+      "player": "415_L",
+      "aurora_id": null,
+      "display_names": [
+        "415_L"
+      ],
+      "races": "Protoss",
+      "total_games": 16,
+      "games_analyzed": 12,
+      "prediction": "soO",
+      "confidence": 0.5,
+      "avg_prob": 0.11408826743009337,
+      "all_preds": {
+        "soO": 6,
+        "EffOrt": 2,
+        "Flash": 3,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "NCS_4M1234",
+      "aurora_id": null,
+      "display_names": [
+        "NCS_4M1234"
+      ],
+      "races": "Terran",
+      "total_games": 38,
+      "games_analyzed": 19,
+      "prediction": "Ample",
+      "confidence": 0.47368421052631576,
+      "avg_prob": 0.13913000552983845,
+      "all_preds": {
+        "Ample": 9,
+        "Rush": 7,
+        "Sky": 1,
+        "BishOp": 1,
+        "snOw": 1
+      }
+    },
+    {
+      "player": "NZU_Saber",
+      "aurora_id": null,
+      "display_names": [
+        "NZU_Saber"
+      ],
+      "races": "Zerg",
+      "total_games": 21,
+      "games_analyzed": 17,
+      "prediction": "soO",
+      "confidence": 0.47058823529411764,
+      "avg_prob": 0.16332928819668113,
+      "all_preds": {
+        "EffOrt": 5,
+        "soO": 8,
+        "Best": 2,
+        "Larva": 2
+      }
+    },
+    {
+      "player": "llIllIllIlIlI",
+      "aurora_id": null,
+      "display_names": [
+        "llIllIllIlIlI"
+      ],
+      "races": "Terran",
+      "total_games": 26,
+      "games_analyzed": 17,
+      "prediction": "snOw",
+      "confidence": 0.47058823529411764,
+      "avg_prob": 0.12067440525494397,
+      "all_preds": {
+        "sSak": 5,
+        "Speed": 1,
+        "BishOp": 2,
+        "snOw": 8,
+        "Best": 1
+      }
+    },
+    {
+      "player": "MAlSONKlTSUNE",
+      "aurora_id": null,
+      "display_names": [
+        "MAlSONKlTSUNE"
+      ],
+      "races": "Protoss",
+      "total_games": 24,
+      "games_analyzed": 13,
+      "prediction": "Best",
+      "confidence": 0.46153846153846156,
+      "avg_prob": 0.15345637720838712,
+      "all_preds": {
+        "Best": 6,
+        "sSak": 6,
+        "Shuttle": 1
+      }
+    },
+    {
+      "player": "RedBlackProbe",
+      "aurora_id": null,
+      "display_names": [
+        "RedBlackProbe"
+      ],
+      "races": "Protoss",
+      "total_games": 15,
+      "games_analyzed": 13,
+      "prediction": "sSak",
+      "confidence": 0.46153846153846156,
+      "avg_prob": 0.14375892150287226,
+      "all_preds": {
+        "sSak": 6,
+        "Speed": 1,
+        "Best": 5,
+        "BishOp": 1
+      }
+    },
+    {
+      "player": "NCS_9Drone",
+      "aurora_id": null,
+      "display_names": [
+        "NCS_9Drone"
+      ],
+      "races": "Zerg,Terran",
+      "total_games": 87,
+      "games_analyzed": 13,
+      "prediction": "Flash",
+      "confidence": 0.46153846153846156,
+      "avg_prob": 0.14285942133307852,
+      "all_preds": {
+        "BishOp": 1,
+        "Flash": 6,
+        "Artosis": 5,
+        "Best": 1
+      }
+    },
+    {
+      "player": "IIllllIIllIIlI",
+      "aurora_id": null,
+      "display_names": [
+        "IIllllIIllIIlI"
+      ],
+      "races": "Zerg",
+      "total_games": 22,
+      "games_analyzed": 13,
+      "prediction": "yOOn",
+      "confidence": 0.46153846153846156,
+      "avg_prob": 0.12765848773041205,
+      "all_preds": {
+        "Jaedong": 1,
+        "Air": 3,
+        "yOOn": 6,
         "Fantasy": 1,
+        "ProMise": 1,
+        "gypsy": 1
+      }
+    },
+    {
+      "player": "Wave`Soma",
+      "aurora_id": null,
+      "display_names": [
+        "Wave`Soma"
+      ],
+      "races": "Zerg",
+      "total_games": 11,
+      "games_analyzed": 11,
+      "prediction": "ProMise",
+      "confidence": 0.45454545454545453,
+      "avg_prob": 0.142971781467548,
+      "all_preds": {
+        "Flash": 3,
+        "ProMise": 5,
+        "BishOp": 2,
+        "Best": 1
+      }
+    },
+    {
+      "player": "IIIIlIIIllll",
+      "aurora_id": null,
+      "display_names": [
+        "IIIIlIIIllll"
+      ],
+      "races": "Protoss",
+      "total_games": 11,
+      "games_analyzed": 9,
+      "prediction": "Stork",
+      "confidence": 0.4444444444444444,
+      "avg_prob": 0.11729062060851032,
+      "all_preds": {
+        "Stork": 4,
+        "SoulKey": 3,
+        "yOOn": 2
+      }
+    },
+    {
+      "player": "NZU_Swirl",
+      "aurora_id": null,
+      "display_names": [
+        "NZU_Swirl"
+      ],
+      "races": "Zerg",
+      "total_games": 13,
+      "games_analyzed": 9,
+      "prediction": "Best",
+      "confidence": 0.4444444444444444,
+      "avg_prob": 0.1062420740399619,
+      "all_preds": {
+        "SoulKey": 1,
+        "Best": 4,
+        "yOOn": 3,
+        "gypsy": 1
+      }
+    },
+    {
+      "player": "SST_YaK",
+      "aurora_id": null,
+      "display_names": [
+        "SST_YaK"
+      ],
+      "races": "Protoss",
+      "total_games": 18,
+      "games_analyzed": 16,
+      "prediction": "Flash",
+      "confidence": 0.4375,
+      "avg_prob": 0.12245376026835858,
+      "all_preds": {
+        "Flash": 7,
+        "Larva": 6,
+        "soO": 3
+      }
+    },
+    {
+      "player": "llIlIlllllIIIl",
+      "aurora_id": null,
+      "display_names": [
+        "llIlIlllllIIIl"
+      ],
+      "races": "Zerg",
+      "total_games": 17,
+      "games_analyzed": 14,
+      "prediction": "soO",
+      "confidence": 0.42857142857142855,
+      "avg_prob": 0.14140592121149462,
+      "all_preds": {
+        "soO": 6,
+        "Rain": 5,
+        "Larva": 1,
+        "Shuttle": 2
+      }
+    },
+    {
+      "player": "SunF_Guoqian",
+      "aurora_id": null,
+      "display_names": [
+        "SunF_Guoqian"
+      ],
+      "races": "Protoss",
+      "total_games": 28,
+      "games_analyzed": 19,
+      "prediction": "Artosis",
+      "confidence": 0.42105263157894735,
+      "avg_prob": 0.13506898243043308,
+      "all_preds": {
+        "Shuttle": 3,
+        "ProMise": 5,
+        "Artosis": 8,
+        "Best": 1,
+        "Sky": 2
+      }
+    },
+    {
+      "player": "NCS_Tshu",
+      "aurora_id": null,
+      "display_names": [
+        "NCS_Tshu"
+      ],
+      "races": "Protoss",
+      "total_games": 14,
+      "games_analyzed": 12,
+      "prediction": "Shuttle",
+      "confidence": 0.4166666666666667,
+      "avg_prob": 0.1458972966723334,
+      "all_preds": {
+        "Shuttle": 5,
+        "sSak": 4,
+        "Artosis": 1,
+        "snOw": 1,
+        "Speed": 1
+      }
+    },
+    {
+      "player": "Somamask",
+      "aurora_id": null,
+      "display_names": [
+        "Somamask"
+      ],
+      "races": "Zerg",
+      "total_games": 14,
+      "games_analyzed": 12,
+      "prediction": "Flash",
+      "confidence": 0.4166666666666667,
+      "avg_prob": 0.1234362907954623,
+      "all_preds": {
+        "ProMise": 2,
+        "Flash": 5,
+        "sSak": 1,
+        "BishOp": 1,
+        "Sky": 3
+      }
+    },
+    {
+      "player": "2342412313",
+      "aurora_id": null,
+      "display_names": [
+        "2342412313"
+      ],
+      "races": "Protoss",
+      "total_games": 20,
+      "games_analyzed": 17,
+      "prediction": "BishOp",
+      "confidence": 0.4117647058823529,
+      "avg_prob": 0.1164733325737165,
+      "all_preds": {
+        "Speed": 5,
+        "BishOp": 7,
+        "Shuttle": 3,
+        "sSak": 1,
+        "Larva": 1
+      }
+    },
+    {
+      "player": "NCS_Gun",
+      "aurora_id": null,
+      "display_names": [
+        "NCS_Gun"
+      ],
+      "races": "Zerg",
+      "total_games": 68,
+      "games_analyzed": 15,
+      "prediction": "Larva",
+      "confidence": 0.4,
+      "avg_prob": 0.18077058345676228,
+      "all_preds": {
+        "Rain": 3,
+        "Larva": 6,
+        "soO": 6
+      }
+    },
+    {
+      "player": "TuF`TT",
+      "aurora_id": null,
+      "display_names": [
+        "TuF`TT"
+      ],
+      "races": "Terran",
+      "total_games": 43,
+      "games_analyzed": 20,
+      "prediction": "yOOn",
+      "confidence": 0.4,
+      "avg_prob": 0.14631060389451972,
+      "all_preds": {
+        "yOOn": 8,
+        "Fantasy": 3,
+        "Flash": 5,
+        "gypsy": 4
+      }
+    },
+    {
+      "player": "llIlIlIIllIlII",
+      "aurora_id": null,
+      "display_names": [
+        "llIlIlIIllIlII"
+      ],
+      "races": "Zerg,Terran",
+      "total_games": 103,
+      "games_analyzed": 15,
+      "prediction": "ProMise",
+      "confidence": 0.4,
+      "avg_prob": 0.10808173731003025,
+      "all_preds": {
+        "Flash": 1,
+        "ProMise": 6,
+        "Larva": 1,
+        "EffOrt": 3,
+        "Sky": 2,
+        "Ample": 1,
+        "Rush": 1
+      }
+    },
+    {
+      "player": "scgotoboy",
+      "aurora_id": null,
+      "display_names": [
+        "scgotoboy"
+      ],
+      "races": "Zerg",
+      "total_games": 12,
+      "games_analyzed": 10,
+      "prediction": "soO",
+      "confidence": 0.4,
+      "avg_prob": 0.10739566416178274,
+      "all_preds": {
+        "soO": 4,
+        "Sky": 2,
+        "ProMise": 1,
+        "Flash": 2,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "llIIllIIIlIIIlI",
+      "aurora_id": null,
+      "display_names": [
+        "llIIllIIIlIIIlI"
+      ],
+      "races": "Zerg",
+      "total_games": 15,
+      "games_analyzed": 10,
+      "prediction": "sSak",
+      "confidence": 0.4,
+      "avg_prob": 0.10286975328027373,
+      "all_preds": {
+        "sSak": 4,
+        "Sky": 1,
+        "Best": 3,
+        "yOOn": 2
+      }
+    },
+    {
+      "player": "llIlIIIIIIlll",
+      "aurora_id": null,
+      "display_names": [
+        "llIlIIIIIIlll"
+      ],
+      "races": "Zerg",
+      "total_games": 68,
+      "games_analyzed": 15,
+      "prediction": "Best",
+      "confidence": 0.4,
+      "avg_prob": 0.10206997669814397,
+      "all_preds": {
+        "yOOn": 4,
+        "EffOrt": 1,
+        "Best": 6,
+        "gypsy": 3,
+        "Larva": 1
+      }
+    },
+    {
+      "player": "IllllIIIIIIIIlI",
+      "aurora_id": null,
+      "display_names": [
+        "IllllIIIIIIIIlI"
+      ],
+      "races": "Terran",
+      "total_games": 105,
+      "games_analyzed": 18,
+      "prediction": "yOOn",
+      "confidence": 0.3888888888888889,
+      "avg_prob": 0.1403113261148473,
+      "all_preds": {
+        "Flash": 2,
+        "yOOn": 7,
+        "gypsy": 6,
+        "Fantasy": 3
+      }
+    },
+    {
+      "player": "lllllIIlIIIIII",
+      "aurora_id": null,
+      "display_names": [
+        "lllllIIlIIIIII"
+      ],
+      "races": "Zerg,Protoss",
+      "total_games": 36,
+      "games_analyzed": 18,
+      "prediction": "BishOp",
+      "confidence": 0.3888888888888889,
+      "avg_prob": 0.13617086947887436,
+      "all_preds": {
+        "Best": 2,
+        "BishOp": 7,
+        "Rush": 6,
+        "Speed": 1,
+        "Shuttle": 2
+      }
+    },
+    {
+      "player": "NamuShield",
+      "aurora_id": null,
+      "display_names": [
+        "NamuShield"
+      ],
+      "races": "Protoss",
+      "total_games": 82,
+      "games_analyzed": 18,
+      "prediction": "ProMise",
+      "confidence": 0.3888888888888889,
+      "avg_prob": 0.12134396343049529,
+      "all_preds": {
+        "Best": 5,
+        "Scan": 6,
+        "ProMise": 7
+      }
+    },
+    {
+      "player": "&-QuickIy",
+      "aurora_id": null,
+      "display_names": [
+        "&-QuickIy"
+      ],
+      "races": "Protoss",
+      "total_games": 11,
+      "games_analyzed": 11,
+      "prediction": "Flash",
+      "confidence": 0.36363636363636365,
+      "avg_prob": 0.14992157964701824,
+      "all_preds": {
+        "Flash": 4,
+        "ProMise": 4,
+        "Scan": 2,
+        "SoulKey": 1
+      }
+    },
+    {
+      "player": "llllllll11lIIIl",
+      "aurora_id": null,
+      "display_names": [
+        "llllllll11lIIIl"
+      ],
+      "races": "Terran",
+      "total_games": 23,
+      "games_analyzed": 11,
+      "prediction": "Flash",
+      "confidence": 0.36363636363636365,
+      "avg_prob": 0.1112660087148111,
+      "all_preds": {
+        "Flash": 4,
+        "Scan": 2,
+        "yOOn": 1,
+        "gypsy": 3,
+        "Stork": 1
+      }
+    },
+    {
+      "player": "lilili1ilililli",
+      "aurora_id": null,
+      "display_names": [
+        "lilili1ilililli"
+      ],
+      "races": "Terran",
+      "total_games": 95,
+      "games_analyzed": 14,
+      "prediction": "Scan",
+      "confidence": 0.35714285714285715,
+      "avg_prob": 0.12956243309570822,
+      "all_preds": {
+        "Scan": 5,
+        "yOOn": 2,
+        "Flash": 5,
+        "SoulKey": 2
+      }
+    },
+    {
+      "player": "IllllllllllllI",
+      "aurora_id": null,
+      "display_names": [
+        "IllllllllllllI"
+      ],
+      "races": "Protoss",
+      "total_games": 19,
+      "games_analyzed": 18,
+      "prediction": "SoulKey",
+      "confidence": 0.3333333333333333,
+      "avg_prob": 0.16150963278691577,
+      "all_preds": {
+        "SoulKey": 6,
+        "Artosis": 5,
+        "Tyson": 6,
+        "snOw": 1
+      }
+    },
+    {
+      "player": "lilii1ilililili",
+      "aurora_id": null,
+      "display_names": [
+        "lilii1ilililili"
+      ],
+      "races": "Terran",
+      "total_games": 46,
+      "games_analyzed": 15,
+      "prediction": "Flash",
+      "confidence": 0.3333333333333333,
+      "avg_prob": 0.1253819981087864,
+      "all_preds": {
+        "Flash": 5,
+        "SoulKey": 4,
+        "Scan": 5,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "Hanatan[WHITE]",
+      "aurora_id": null,
+      "display_names": [
+        "Hanatan[WHITE]"
+      ],
+      "races": "Terran,Zerg",
+      "total_games": 61,
+      "games_analyzed": 18,
+      "prediction": "Speed",
+      "confidence": 0.3333333333333333,
+      "avg_prob": 0.10774960056420274,
+      "all_preds": {
+        "Speed": 6,
+        "BishOp": 1,
+        "Best": 4,
+        "sSak": 5,
+        "Larva": 1,
+        "snOw": 1
+      }
+    },
+    {
+      "player": "IIlIllIlIIIIIII",
+      "aurora_id": null,
+      "display_names": [
+        "IIlIllIlIIIIIII"
+      ],
+      "races": "Terran",
+      "total_games": 17,
+      "games_analyzed": 3,
+      "prediction": "Flash",
+      "confidence": 0.3333333333333333,
+      "avg_prob": 0.10355903600367637,
+      "all_preds": {
+        "Flash": 1,
+        "yOOn": 1,
+        "EffOrt": 1
+      }
+    },
+    {
+      "player": "Galactic`HelloH",
+      "aurora_id": null,
+      "display_names": [
+        "Galactic`HelloH"
+      ],
+      "races": "Zerg",
+      "total_games": 18,
+      "games_analyzed": 18,
+      "prediction": "snOw",
+      "confidence": 0.3333333333333333,
+      "avg_prob": 0.09538784622777313,
+      "all_preds": {
+        "snOw": 6,
+        "Flash": 3,
+        "SoulKey": 3,
+        "Air": 1,
+        "Sky": 2,
+        "Best": 2,
+        "sSak": 1
+      }
+    },
+    {
+      "player": "imscv",
+      "aurora_id": null,
+      "display_names": [
+        "imscv"
+      ],
+      "races": "Terran",
+      "total_games": 42,
+      "games_analyzed": 16,
+      "prediction": "Flash",
+      "confidence": 0.3125,
+      "avg_prob": 0.11312073992829058,
+      "all_preds": {
+        "Fantasy": 3,
+        "Flash": 5,
+        "yOOn": 5,
+        "gypsy": 3
+      }
+    },
+    {
+      "player": "IIllIlIllIllIll",
+      "aurora_id": null,
+      "display_names": [
+        "IIllIlIllIllIll"
+      ],
+      "races": "Protoss",
+      "total_games": 50,
+      "games_analyzed": 17,
+      "prediction": "Speed",
+      "confidence": 0.29411764705882354,
+      "avg_prob": 0.152175253022897,
+      "all_preds": {
+        "sSak": 4,
+        "Speed": 5,
+        "Ample": 3,
+        "Flash": 3,
+        "Rush": 2
+      }
+    },
+    {
+      "player": "JG_Quickly",
+      "aurora_id": null,
+      "display_names": [
+        "JG_Quickly"
+      ],
+      "races": "Protoss",
+      "total_games": 47,
+      "games_analyzed": 17,
+      "prediction": "Flash",
+      "confidence": 0.29411764705882354,
+      "avg_prob": 0.14153480735323298,
+      "all_preds": {
+        "Scan": 4,
+        "Flash": 5,
+        "ProMise": 5,
+        "SoulKey": 3
+      }
+    },
+    {
+      "player": "okamle",
+      "aurora_id": null,
+      "display_names": [
+        "okamle"
+      ],
+      "races": "Zerg",
+      "total_games": 15,
+      "games_analyzed": 11,
+      "prediction": "SoulKey",
+      "confidence": 0.2727272727272727,
+      "avg_prob": 0.11356916725856768,
+      "all_preds": {
+        "SoulKey": 3,
+        "Flash": 2,
+        "Jaedong": 3,
+        "snOw": 1,
+        "Fantasy": 1,
+        "Air": 1
+      }
+    },
+    {
+      "player": "djfqkrtk",
+      "aurora_id": null,
+      "display_names": [
+        "djfqkrtk"
+      ],
+      "races": "Zerg",
+      "total_games": 20,
+      "games_analyzed": 15,
+      "prediction": "Sky",
+      "confidence": 0.26666666666666666,
+      "avg_prob": 0.06689896020129023,
+      "all_preds": {
+        "gypsy": 2,
+        "Rain": 1,
+        "Sky": 4,
+        "soO": 3,
+        "sSak": 2,
+        "Best": 1,
+        "Ample": 1,
+        "yOOn": 1
+      }
+    },
+    {
+      "player": "40minGAME",
+      "aurora_id": null,
+      "display_names": [
+        "40minGAME"
+      ],
+      "races": "Terran",
+      "total_games": 28,
+      "games_analyzed": 19,
+      "prediction": "Flash",
+      "confidence": 0.2631578947368421,
+      "avg_prob": 0.08670031612925218,
+      "all_preds": {
+        "snOw": 4,
+        "Flash": 5,
+        "Best": 5,
+        "Rain": 3,
+        "Tyson": 1,
+        "ProMise": 1
+      }
+    },
+    {
+      "player": "FemaleValkyrie",
+      "aurora_id": null,
+      "display_names": [
+        "FemaleValkyrie"
+      ],
+      "races": "Protoss",
+      "total_games": 27,
+      "games_analyzed": 19,
+      "prediction": "Shuttle",
+      "confidence": 0.21052631578947367,
+      "avg_prob": 0.06715779687304615,
+      "all_preds": {
+        "Shuttle": 4,
+        "sSak": 3,
+        "soO": 2,
+        "Rush": 3,
+        "Sky": 2,
+        "Artosis": 3,
+        "ProMise": 1,
         "SoulKey": 1
       }
     }

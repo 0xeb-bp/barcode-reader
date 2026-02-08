@@ -5,6 +5,7 @@ Scans directories, extracts metadata, and stores in SQLite for analysis.
 """
 
 import json
+import re
 import sqlite3
 import subprocess
 import sys
@@ -47,9 +48,16 @@ def init_db():
             player_name TEXT,
             race TEXT,
             is_human INTEGER,
+            aurora_id INTEGER,
             FOREIGN KEY (replay_id) REFERENCES replays(id)
         )
     ''')
+
+    # Add aurora_id column if it doesn't exist (migration for existing DBs)
+    try:
+        c.execute("ALTER TABLE players ADD COLUMN aurora_id INTEGER")
+    except sqlite3.OperationalError:
+        pass  # column already exists
 
     c.execute('''
         CREATE TABLE IF NOT EXISTS player_aliases (
@@ -61,10 +69,36 @@ def init_db():
         )
     ''')
 
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS player_identities (
+            id INTEGER PRIMARY KEY,
+            canonical_name TEXT NOT NULL,
+            aurora_id INTEGER NOT NULL UNIQUE,
+            source TEXT,
+            notes TEXT,
+            created_at TEXT
+        )
+    ''')
+
+    # Add match_id column to replays if it doesn't exist
+    try:
+        c.execute("ALTER TABLE replays ADD COLUMN match_id TEXT")
+    except sqlite3.OperationalError:
+        pass  # column already exists
+
+    # Drop obsolete valid_from/valid_to columns from player_aliases
+    for col in ("valid_from", "valid_to"):
+        try:
+            c.execute(f"ALTER TABLE player_aliases DROP COLUMN {col}")
+        except sqlite3.OperationalError:
+            pass  # column doesn't exist or already dropped
+
     # Index for fast lookups
     c.execute('CREATE INDEX IF NOT EXISTS idx_player_name ON players(player_name)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_game_date ON replays(game_date)')
     c.execute('CREATE INDEX IF NOT EXISTS idx_alias ON player_aliases(alias)')
+    c.execute('CREATE INDEX IF NOT EXISTS idx_player_aurora_id ON players(aurora_id)')
+    c.execute('CREATE INDEX IF NOT EXISTS idx_replay_match_id ON replays(match_id)')
 
     conn.commit()
     return conn
@@ -152,13 +186,20 @@ def process_replay(replay_path: Path) -> dict:
         }
 
 
+def extract_match_id(file_name: str) -> str:
+    """Extract MM-XXXXXXXX match_id from replay filename."""
+    m = re.search(r'(MM-[0-9A-Fa-f-]+)', file_name)
+    return m.group(1) if m else None
+
+
 def insert_replay(c, result):
     """Insert a processed replay and its players into the database."""
+    match_id = extract_match_id(result["file_name"])
     c.execute('''
         INSERT OR IGNORE INTO replays
         (file_hash, file_path, file_name, source_dir, map_name,
-         game_date, duration_seconds, frames, version, winner_team, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         game_date, duration_seconds, frames, version, winner_team, match_id, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         result["file_hash"],
         result["file_path"],
@@ -170,6 +211,7 @@ def insert_replay(c, result):
         result["frames"],
         result["version"],
         result.get("winner_team"),
+        match_id,
         datetime.now().isoformat()
     ))
 
@@ -178,10 +220,11 @@ def insert_replay(c, result):
     for p in result["players"]:
         c.execute('''
             INSERT INTO players (replay_id, slot_id, player_name, race, is_human,
-                                 start_x, start_y, start_direction)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                                 start_x, start_y, start_direction, aurora_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (replay_id, p["slot_id"], p["name"], p["race"], p["is_human"],
-              p.get("start_x"), p.get("start_y"), p.get("start_direction")))
+              p.get("start_x"), p.get("start_y"), p.get("start_direction"),
+              p.get("aurora_id")))
 
     return replay_id
 
@@ -226,50 +269,6 @@ def ingest_directory(conn, directory: Path, max_workers: int = 4):
 
     conn.commit()
     print(f"\nCompleted: {processed} new, {skipped} duplicates, {errors} errors")
-
-
-def add_known_aliases(conn):
-    """Add known player aliases from filenames and external sources."""
-    c = conn.cursor()
-
-    # Known pro player aliases (lowercase canonical -> aliases)
-    known_aliases = {
-        "flash": ["flash", "Flash", "FlaSh", "FLasH", "By.FLasH", "By.Flash", "KT_Flash"],
-        "bisu": ["bisu", "Bisu", "BiSu", "STX_Bisu", "sKT_Bisu"],
-        "jaedong": ["jaedong", "Jaedong", "JaeDong", "Hwaseung_Jaedong"],
-        "stork": ["stork", "Stork", "STX_Stork"],
-        "fantasy": ["fantasy", "Fantasy", "FanTaSy", "By.FanTaSy"],
-        "rain": ["rain", "Rain", "RaiN"],
-        "effort": ["effort", "Effort", "EffOrt"],
-        "best": ["best", "Best", "BeSt"],
-        "savior": ["savior", "sAviOr", "Savior", "sAvIOr"],
-        "july": ["july", "July"],
-        "yellow": ["yellow", "Yellow", "YellOw"],
-        "nada": ["nada", "NaDa", "Nada"],
-        "boxer": ["boxer", "Boxer", "BoxeR", "SlayerS_BoxeR"],
-        "scan": ["scan", "Scan", "YB_Scan"],
-        "larva": ["larva", "Larva", "JSA_Larva"],
-        "soulkey": ["soulkey", "Soulkey", "SoulKey", "Neo.G_Soulkey"],
-        "hero": ["hero", "herO", "By.herO", "CJ_herO"],
-        "mind": ["mind", "Mind", "InteR.Mind"],
-        "jangbi": ["jangbi", "Jangbi", "JangBi"],
-        "zero": ["zero", "Zero", "ZerO"],
-        "soma": ["soma", "Soma", "SoMa"],
-        "light": ["light", "Light"],
-        "action": ["action", "Action"],
-        "mini": ["mini", "Mini"],
-        "shuttle": ["shuttle", "Shuttle"],
-    }
-
-    for canonical, aliases in known_aliases.items():
-        for alias in aliases:
-            c.execute('''
-                INSERT OR IGNORE INTO player_aliases (canonical_name, alias, confidence, source)
-                VALUES (?, ?, ?, ?)
-            ''', (canonical, alias, 1.0, "known_pros"))
-
-    conn.commit()
-    print(f"Added {sum(len(a) for a in known_aliases.values())} known aliases")
 
 
 def stats(conn):
@@ -317,6 +316,23 @@ def stats(conn):
     print(f"\nKnown aliases: {c.fetchone()[0]}")
 
 
+def load_scrape_metadata(to_ingest_dir: Path) -> dict:
+    """Load aurora_id metadata from _metadata.jsonl (written by cwal.py scrape).
+    Returns dict mapping filename -> {alias, aurora_id, opponent_alias, opponent_aurora_id}."""
+    meta_path = to_ingest_dir / "_metadata.jsonl"
+    metadata = {}
+    if meta_path.exists():
+        with open(meta_path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                entry = json.loads(line)
+                metadata[entry["file_name"]] = entry
+        print(f"Loaded metadata for {len(metadata)} replays")
+    return metadata
+
+
 def ingest_new(conn, to_ingest_dir: Path, dest_dir: Path, max_workers: int = 4):
     """Ingest replays from to_ingest dir, then move them to dest dir."""
     replays = list(to_ingest_dir.rglob("*.rep"))
@@ -326,6 +342,9 @@ def ingest_new(conn, to_ingest_dir: Path, dest_dir: Path, max_workers: int = 4):
 
     print(f"Found {len(replays)} new replays to ingest")
     dest_dir.mkdir(parents=True, exist_ok=True)
+
+    # Load scrape metadata (aurora_ids) if available
+    scrape_meta = load_scrape_metadata(to_ingest_dir)
 
     c = conn.cursor()
     c.execute("SELECT file_hash FROM replays")
@@ -350,6 +369,15 @@ def ingest_new(conn, to_ingest_dir: Path, dest_dir: Path, max_workers: int = 4):
             elif result["file_hash"] in existing_hashes:
                 skipped += 1
             else:
+                # Attach aurora_ids from scrape metadata if available
+                meta = scrape_meta.get(replay_path.name, {})
+                if meta:
+                    for p in result["players"]:
+                        if p["name"] == meta.get("alias"):
+                            p["aurora_id"] = meta.get("aurora_id")
+                        elif p["name"] == meta.get("opponent_alias"):
+                            p["aurora_id"] = meta.get("opponent_aurora_id")
+
                 # Update file_path to destination before inserting
                 result["file_path"] = str(dest.absolute())
                 result["source_dir"] = dest_dir.name
@@ -368,15 +396,19 @@ def ingest_new(conn, to_ingest_dir: Path, dest_dir: Path, max_workers: int = 4):
                 replay_path.unlink()
 
     conn.commit()
+
+    # Clean up metadata file after successful ingestion
+    meta_path = to_ingest_dir / "_metadata.jsonl"
+    if meta_path.exists():
+        meta_path.unlink()
+        print("Cleaned up _metadata.jsonl")
+
     print(f"Completed: {processed} new, {skipped} duplicates, {errors} errors")
 
 
 def main():
     print("Initializing database...")
     conn = init_db()
-
-    # Add known aliases
-    add_known_aliases(conn)
 
     data_dir = Path(__file__).parent / "data"
     to_ingest_dir = data_dir / "to_ingest"

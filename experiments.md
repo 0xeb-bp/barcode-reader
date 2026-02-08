@@ -443,6 +443,66 @@ ACTION_CATEGORIES = {
 
 ---
 
+## Experiment 12: Aurora ID Migration, 25 Players (max 50/player)
+**Date**: Feb 2026
+**Features**: Same as Exp 11 (race-neutral + abstracted n-grams + Prod collapse)
+**Hyperparameters**: max_depth=10, n_estimators=200, StandardScaler
+**Feature count**: 199
+**Training data**: Modern era only (>=2025-01-01), 50 samples/player max, aurora_id-based identity
+
+**Key change**: Migrated from alias-based (`player_aliases`) to aurora_id-based (`player_identities`) player identity. Training now joins on `players.aurora_id → player_identities.aurora_id`, automatically merging alt accounts. Added `--max-games` CLI flag to `train.py`.
+
+| Metric | Value |
+|--------|-------|
+| Samples | 1,114 (25 players, max 50 each) |
+| Accuracy | **98.6%** (1098/1114) |
+
+**Per-player accuracy:**
+- 100%: soO (50), Speed (50), Artosis (50), Ample (50), Stork (50), Scan (50), Rush (50), Jaedong (50), Best (50), SoulKey (50), gypsy (44), Tyson (50), Air (50), Rain (40), Fantasy (27), Sky (24), Shuttle (18)
+- 98.0%: sSak (49/50), Flash (49/50)
+- 96.2%: snOw (25/26)
+- 96.0%: BishOp (48/50), yOOn (48/50)
+- 94.0%: Larva (47/50)
+- 93.3%: EffOrt (42/45)
+- 92.5%: ProMise (37/40)
+
+**New players (vs Exp 11):** +9 (sSak, snOw, soO, gypsy, Tyson, ProMise, HyuK*, Rich*, Jaedong)
+- HyuK and Rich skipped (< 10 modern games)
+- sSak auto-merged JSA_sSak1 + wkelkqwlewqe (151 total games via aurora_id)
+- soO auto-merged fdsafasfsdafsda + lililllilillill (368 total games)
+- snOw auto-merged IllIIlIlIl + IIIlIllIIllllIl (26 games)
+- Stork auto-merged Stork + SSU_Stork (82 games)
+
+**Top features:**
+1. `ehkg2_1_1` (0.022) - early hotkey group 1 double-tap
+2. `first_assign_0` (0.021) - first hotkey assignment
+3. `ehkg2_4_2` (0.021) - early hotkey group 4→2 transition
+4. `ehkg2_3_3` (0.019) - early hotkey group 3 double-tap
+5. `ehkg3_1_1_1` (0.018) - early hotkey group 1 triple-tap
+
+**Blind validation:**
+- `llIIll1ll1lI` → Jaedong: **100% confidence** (17/17 games), 74% avg prob. Aurora_id 13968871 matches jd2321232. Confirmed.
+- `wkelkqwlewqe` no longer appears as unlabeled — auto-merged with sSak via aurora_id 18372656.
+
+**Barcode predictions (high confidence, >=80% prob):**
+| Barcode | Race | Predicted | Conf | Prob |
+|---------|------|-----------|------|------|
+| aewinruvop | T | Rush | 100% | 87% |
+| llIIIIllIIlIlI | P | Stork | 100% | 84% |
+| dlqwkdckdl | P | Air | 100% | 83% |
+| baldaction | Z | soO | 100% | 81% |
+| dustmqgkwk!!! | T | Rush | 100% | 81% |
+| zerosugarmarine | T | Scan | 100% | 80% |
+| lllllllIIIIlIlI | Z | soO | 100% | 80% |
+
+**Notes:**
+- Accuracy dropped slightly from 99.1% (Exp 11, 16 players) to 98.6% (25 players) — expected with 56% more classes
+- 17/25 players at 100%, lowest is ProMise at 92.5%
+- 215 unlabeled players predicted, 139 at >=60% confidence
+- Sharp not included (no aurora_id yet — needs lookup to join new training path)
+
+---
+
 ## Ideas to Try
 - [x] Abstracted n-grams (Experiment 4)
 - [x] Hyperparameter tuning (Experiment 5)
@@ -457,4 +517,6 @@ ACTION_CATEGORIES = {
 - [ ] Time-windowed features (early/mid/late game separately)
 - [ ] Investigate Sea vs Light confusion
 - [ ] Smurf detection: per-player outlier detection (distance from centroid or Isolation Forest), then classify outliers to identify who's actually playing. Could also clean training data by removing smurf-contaminated games.
-- [ ] Leverage cwal.gg aurora_id for account linking (see memory/cwal_aurora_id.md)
+- [x] Leverage cwal.gg aurora_id for account linking (Experiment 12 — player_identities table)
+- [ ] Run Tier 2 API backfill for opponent aurora_ids (improves unlabeled player grouping)
+- [ ] Add Sharp aurora_id to enable training

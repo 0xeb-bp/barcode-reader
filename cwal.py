@@ -2,6 +2,7 @@
 """cwal.gg ladder API tool for Barcode Reader."""
 
 import argparse
+import json
 import re
 import time
 
@@ -22,6 +23,8 @@ DEFAULT_LIMIT = 50
 PAGE_SIZE = 50  # Supabase page size
 API_PAGE_DELAY = 0.5  # seconds between API pages
 DOWNLOAD_DELAY = 0.15  # seconds between replay downloads
+
+GATEWAY_NAMES = {10: "US West", 11: "US West", 20: "US East", 30: "Korea", 45: "Europe"}
 
 OUTPUT_DIR = Path(__file__).parent / "data" / "to_ingest"
 
@@ -276,6 +279,7 @@ def cmd_scrape(args):
     if not args.dry_run:
         output_dir.mkdir(parents=True, exist_ok=True)
 
+    metadata_path = output_dir / "_metadata.jsonl"
     downloaded = 0
     skipped = 0
 
@@ -302,6 +306,19 @@ def cmd_scrape(args):
             output_path.write_bytes(resp.content)
             downloaded += 1
             print(f"  Downloaded: {filename}")
+
+            # Append metadata (aurora_ids) for ingestion pipeline
+            meta = {
+                "match_id": m.get("id"),
+                "file_name": filename,
+                "alias": m.get("alias"),
+                "aurora_id": m.get("aurora_id"),
+                "opponent_alias": m.get("opponent_alias"),
+                "opponent_aurora_id": m.get("opponent_aurora_id"),
+                "gateway": m.get("gateway"),
+            }
+            with open(metadata_path, "a") as f:
+                f.write(json.dumps(meta) + "\n")
         else:
             print(f"  Failed ({resp.status_code}): {filename}")
 
@@ -394,7 +411,7 @@ def cmd_handles(args):
         return
 
     print(f"\n{len(handles)} handle(s):\n")
-    header = f"{'#':>4} {'Alias':<22} {'Race':<10} {'Rating':>6} {'W-L':<10} {'Gateway':>7}"
+    header = f"{'#':>4} {'Alias':<22} {'Race':<10} {'Rating':>6} {'W-L':<10} {'Gateway':>10}"
     print(header)
     print("—" * len(header))
     for p in handles:
@@ -405,8 +422,9 @@ def cmd_handles(args):
         wins = p.get("wins", 0)
         losses = p.get("losses", 0)
         wl = f"{wins}-{losses}"
-        gw = p.get("gateway", "—")
-        print(f"{standing:>4} {alias:<22} {race:<10} {rating:>6} {wl:<10} {gw:>7}")
+        gw = p.get("gateway", 0)
+        gw_name = GATEWAY_NAMES.get(gw, str(gw))
+        print(f"{standing:>4} {alias:<22} {race:<10} {rating:>6} {wl:<10} {gw_name:>10}")
 
 
 def cmd_count(args):
@@ -416,8 +434,7 @@ def cmd_count(args):
     for gw in gateways:
         count = api_match_count(alias, gateway=gw)
         if count > 0:
-            gw_names = {30: "Korea", 10: "US West", 20: "US East", 45: "Europe", 11: "US West (11)"}
-            print(f"{alias}: {count} games on {gw_names.get(gw, f'gw {gw}')}")
+            print(f"{alias}: {count} games on {GATEWAY_NAMES.get(gw, f'gw {gw}')}")
             return
     print(f"{alias}: 0 games (checked all gateways)")
 

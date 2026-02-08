@@ -3,6 +3,7 @@
 Train player fingerprint classifier and save model to disk.
 """
 
+import argparse
 import sqlite3
 import sys
 from datetime import datetime
@@ -13,7 +14,7 @@ from sklearn.preprocessing import StandardScaler
 import joblib
 
 from features import (
-    DB_PATH, extract_player_samples, get_pro_aliases,
+    DB_PATH, extract_player_samples_by_aurora, get_pro_identities,
     select_global_ngrams, apply_ngram_features, create_feature_matrix,
 )
 
@@ -22,34 +23,41 @@ MIN_DATE = "2025-01-01"  # Modern era only
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Train player fingerprint classifier")
+    parser.add_argument("--max-games", type=int, default=None,
+                        help="Max games per player (default: unlimited). Use 25 for fast experiments, 100 for production.")
+    args = parser.parse_args()
+    max_games = args.max_games
+
+    cap_str = f", max {max_games}/player" if max_games else ""
     print("=" * 70)
-    print(f"TRAINING PLAYER FINGERPRINT CLASSIFIER (modern era: >={MIN_DATE})")
+    print(f"TRAINING PLAYER FINGERPRINT CLASSIFIER (modern era: >={MIN_DATE}{cap_str})")
     print("=" * 70)
 
     conn = sqlite3.connect(DB_PATH)
 
-    # Get all confirmed pros — we'll filter by date during extraction
-    pros = get_pro_aliases(conn, min_games=10)
-    print(f"\nConfirmed pros with 10+ games (all eras): {len(pros)}")
+    # Get all confirmed pros from player_identities (aurora_id-based)
+    pros = get_pro_identities(conn, min_games=10)
+    print(f"\nConfirmed pros with 10+ modern games: {len(pros)}")
     sys.stdout.flush()
 
-    # Build training dataset — modern only
+    # Build training dataset — modern only, aurora_id-based
     print(f"\nExtracting features from modern games (>= {MIN_DATE})...")
     sys.stdout.flush()
     all_samples = []
 
-    for canonical, aliases, total in pros:
-        player_samples = []
-        for alias in aliases:
-            samples = extract_player_samples(conn, alias, label=canonical,
-                                             min_date=MIN_DATE)
-            player_samples.extend(samples)
+    for canonical, aurora_ids, total in pros:
+        player_samples = extract_player_samples_by_aurora(
+            conn, aurora_ids, label=canonical, min_date=MIN_DATE)
+        if max_games and len(player_samples) > max_games:
+            player_samples = player_samples[:max_games]
         if len(player_samples) < 10:
             print(f"  {canonical}: {len(player_samples)} valid games — SKIPPED (< 10)")
             sys.stdout.flush()
             continue
         all_samples.extend(player_samples)
-        print(f"  {canonical}: {len(player_samples)} valid games (from {len(aliases)} aliases)")
+        aliases_used = set(s["alias"] for s in player_samples)
+        print(f"  {canonical}: {len(player_samples)} valid games (aurora_ids: {aurora_ids}, names: {aliases_used})")
         sys.stdout.flush()
 
     print(f"\nTotal training samples: {len(all_samples)}")
