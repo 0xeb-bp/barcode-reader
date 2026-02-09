@@ -68,8 +68,9 @@ barcode-reader/
 - Consecutive Prod collapse to reduce race-mechanical signal
 
 ## Training & Prediction Thresholds
-- **Training**: Auto-discovers all labeled players (in `player_identities`) with 10+ valid modern-era games via aurora_id join. No per-player cap — uses `class_weight="balanced"` to handle class imbalance. Alt accounts auto-merge (same aurora_id → same identity).
-- **Prediction**: Runs on all unlabeled players with 10+ modern-era games. Groups by aurora_id where available, falls back to player_name grouping for players without aurora_id.
+- **Training**: Auto-discovers all labeled players (in `player_identities`) with 20+ valid modern-era games via aurora_id join. No per-player cap — uses `class_weight="balanced"` to handle class imbalance. Alt accounts auto-merge (same aurora_id → same identity).
+- **Offrace filtering**: If a player has < 20 offrace games, only main-race games are used for training. Players with 20+ offrace games keep all games (e.g., Best, sSak play all races fluently).
+- **Prediction**: Runs on all unlabeled players with 20+ modern-era games. Groups by aurora_id where available, falls back to player_name grouping for players without aurora_id.
 - **Filtering**: Single gate in `features.py` — games must be ≥ `MIN_GAME_MINUTES` (4) and ≥ `MIN_COMMANDS` (100)
 
 ## Data Pipeline

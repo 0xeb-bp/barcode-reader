@@ -4,14 +4,18 @@ Train player fingerprint classifier and save model to disk.
 """
 
 import argparse
+import json
 import sqlite3
 import sys
 from datetime import datetime
+from pathlib import Path
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import LeaveOneOut, cross_val_predict
 from sklearn.preprocessing import StandardScaler
 import joblib
+
+from collections import Counter
 
 from features import (
     DB_PATH, extract_player_samples_by_aurora, get_pro_identities,
@@ -19,13 +23,18 @@ from features import (
 )
 
 MODEL_PATH = DB_PATH.parent / "model.joblib"
+CV_RESULTS_PATH = DB_PATH.parent / "cv_results.json"
 MIN_DATE = "2025-01-01"  # Modern era only
+MIN_GAMES = 20
+MIN_OFFRACE = 20  # Keep offrace games only if player has >= this many
 
 
 def main():
     parser = argparse.ArgumentParser(description="Train player fingerprint classifier")
     parser.add_argument("--max-games", type=int, default=None,
                         help="Max games per player (default: unlimited). Use 25 for fast experiments, 100 for production.")
+    parser.add_argument("--analyze", action="store_true",
+                        help="Run outlier detection after CV (flag samples far from class centroid)")
     args = parser.parse_args()
     max_games = args.max_games
 
@@ -37,8 +46,8 @@ def main():
     conn = sqlite3.connect(DB_PATH)
 
     # Get all confirmed pros from player_identities (aurora_id-based)
-    pros = get_pro_identities(conn, min_games=10)
-    print(f"\nConfirmed pros with 10+ modern games: {len(pros)}")
+    pros = get_pro_identities(conn, min_games=MIN_GAMES)
+    print(f"\nConfirmed pros with {MIN_GAMES}+ modern games: {len(pros)}")
     sys.stdout.flush()
 
     # Build training dataset — modern only, aurora_id-based
@@ -49,15 +58,28 @@ def main():
     for canonical, aurora_ids, total in pros:
         player_samples = extract_player_samples_by_aurora(
             conn, aurora_ids, label=canonical, min_date=MIN_DATE)
+
+        # Offrace filtering: if player has < MIN_OFFRACE offrace games, keep main race only
+        race_counts = Counter(s["race"] for s in player_samples)
+        main_race = race_counts.most_common(1)[0][0] if race_counts else None
+        offrace_count = sum(c for r, c in race_counts.items() if r != main_race)
+        if offrace_count > 0 and offrace_count < MIN_OFFRACE:
+            player_samples = [s for s in player_samples if s["race"] == main_race]
+            race_note = f" [filtered {offrace_count} offrace]"
+        elif offrace_count > 0:
+            race_note = f" [{dict(race_counts)}]"
+        else:
+            race_note = ""
+
         if max_games and len(player_samples) > max_games:
             player_samples = player_samples[:max_games]
-        if len(player_samples) < 10:
-            print(f"  {canonical}: {len(player_samples)} valid games — SKIPPED (< 10)")
+        if len(player_samples) < MIN_GAMES:
+            print(f"  {canonical}: {len(player_samples)} valid games — SKIPPED (< {MIN_GAMES})")
             sys.stdout.flush()
             continue
         all_samples.extend(player_samples)
         aliases_used = set(s["alias"] for s in player_samples)
-        print(f"  {canonical}: {len(player_samples)} valid games (aurora_ids: {aurora_ids}, names: {aliases_used})")
+        print(f"  {canonical}: {len(player_samples)} valid games (aurora_ids: {aurora_ids}, names: {aliases_used}){race_note}")
         sys.stdout.flush()
 
     print(f"\nTotal training samples: {len(all_samples)}")
@@ -115,6 +137,93 @@ def main():
         pct = r["correct"] / r["total"] * 100
         bar = "#" * int(pct / 5)
         print(f"  {player:25s}: {r['correct']:2d}/{r['total']:2d} = {pct:5.1f}% {bar}")
+
+    # Save per-sample CV results
+    cv_results = []
+    for i, (true, pred) in enumerate(zip(y, predictions)):
+        cv_results.append({
+            "sample_idx": i,
+            "true_label": true,
+            "predicted": pred,
+            "correct": true == pred,
+            "alias": all_samples[i]["alias"],
+            "file": all_samples[i]["file"],
+            "replay_id": all_samples[i]["replay_id"],
+        })
+
+    with open(CV_RESULTS_PATH, "w") as f:
+        json.dump(cv_results, f, indent=2)
+    misclassified = [r for r in cv_results if not r["correct"]]
+    print(f"\nCV results saved to: {CV_RESULTS_PATH}")
+    print(f"  Misclassified: {len(misclassified)}/{len(cv_results)}")
+    if misclassified:
+        print("\n  Misclassifications:")
+        for r in misclassified:
+            print(f"    {r['alias']:20s} → predicted {r['predicted']:15s} (true: {r['true_label']}) [{r['file']}]")
+
+    # Outlier detection
+    if args.analyze:
+        print("\n" + "=" * 70)
+        print("OUTLIER DETECTION (Euclidean distance from class centroid)")
+        print("=" * 70)
+
+        classes = sorted(set(y))
+        distances = np.zeros(len(y))
+        class_stats = {}
+
+        for cls in classes:
+            mask = y == cls
+            cls_features = X_scaled[mask]
+            centroid = cls_features.mean(axis=0)
+            dists = np.sqrt(((cls_features - centroid) ** 2).sum(axis=1))
+            distances[mask] = dists
+            class_stats[cls] = {"mean": dists.mean(), "std": dists.std()}
+
+        # Flag samples > 2.5 std devs from their class centroid
+        outlier_threshold = 2.5
+        outlier_indices = []
+        for i in range(len(y)):
+            cls = y[i]
+            stats = class_stats[cls]
+            if stats["std"] > 0 and (distances[i] - stats["mean"]) / stats["std"] > outlier_threshold:
+                outlier_indices.append(i)
+
+        print(f"\nOutlier threshold: >{outlier_threshold} std devs from class centroid")
+        print(f"Total outliers: {len(outlier_indices)}/{len(y)}")
+
+        # Per-player outlier counts
+        outlier_by_player = {}
+        for i in outlier_indices:
+            cls = y[i]
+            outlier_by_player.setdefault(cls, []).append(i)
+
+        if outlier_by_player:
+            print("\nPer-player outlier counts:")
+            for player in sorted(outlier_by_player.keys()):
+                indices = outlier_by_player[player]
+                total_player = sum(1 for label in y if label == player)
+                print(f"  {player:25s}: {len(indices)}/{total_player} outliers")
+
+            print("\nOutlier details:")
+            for i in outlier_indices:
+                s = all_samples[i]
+                cls = y[i]
+                stats = class_stats[cls]
+                z_score = (distances[i] - stats["mean"]) / stats["std"] if stats["std"] > 0 else 0
+                mis_flag = " ** MISCLASSIFIED **" if predictions[i] != y[i] else ""
+                print(f"  {s['alias']:20s} dist={distances[i]:.1f} z={z_score:.1f} [{s['file']}]{mis_flag}")
+
+        # Overlap: misclassified AND outlier
+        outlier_set = set(outlier_indices)
+        misclassified_indices = set(i for i, r in enumerate(cv_results) if not r["correct"])
+        overlap = outlier_set & misclassified_indices
+        if overlap:
+            print(f"\nMisclassified + Outlier overlap: {len(overlap)} samples")
+            for i in sorted(overlap):
+                s = all_samples[i]
+                print(f"  {s['alias']:20s} predicted={predictions[i]:15s} true={y[i]} [{s['file']}]")
+        else:
+            print("\nNo overlap between misclassified and outlier samples.")
 
     # Train final model on all data
     print("\n" + "=" * 70)

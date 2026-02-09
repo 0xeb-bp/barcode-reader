@@ -66,6 +66,22 @@ def parse_replay(replay_path: Path) -> dict:
     return json.loads(result.stdout)
 
 
+def trim_at_leave(player_cmds: list, all_cmds: list, game_frames: int) -> tuple:
+    """Trim player commands at the first Leave Game by any player.
+    Returns (trimmed_cmds, effective_game_frames)."""
+    leave_frame = None
+    for c in all_cmds:
+        if c["Type"]["Name"] == "Leave Game":
+            leave_frame = c["Frame"]
+            break
+
+    if leave_frame is not None:
+        player_cmds = [c for c in player_cmds if c["Frame"] <= leave_frame]
+        game_frames = min(game_frames, leave_frame)
+
+    return player_cmds, game_frames
+
+
 def collapse_consecutive_prod(categories: list) -> list:
     """Collapse consecutive Prod tokens (race-mechanical queuing, not playstyle)."""
     if not categories:
@@ -231,6 +247,62 @@ def extract_features(commands: list, game_frames: int) -> tuple:
     # pct_select_5_8  = count(5 <= s <= 8)  / total  # medium drag box
     # pct_select_9_12 = count(9 <= s <= 12) / total  # fat drag box (BW max 12)
 
+    # === SELECT→ACTION LATENCY (race-invariant motor pattern) ===
+    sa_gaps = []
+    for i in range(len(commands) - 1):
+        if commands[i]["Type"]["Name"] in ("Select", "Hotkey"):
+            if commands[i+1]["Type"]["Name"] not in ("Select", "Select Add", "Select Remove", "Hotkey"):
+                gap = (commands[i+1]["Frame"] - commands[i]["Frame"]) * FRAME_MS
+                if gap < 2000:
+                    sa_gaps.append(gap)
+    if sa_gaps:
+        features["sa_latency_mean"] = statistics.mean(sa_gaps)
+        features["sa_latency_median"] = statistics.median(sa_gaps)
+
+    # === BURST STRUCTURE (race-invariant rhythm) ===
+    if gaps:
+        burst_threshold_ms = 150
+        bursts = []
+        current_burst = 1
+        for g in gaps_ms:
+            if g < burst_threshold_ms:
+                current_burst += 1
+            else:
+                if current_burst > 1:
+                    bursts.append(current_burst)
+                current_burst = 1
+        if current_burst > 1:
+            bursts.append(current_burst)
+
+        if bursts:
+            features["burst_count_per_min"] = len(bursts) / game_minutes
+            features["burst_size_mean"] = statistics.mean(bursts)
+
+        inter_burst_gaps = [g for g in gaps_ms if g >= burst_threshold_ms]
+        if inter_burst_gaps:
+            features["inter_burst_gap_mean"] = statistics.mean(inter_burst_gaps)
+
+    # === RHYTHM AUTOCORRELATION (race-invariant timing signature) ===
+    if len(gaps) > 20:
+        g_arr = np.array(gaps_ms[:200])
+        g_centered = g_arr - g_arr.mean()
+        var = np.sum(g_centered ** 2)
+        if var > 0:
+            features["autocorr_lag1"] = float(np.sum(g_centered[:-1] * g_centered[1:]) / var)
+
+    # === MAP JUMPS (multitask switching — race-invariant) ===
+    if len(clicks) > 10:
+        map_jumps = 0
+        click_frames = [(c["Pos"]["X"], c["Pos"]["Y"], c["Frame"]) for c in commands if "Pos" in c]
+        for i in range(1, len(click_frames)):
+            dx = click_frames[i][0] - click_frames[i-1][0]
+            dy = click_frames[i][1] - click_frames[i-1][1]
+            dist = (dx**2 + dy**2) ** 0.5
+            time_gap = (click_frames[i][2] - click_frames[i-1][2]) * FRAME_MS
+            if dist > 2000 and time_gap < 500:
+                map_jumps += 1
+        features["map_jumps_per_min"] = map_jumps / game_minutes
+
     features["apm"] = len(commands) / game_minutes
 
     frames_per_min = int(FRAMES_PER_MINUTE)
@@ -337,7 +409,7 @@ def extract_player_samples(conn, player_name: str, label: str = None,
 
         try:
             data = parse_replay(path)
-            commands = data.get("Commands", {}).get("Cmds", [])
+            all_cmds = data.get("Commands", {}).get("Cmds", [])
             game_frames = data["Header"]["Frames"]
 
             for player in data["Header"]["Players"]:
@@ -346,8 +418,9 @@ def extract_player_samples(conn, player_name: str, label: str = None,
                 if player["Name"] != player_name:
                     continue
 
-                player_cmds = [c for c in commands if c["PlayerID"] == player["ID"]]
-                features, raw_ngrams = extract_features(player_cmds, game_frames)
+                player_cmds = [c for c in all_cmds if c["PlayerID"] == player["ID"]]
+                player_cmds, effective_frames = trim_at_leave(player_cmds, all_cmds, game_frames)
+                features, raw_ngrams = extract_features(player_cmds, effective_frames)
 
                 if features:
                     samples.append({
@@ -433,7 +506,7 @@ def extract_player_samples_by_aurora(conn, aurora_ids, label, min_date=None):
 
         try:
             data = parse_replay(path)
-            commands = data.get("Commands", {}).get("Cmds", [])
+            all_cmds = data.get("Commands", {}).get("Cmds", [])
             game_frames = data["Header"]["Frames"]
 
             for player in data["Header"]["Players"]:
@@ -442,8 +515,9 @@ def extract_player_samples_by_aurora(conn, aurora_ids, label, min_date=None):
                 if player["Name"] != player_name:
                     continue
 
-                player_cmds = [c for c in commands if c["PlayerID"] == player["ID"]]
-                features, raw_ngrams = extract_features(player_cmds, game_frames)
+                player_cmds = [c for c in all_cmds if c["PlayerID"] == player["ID"]]
+                player_cmds, effective_frames = trim_at_leave(player_cmds, all_cmds, game_frames)
+                features, raw_ngrams = extract_features(player_cmds, effective_frames)
 
                 if features:
                     samples.append({

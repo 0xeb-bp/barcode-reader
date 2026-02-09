@@ -503,6 +503,67 @@ ACTION_CATEGORIES = {
 
 ---
 
+## Experiment 13: Data Quality — Leave Trimming, Deep Features, Offrace Filtering
+**Date**: Feb 2026
+**Features**: Exp 12 features + 7 new race-invariant "deep features" + post-leave command trimming
+**Hyperparameters**: max_depth=10, n_estimators=200, StandardScaler
+**Feature count**: 206 (199 base/n-gram + 7 deep)
+**Training data**: Modern era only (>=2025-01-01), 25 samples/player max, aurora_id-based, min 20 games
+
+**Three changes from Exp 12:**
+
+1. **Post-leave trimming** — Trim all commands at the first "Leave Game" so winners' post-leave actions (moving units around empty map) don't pollute features. Also caps game_frames for APM calculation.
+
+2. **7 deep features** (race-invariant motor patterns):
+   - `sa_latency_mean`, `sa_latency_median` — time between Select/Hotkey and next action command
+   - `burst_count_per_min`, `burst_size_mean`, `inter_burst_gap_mean` — burst rhythm (consecutive commands < 150ms)
+   - `autocorr_lag1` — lag-1 autocorrelation of command gaps (rhythmic vs random)
+   - `map_jumps_per_min` — large cursor jumps within 500ms (multitask switching)
+
+3. **Offrace filtering** — If a player has < 20 offrace games, only main-race games used. Players with 20+ offrace (Best, sSak, EffOrt, BishOp, Shine) keep all. Min games raised from 10 to 20.
+
+**Investigation**: Analyzed offrace impact on 9 players. Found two categories:
+- **Race-stable** (Best z≤1.1, sSak z≤1.5): features barely change across races
+- **Race-divergent** (Larva z=18, BishOp z=14.8): hotkey groups completely flip, APM drops
+- Deep features (burst structure, autocorrelation) stayed stable for all players tested
+
+| Metric | Value |
+|--------|-------|
+| Samples | 798 (32 players, max 25 each) |
+| Accuracy | **99.2%** (792/798) |
+
+**Per-player accuracy:**
+- 100%: 27/32 players
+- 96.0%: Shine (24/25), BishOp (24/25), Dewalt (24/25), Larva (24/25)
+- 92.0%: EffOrt (23/25)
+
+**Misclassifications: 6** (down from 16 in comparable Exp 12 run)
+- EffOrt → Best (×2, both Terran games kept via 20+ offrace threshold)
+- BishOp → SoulKey (ZvZ game)
+- Dewalt → Artosis
+- Larva → soma (ZvZ)
+- Shine → EffOrt
+
+**Outlier analysis** (--analyze flag, 2.5σ threshold):
+- 22 outliers / 798 samples
+- 3 in misclassified+outlier overlap (EffOrt, BishOp, Dewalt — persistent hard cases)
+
+**Top features:**
+1. `ehkg2_3_3` (0.023) - early hotkey group 3 double-tap
+2. `ehkg2_4_4` (0.018)
+3. `ng2_H_Prod` (0.018)
+4. `first_assign_0` (0.017)
+5. `burst_size_mean` (0.014) ← NEW deep feature in top 15
+
+**Notes:**
+- Shuttle dropped (18 games < new 20 min threshold)
+- Not a clean A/B test: dataset smaller (798 vs 818) due to offrace filtering, so some "improvement" is from removing hard cases rather than model improvement
+- `burst_size_mean` entering top 15 features confirms deep features contribute signal
+- Key offrace players filtered: Larva (6 games), Flash (19), SoulKey (6), Rain (17)
+- Key offrace players kept: Best (49), sSak (51), EffOrt (45), BishOp (34), Shine (21)
+
+---
+
 ## Ideas to Try
 - [x] Abstracted n-grams (Experiment 4)
 - [x] Hyperparameter tuning (Experiment 5)
@@ -516,7 +577,7 @@ ACTION_CATEGORIES = {
 - [ ] Per-race models (train separate model for each race)
 - [ ] Time-windowed features (early/mid/late game separately)
 - [ ] Investigate Sea vs Light confusion
-- [ ] Smurf detection: per-player outlier detection (distance from centroid or Isolation Forest), then classify outliers to identify who's actually playing. Could also clean training data by removing smurf-contaminated games.
+- [x] Smurf detection: per-player outlier detection (distance from centroid or Isolation Forest), then classify outliers to identify who's actually playing. Could also clean training data by removing smurf-contaminated games. (Experiment 13 — outlier detection via Euclidean distance from class centroid, --analyze flag)
 - [x] Leverage cwal.gg aurora_id for account linking (Experiment 12 — player_identities table)
 - [ ] Run Tier 2 API backfill for opponent aurora_ids (improves unlabeled player grouping)
 - [ ] Add Sharp aurora_id to enable training

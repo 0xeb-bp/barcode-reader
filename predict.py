@@ -25,7 +25,7 @@ from features import (
 
 MODEL_PATH = DB_PATH.parent / "model.joblib"
 PREDICTIONS_PATH = DB_PATH.parent / "predictions.json"
-MIN_GAMES = 10
+MIN_GAMES = 20
 MIN_DATE = "2025-01-01"  # Modern era only, same as training
 
 
