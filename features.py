@@ -482,6 +482,7 @@ def get_player_replays_by_aurora(conn, aurora_ids, min_date=None):
             WHERE p.aurora_id IN ({placeholders})
               AND p.is_human = 1
               AND r.game_date >= ?
+            ORDER BY r.game_date DESC
         """, aurora_ids + [min_date])
     else:
         c.execute(f"""
@@ -490,6 +491,7 @@ def get_player_replays_by_aurora(conn, aurora_ids, min_date=None):
             JOIN players p ON r.id = p.replay_id
             WHERE p.aurora_id IN ({placeholders})
               AND p.is_human = 1
+            ORDER BY r.game_date DESC
         """, aurora_ids)
     return c.fetchall()
 

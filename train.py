@@ -59,20 +59,30 @@ def main():
         player_samples = extract_player_samples_by_aurora(
             conn, aurora_ids, label=canonical, min_date=MIN_DATE)
 
-        # Offrace filtering: if player has < MIN_OFFRACE offrace games, keep main race only
+        # Per-race filtering: main race capped at max_games, each offrace kept only if >= MIN_OFFRACE
         race_counts = Counter(s["race"] for s in player_samples)
         main_race = race_counts.most_common(1)[0][0] if race_counts else None
-        offrace_count = sum(c for r, c in race_counts.items() if r != main_race)
-        if offrace_count > 0 and offrace_count < MIN_OFFRACE:
-            player_samples = [s for s in player_samples if s["race"] == main_race]
-            race_note = f" [filtered {offrace_count} offrace]"
-        elif offrace_count > 0:
-            race_note = f" [{dict(race_counts)}]"
-        else:
-            race_note = ""
 
-        if max_games and len(player_samples) > max_games:
-            player_samples = player_samples[:max_games]
+        selected = []
+        filtered_races = []
+        kept_races = {}
+        for race, count in race_counts.most_common():
+            race_games = [s for s in player_samples if s["race"] == race]
+            if race != main_race and count < MIN_OFFRACE:
+                filtered_races.append(f"{count} {race}")
+                continue
+            if max_games and len(race_games) > max_games:
+                race_games = race_games[:max_games]
+            selected.extend(race_games)
+            if race != main_race:
+                kept_races[race] = count
+
+        player_samples = selected
+        race_note = ""
+        if kept_races:
+            race_note += f" [offrace kept: {kept_races}]"
+        if filtered_races:
+            race_note += f" [filtered: {', '.join(filtered_races)}]"
         if len(player_samples) < MIN_GAMES:
             print(f"  {canonical}: {len(player_samples)} valid games — SKIPPED (< {MIN_GAMES})")
             sys.stdout.flush()
@@ -149,6 +159,7 @@ def main():
             "alias": all_samples[i]["alias"],
             "file": all_samples[i]["file"],
             "replay_id": all_samples[i]["replay_id"],
+            "race": all_samples[i]["race"],
         })
 
     with open(CV_RESULTS_PATH, "w") as f:
