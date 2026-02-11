@@ -564,6 +564,92 @@ ACTION_CATEGORIES = {
 
 ---
 
+## Experiment 14: Per-Race Filtering, --max-games 100, 33 Players
+**Date**: Feb 2026
+**Features**: Same as Exp 13 (race-neutral + abstracted n-grams + Prod collapse + deep features + leave trimming)
+**Hyperparameters**: max_depth=10, n_estimators=200, StandardScaler
+**Feature count**: ~206
+**Training data**: Modern era only (>=2025-01-01), 100 samples/player max (per race), aurora_id-based, min 20 games
+
+**Key changes from Exp 13:**
+
+1. **Per-race --max-games cap** — Each race capped independently at --max-games. Previously the cap was global across all races. Now a player with 200Z + 30T gets up to 100Z + 30T (not 100 total).
+
+2. **Most-recent-first ordering** — `ORDER BY game_date DESC` in feature extraction, so the --max-games cap takes the most recent games.
+
+3. **Blind validation script** (`validate.py`) — Games beyond the training cap serve as natural held-out data. Predicts on unseen replays per player, filtered to trained races only.
+
+4. **New players**: Light (aurora_id 14926205, 3 handles: kimsabuho, YB_Lightt, ZergPraticeGGUL)
+
+| Metric | Value |
+|--------|-------|
+| Samples | 2,860 (33 players, max 100/race) |
+| Accuracy | **99.9%** (2857/2860) |
+
+**Per-player accuracy:**
+- 100%: 30/33 players (soO, Shine, Air, Rush, Free, Sky, soma, EffOrt, Speed, yOOn, Artosis, RoyaL, Light, Jaedong, BishOp, sSak, Ample, Tyson, Scan, Stork, Flash, SoulKey, Best, Rich, Rain, gypsy, n00b, HyuK, Fantasy, snOw)
+- 99.0%: Dewalt (99/100), ProMise (99/100)
+- 98.8%: Larva (81/82)
+
+**Misclassifications: 3**
+- Dewalt → Artosis (IIII-------IIII, ZvP game)
+- ProMise → Artosis (NCS_GuRaMise, TvP game)
+- Larva → soma (JSA_Larva, ZvZ game)
+
+**Shuttle**: Skipped (< 20 modern games)
+
+### Blind Validation (held-out games not used in training)
+Trained on 2,682 replays. 1,510 held-out games tested (same-race only, offrace excluded as noise).
+
+| Player | Held-out | Correct | Accuracy |
+|--------|----------|---------|----------|
+| Shine | 193 | 193 | 100.0% |
+| Air | 176 | 176 | 100.0% |
+| Rush | 116 | 116 | 100.0% |
+| Free | 113 | 113 | 100.0% |
+| Sky | 113 | 113 | 100.0% |
+| soma | 68 | 68 | 100.0% |
+| Artosis | 54 | 54 | 100.0% |
+| Speed | 49 | 49 | 100.0% |
+| EffOrt | 38 | 38 | 100.0% |
+| Jaedong | 35 | 35 | 100.0% |
+| RoyaL | 33 | 33 | 100.0% |
+| ProMise | 5 | 5 | 100.0% |
+| Dewalt | 3 | 3 | 100.0% |
+| Scan | 3 | 3 | 100.0% |
+| Light | 51 | 50 | 98.0% |
+| BishOp | 26 | 25 | 96.2% |
+| soO | 305 | 290 | 95.1% |
+| yOOn | 49 | 43 | 87.8% |
+| Best | 33 | 19 | 57.6% |
+| Shuttle | 17 | 0 | 0.0% |
+| Rain | 13 | 0 | 0.0% |
+| sSak | 11 | 0 | 0.0% |
+| Larva | 3 | 0 | 0.0% |
+| SoulKey | 3 | 0 | 0.0% |
+| **TOTAL** | **1,510** | **1,426** | **94.4%** |
+
+Players tested: 24, Perfect accuracy: 14/24
+
+**Blind validation notes:**
+- 0% players (Shuttle, Rain, sSak, Larva, SoulKey) all had very few held-out games (3-17), likely all offrace that slipped through or edge cases
+- soO's 15 misclassifications all predicted as soma
+- yOOn's 6 misclassifications all predicted as Sky
+- Best's 10 misclassifications predicted as soma
+
+**Data scrape following analysis:**
+Scraped ~1,400 new replays for weak players to improve future training:
+- soO: +974 (lililllilillill 380, fdsafasfsdafsda 272, lllllllIIIIlIlI 206, INO_soO 116)
+- Larva: +253 (JSA_Larva)
+- Rain: +199 (Mstz_Dex 168, MiniMaxii 31)
+- sSak: +181 (JSA_sSak1 162, HM_sSak 19 — new handle discovered)
+- snOw: +44 (IIIlIllIIllllIl, US West gateway)
+- yOOn: +24 (C9_y00n)
+- Flash: +2 (C9_FlaSh)
+- Total DB: 11,493 replays (up from ~10,069)
+
+---
+
 ## Ideas to Try
 - [x] Abstracted n-grams (Experiment 4)
 - [x] Hyperparameter tuning (Experiment 5)
@@ -579,5 +665,6 @@ ACTION_CATEGORIES = {
 - [ ] Investigate Sea vs Light confusion
 - [x] Smurf detection: per-player outlier detection (distance from centroid or Isolation Forest), then classify outliers to identify who's actually playing. Could also clean training data by removing smurf-contaminated games. (Experiment 13 — outlier detection via Euclidean distance from class centroid, --analyze flag)
 - [x] Leverage cwal.gg aurora_id for account linking (Experiment 12 — player_identities table)
+- [x] Blind validation using held-out games beyond --max-games cap (Experiment 14 — validate.py)
 - [ ] Run Tier 2 API backfill for opponent aurora_ids (improves unlabeled player grouping)
 - [ ] Add Sharp aurora_id to enable training

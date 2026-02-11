@@ -4,7 +4,9 @@
 import argparse
 import json
 import re
+import sqlite3
 import time
+from datetime import datetime, timedelta
 
 import requests
 from pathlib import Path
@@ -27,6 +29,8 @@ DOWNLOAD_DELAY = 0.15  # seconds between replay downloads
 GATEWAY_NAMES = {10: "US West", 11: "US West", 20: "US East", 30: "Korea", 45: "Europe"}
 
 OUTPUT_DIR = Path(__file__).parent / "data" / "to_ingest"
+DB_PATH = Path(__file__).parent / "data" / "replays.db"
+LEDGER_PATH = Path(__file__).parent / "docs" / "scrape_ledger.md"
 
 
 # ---------------------------------------------------------------------------
@@ -207,6 +211,148 @@ def api_handles(battlenet_account):
     return resp.json()
 
 
+def api_matches_since(alias, gateway=DEFAULT_GATEWAY, since=None, until=None):
+    """Fetch all matches for an alias since a given date. Auto-paginates."""
+    results = []
+    offset = 0
+    while True:
+        # Use list of tuples to allow duplicate 'timestamp' params for range queries
+        params = [
+            ("select", "*"),
+            ("gateway", f"eq.{gateway}"),
+            ("alias", f"eq.{alias}"),
+            ("order", "timestamp.desc"),
+            ("limit", PAGE_SIZE),
+            ("offset", offset),
+        ]
+        if since:
+            params.append(("timestamp", f"gte.{since}"))
+        if until:
+            params.append(("timestamp", f"lte.{until}"))
+        resp = requests.get(
+            f"{SUPABASE_URL}/rest/v1/player_matches",
+            headers=get_headers(), params=params)
+        resp.raise_for_status()
+        page = resp.json()
+        if not page:
+            break
+        results.extend(page)
+        if len(page) < PAGE_SIZE:
+            break
+        offset += len(page)
+        time.sleep(API_PAGE_DELAY)
+    return results
+
+
+# ---------------------------------------------------------------------------
+# Shared download helper
+# ---------------------------------------------------------------------------
+
+def extract_replay_match_id(replay_url):
+    """Extract MM-XXXXXXXX match_id from a replay URL."""
+    return replay_url.split("/")[-1].replace(".rep", "")
+
+
+def download_matches(matches, output_dir, existing_match_ids=None, dry_run=False):
+    """Download replay files from a list of API match dicts.
+
+    Args:
+        matches: list of match dicts from the cwal API
+        output_dir: Path to download directory
+        existing_match_ids: set of MM-... match_ids already in DB (skip these)
+        dry_run: if True, only print what would be downloaded
+
+    Returns:
+        (downloaded, skipped) counts
+    """
+    downloadable = [m for m in matches if m.get("replay_url")]
+    if not downloadable:
+        return 0, 0
+
+    if not dry_run:
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+    metadata_path = output_dir / "_metadata.jsonl"
+    downloaded = 0
+    skipped = 0
+
+    for m in downloadable:
+        replay_url = m["replay_url"]
+        match_id = extract_replay_match_id(replay_url)
+
+        # DB dedup
+        if existing_match_ids and match_id in existing_match_ids:
+            skipped += 1
+            continue
+
+        alias = m.get("alias", "unknown")
+        opponent = m.get("opponent_alias", "unknown")
+        matchup = m.get("matchup", "unknown")
+        result = m.get("result", "unknown")
+        filename = f"{alias}_vs_{opponent}_{matchup}_{result}_{match_id}.rep"
+        output_path = output_dir / filename
+
+        if dry_run:
+            if output_path.exists():
+                skipped += 1
+            else:
+                downloaded += 1
+                print(f"  [GET] {filename}")
+            continue
+
+        # Filesystem dedup
+        if output_path.exists():
+            skipped += 1
+            continue
+
+        resp = requests.get(replay_url)
+        if resp.status_code == 200:
+            output_path.write_bytes(resp.content)
+            downloaded += 1
+            print(f"  Downloaded: {filename}")
+
+            meta = {
+                "match_id": m.get("id"),
+                "file_name": filename,
+                "alias": alias,
+                "aurora_id": m.get("aurora_id"),
+                "opponent_alias": m.get("opponent_alias"),
+                "opponent_aurora_id": m.get("opponent_aurora_id"),
+                "gateway": m.get("gateway"),
+            }
+            with open(metadata_path, "a") as f:
+                f.write(json.dumps(meta) + "\n")
+        else:
+            print(f"  Failed ({resp.status_code}): {filename}")
+
+        time.sleep(DOWNLOAD_DELAY)
+
+    return downloaded, skipped
+
+
+def load_existing_match_ids():
+    """Load all match_ids from the DB for dedup."""
+    conn = sqlite3.connect(DB_PATH)
+    ids = {row[0] for row in conn.execute(
+        "SELECT match_id FROM replays WHERE match_id IS NOT NULL")}
+    conn.close()
+    return ids
+
+
+def append_ledger(command, players, new, skipped, notes=""):
+    """Append a row to the scrape ledger."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    if not LEDGER_PATH.exists():
+        LEDGER_PATH.parent.mkdir(parents=True, exist_ok=True)
+        LEDGER_PATH.write_text(
+            "# Scrape Ledger\n\n"
+            "| Date | Command | Players | New | Skipped | Notes |\n"
+            "|------|---------|---------|-----|---------|-------|\n"
+        )
+    with open(LEDGER_PATH, "a") as f:
+        f.write(f"| {today} | {command} | {players} | {new} | {skipped} | {notes} |\n")
+
+
 # ---------------------------------------------------------------------------
 # Command handlers
 # ---------------------------------------------------------------------------
@@ -268,7 +414,6 @@ def cmd_scrape(args):
         print("No matches found.")
         return
 
-    # Filter to matches with replay URLs
     downloadable = [m for m in matches if m.get("replay_url")]
     print(f"Found {len(downloadable)} matches with replays (of {len(matches)} total).")
 
@@ -276,53 +421,8 @@ def cmd_scrape(args):
         return
 
     output_dir = Path(args.output)
-    if not args.dry_run:
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-    metadata_path = output_dir / "_metadata.jsonl"
-    downloaded = 0
-    skipped = 0
-
-    for m in downloadable:
-        replay_url = m["replay_url"]
-        match_id = replay_url.split("/")[-1].replace(".rep", "")
-        opponent = m.get("opponent_alias", "unknown")
-        matchup = m.get("matchup", "unknown")
-        result = m.get("result", "unknown")
-        filename = f"{args.alias}_vs_{opponent}_{matchup}_{result}_{match_id}.rep"
-        output_path = output_dir / filename
-
-        if args.dry_run:
-            tag = "SKIP" if output_path.exists() else "GET"
-            print(f"  [{tag}] {filename}")
-            continue
-
-        if output_path.exists():
-            skipped += 1
-            continue
-
-        resp = requests.get(replay_url)
-        if resp.status_code == 200:
-            output_path.write_bytes(resp.content)
-            downloaded += 1
-            print(f"  Downloaded: {filename}")
-
-            # Append metadata (aurora_ids) for ingestion pipeline
-            meta = {
-                "match_id": m.get("id"),
-                "file_name": filename,
-                "alias": m.get("alias"),
-                "aurora_id": m.get("aurora_id"),
-                "opponent_alias": m.get("opponent_alias"),
-                "opponent_aurora_id": m.get("opponent_aurora_id"),
-                "gateway": m.get("gateway"),
-            }
-            with open(metadata_path, "a") as f:
-                f.write(json.dumps(meta) + "\n")
-        else:
-            print(f"  Failed ({resp.status_code}): {filename}")
-
-        time.sleep(DOWNLOAD_DELAY)
+    downloaded, skipped = download_matches(
+        matches, output_dir, dry_run=args.dry_run)
 
     if args.dry_run:
         print(f"\nDry run — would download to {output_dir}/")
@@ -439,6 +539,158 @@ def cmd_count(args):
     print(f"{alias}: 0 games (checked all gateways)")
 
 
+def cmd_refresh(args):
+    """Scrape new games for all labeled players."""
+    since = args.since or (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+    print(f"Refreshing labeled players (games since {since})...")
+
+    existing = load_existing_match_ids()
+    print(f"DB has {len(existing)} existing replays")
+
+    conn = sqlite3.connect(DB_PATH)
+    identities = conn.execute(
+        "SELECT canonical_name, aurora_id FROM player_identities ORDER BY canonical_name"
+    ).fetchall()
+    conn.close()
+    print(f"Found {len(identities)} labeled players\n")
+
+    output_dir = Path(args.output)
+    total_new = 0
+    total_skipped = 0
+
+    for canonical, aurora_id in identities:
+        handles = api_handles(aurora_id)
+        if not handles:
+            print(f"  {canonical}: no handles found (aurora_id={aurora_id})")
+            continue
+
+        player_new = 0
+        handle_strs = []
+
+        for h in handles:
+            alias = h.get("alias")
+            gw = h.get("gateway", DEFAULT_GATEWAY)
+            if not alias:
+                continue
+
+            try:
+                matches = api_matches_since(alias, gateway=gw, since=since)
+            except requests.exceptions.HTTPError as e:
+                print(f"  {canonical}: API error for {alias}@{GATEWAY_NAMES.get(gw, str(gw))}: {e}")
+                continue
+
+            if not matches:
+                continue
+
+            downloaded, skipped = download_matches(
+                matches, output_dir, existing_match_ids=existing,
+                dry_run=args.dry_run)
+
+            if downloaded > 0:
+                handle_strs.append(
+                    f"{downloaded} from {alias}@{GATEWAY_NAMES.get(gw, str(gw))}")
+            player_new += downloaded
+            total_skipped += skipped
+
+            # Track downloaded match_ids to prevent re-downloading via other handles
+            for m in matches:
+                url = m.get("replay_url")
+                if url:
+                    existing.add(extract_replay_match_id(url))
+
+        if player_new > 0:
+            print(f"  {canonical}: {player_new} new ({', '.join(handle_strs)})")
+        total_new += player_new
+
+    print(f"\nRefresh complete: {total_new} new, {total_skipped} skipped")
+
+    if not args.dry_run and total_new > 0:
+        append_ledger(
+            f"refresh --since {since}",
+            f"{len(identities)} labeled",
+            total_new, total_skipped)
+
+
+def cmd_scrape_date(args):
+    """Scrape recent ladder replays from top ranked players."""
+    since = args.since
+    until = getattr(args, 'until', None)
+    top = args.top
+    date_desc = f"since {since}" + (f", until {until}" if until else "")
+    print(f"Scraping replays from top {top} ranked players ({date_desc})...")
+
+    existing = load_existing_match_ids()
+    print(f"DB has {len(existing)} existing replays")
+
+    # Fetch ranked players across all major gateways
+    all_players = []
+    seen_aliases = set()
+    for gw in [30, 10, 20, 45]:
+        try:
+            ranked = api_rankings(gateway=gw, limit=top)
+        except requests.exceptions.HTTPError:
+            continue
+        for p in ranked:
+            alias = p.get("alias")
+            key = (alias, gw)
+            if key not in seen_aliases:
+                seen_aliases.add(key)
+                all_players.append((alias, gw))
+
+    print(f"Found {len(all_players)} ranked players across gateways\n")
+
+    output_dir = Path(args.output)
+    total_new = 0
+    total_skipped = 0
+    seen_urls = set()  # Deduplicate across players (same match appears for both)
+
+    for i, (alias, gw) in enumerate(all_players):
+        try:
+            matches = api_matches_since(alias, gateway=gw, since=since, until=until)
+        except requests.exceptions.HTTPError as e:
+            # Barcode names often 500 — skip silently
+            continue
+
+        if not matches:
+            continue
+
+        # Deduplicate by replay_url across players
+        unique_matches = []
+        for m in matches:
+            url = m.get("replay_url")
+            if url and url not in seen_urls:
+                seen_urls.add(url)
+                unique_matches.append(m)
+
+        if not unique_matches:
+            continue
+
+        downloaded, skipped = download_matches(
+            unique_matches, output_dir, existing_match_ids=existing,
+            dry_run=args.dry_run)
+
+        if downloaded > 0:
+            gw_name = GATEWAY_NAMES.get(gw, str(gw))
+            print(f"  [{i+1}/{len(all_players)}] {alias}@{gw_name}: {downloaded} new")
+        total_new += downloaded
+        total_skipped += skipped
+
+        # Update existing set
+        for m in unique_matches:
+            url = m.get("replay_url")
+            if url:
+                existing.add(extract_replay_match_id(url))
+
+    date_range = since + (f" to {until}" if until else "+")
+    print(f"\nScrape-date complete: {total_new} new, {total_skipped} skipped ({date_range})")
+
+    if not args.dry_run and total_new > 0:
+        cmd_str = f"scrape-date --since {since}"
+        if until:
+            cmd_str += f" --until {until}"
+        append_ledger(cmd_str, f"{len(all_players)} ranked", total_new, total_skipped)
+
+
 # ---------------------------------------------------------------------------
 # CLI setup
 # ---------------------------------------------------------------------------
@@ -494,6 +746,22 @@ def main():
     p_count.add_argument("player", help="Player alias")
     p_count.add_argument("--gateway", type=int, default=DEFAULT_GATEWAY, help=f"Gateway ID (default {DEFAULT_GATEWAY}=Korea)")
     p_count.set_defaults(func=cmd_count)
+
+    # -- refresh --
+    p_refresh = sub.add_parser("refresh", help="Scrape new games for all labeled players")
+    p_refresh.add_argument("--since", help="Only fetch games after this date (YYYY-MM-DD, default 7 days ago)")
+    p_refresh.add_argument("--output", default=str(OUTPUT_DIR), help=f"Output directory (default {OUTPUT_DIR})")
+    p_refresh.add_argument("--dry-run", action="store_true", help="Show what would download without downloading")
+    p_refresh.set_defaults(func=cmd_refresh)
+
+    # -- scrape-date --
+    p_scrape_date = sub.add_parser("scrape-date", help="Scrape recent ladder replays from top ranked players")
+    p_scrape_date.add_argument("--since", required=True, help="Fetch games after this date (YYYY-MM-DD)")
+    p_scrape_date.add_argument("--until", help="Fetch games before this date (YYYY-MM-DD)")
+    p_scrape_date.add_argument("--top", type=int, default=200, help="Number of top ranked players to scrape per gateway (default 200)")
+    p_scrape_date.add_argument("--output", default=str(OUTPUT_DIR), help=f"Output directory (default {OUTPUT_DIR})")
+    p_scrape_date.add_argument("--dry-run", action="store_true", help="Show what would download without downloading")
+    p_scrape_date.set_defaults(func=cmd_scrape_date)
 
     args = parser.parse_args()
     args.func(args)

@@ -9,7 +9,7 @@ When the user uses ML terminology (correctly or incorrectly), briefly correct or
 - `predict.py` — Load saved model, predict on all unlabeled players (10+ games)
 - `ingest_replays.py` — Replay ingestion pipeline (to_ingest → replays)
 - `backfill_aurora_ids.py` — Migration/backfill script for aurora_ids (Tier 1: offline, Tier 2: API)
-- `cwal.py` — CLI tool for cwal.gg API (matches, scrape, rankings, search, handles)
+- `cwal.py` — CLI tool for cwal.gg API (matches, scrape, refresh, scrape-date, rankings, search, handles)
 - `experiments.md` — **MUST UPDATE** after every training iteration
 
 ## Directory Layout
@@ -75,10 +75,13 @@ barcode-reader/
 
 ## Data Pipeline
 1. **Scrape** (`cwal.py scrape <alias>`) — downloads `.rep` files to `data/to_ingest/`, writes `_metadata.jsonl` with aurora_ids for both players per match
-2. **Ingest** (`python ingest_replays.py`) — parses replays with screp, stores in DB, reads `_metadata.jsonl` to attach aurora_ids to the `players` table, extracts match_id from filename, moves files to `data/replays/`, deletes metadata file after
-3. **Identity** — `player_identities` maps aurora_ids to canonical pro names. Training/predict join on `players.aurora_id → player_identities.aurora_id`. One canonical name can have multiple aurora_ids (alt accounts auto-merge).
-4. Replays do NOT store aurora_ids — only display names. Aurora_ids come from cwal.gg API and are carried through via `_metadata.jsonl`.
-5. **Backfill** (`python backfill_aurora_ids.py`) — one-time migration or periodic refresh. Tier 1 (offline): backfills match_id + aurora_ids by name. Tier 2 (`--api`): fetches opponent aurora_ids from cwal.gg.
+2. **Refresh** (`cwal.py refresh [--since YYYY-MM-DD]`) — auto-scrapes new games for ALL labeled players. Looks up handles via aurora_id from `player_identities`, deduplicates against DB match_ids. Default: last 7 days.
+3. **Scrape-date** (`cwal.py scrape-date --since YYYY-MM-DD [--until] [--top N]`) — scrapes recent ladder replays from top N ranked players (default 200) across all gateways. Grows the unlabeled pool. Deduplicates by replay_url and DB match_ids.
+4. **Ingest** (`python ingest_replays.py`) — parses replays with screp, stores in DB, reads `_metadata.jsonl` to attach aurora_ids to the `players` table, extracts match_id from filename, moves files to `data/replays/`, deletes metadata file after
+5. **Identity** — `player_identities` maps aurora_ids to canonical pro names. Training/predict join on `players.aurora_id → player_identities.aurora_id`. One canonical name can have multiple aurora_ids (alt accounts auto-merge).
+6. Replays do NOT store aurora_ids — only display names. Aurora_ids come from cwal.gg API and are carried through via `_metadata.jsonl`.
+7. **Backfill** (`python backfill_aurora_ids.py`) — one-time migration or periodic refresh. Tier 1 (offline): backfills match_id + aurora_ids by name. Tier 2 (`--api`): fetches opponent aurora_ids from cwal.gg.
+8. **Scrape ledger** (`docs/scrape_ledger.md`) — auto-updated by `refresh` and `scrape-date` commands. Tracks date, command, player count, new/skipped replays.
 
 ## Workflow: Adding a New Player
 1. Find their cwal.gg alias: `cwal.py search <name>`

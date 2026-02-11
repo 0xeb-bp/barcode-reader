@@ -53,11 +53,14 @@ def main():
         all_samples = extract_player_samples_by_aurora(
             conn, aurora_ids, label=canonical, min_date=MIN_DATE)
 
-        # Determine which races were trained on for this player
+        # Determine which races were trained on for this player.
+        # train.py filters out offrace games if that race has < MIN_OFFRACE (20) games.
+        # We must mirror that here: only validate on races the model actually saw
+        # in training, otherwise we'd be testing on offrace games the model never
+        # learned, which would show as 0% and pollute the accuracy numbers.
         trained_samples = [s for s in all_samples if s["replay_id"] in training_replay_ids]
         trained_races = {s["race"] for s in trained_samples}
 
-        # Filter to held-out games in trained races only (exclude offrace noise)
         held_out = [s for s in all_samples
                     if s["replay_id"] not in training_replay_ids
                     and s["race"] in trained_races]
