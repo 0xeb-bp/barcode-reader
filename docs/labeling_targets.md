@@ -2,25 +2,25 @@
 
 Goal: Label all 28 ASL20 participants for training data.
 
-## Already Labeled (17/28 ASL20)
+## Already Labeled (16/28 ASL20)
 | Player | Games | Handles |
 |--------|-------|---------|
-| Ample | 125 | YB_Ample, NaengMingNing |
-| Best | 99 | NCS_Bestt |
+| Ample | 144 | YB_Ample, NaengMingNing |
+| Best | 217 | NCS_Bestt, bestbisuminsnow |
 | EffOrt | 241 | NCS_effort |
 | hero | 29 | Mstz_herO`, chobodariiiiiii |
 | Jaedong | 200 | jd2321232, llIIll1ll1lI |
-| Larva | 132 | JSA_Larva, barcode |
+| Larva | 266 | JSA_Larva, barcode |
 | Mong | 53 | blackpigpower, ROG.Black_Mong |
-| RoyaL | 206 | RoyaL1111, llllllll11lIIIl, 123eeaa4a4a4a4a |
-| Rush | 306 | JSU_Rush., sorkdlrlsekdhsm, dustmqgkwk!!! |
-| Sharp | 117 | iiiiilililli, JSA_Sharp1, barcodes |
-| SoulKey | 100 | C9_NeedMoney., C9_kimminchul9 |
-| Speed | 218 | SpeedTube`, HM_Speed, barcodes |
-| Stork | 118 | SSU_Stork, barcode |
-| sSak | 184 | JSA_sSak1, wkelkqwlewqe |
-| snOw | 33 | barcodes only |
-| soma | 250 | lIIlIllIlIIlIIl, barcodes |
+| RoyaL | 228 | RoyaL1111, llllllll11lIIIl, 123eeaa4a4a4a4a |
+| Rush | 311 | JSU_Rush., sorkdlrlsekdhsm, dustmqgkwk!!! |
+| Sharp | 118 | iiiiilililli, JSA_Sharp1, barcodes |
+| SoulKey | 169 | C9_NeedMoney., C9_kimminchul9 |
+| Speed | 220 | SpeedTube`, HM_Speed, barcodes |
+| Stork | 121 | SSU_Stork, barcode |
+| sSak | 203 | JSA_sSak1, wkelkqwlewqe |
+| snOw | 49 | barcodes only |
+| soma | 257 | lIIlIllIlIIlIIl, barcodes |
 
 ## Missing (11) — Need to Label
 
@@ -47,34 +47,37 @@ Goal: Label all 28 ASL20 participants for training data.
 | Paralyze | T | ? | 0 | Need to find on cwal.gg |
 | Queen | Z | ? | 1 | Need to find on cwal.gg |
 
-## Also Labeled (not in ASL20) — 23 players
+## Also Labeled (not in ASL20) — 26 players
 | Player | Games | Notes |
 |--------|-------|-------|
-| Air | 334 | NZU_Air + barcodes |
-| Artosis | 207 | valks + barcodes |
-| BishOp | 194 | K_BishOp + barcodes |
-| Dewalt | 166 | DewaltTv + barcodes |
-| Fantasy | 47 | FanTaSy91 + alt (qweqewqqe) |
-| Flash | 104 | C9_FlaSh |
-| Free | 264 | hjvvwer, vmfosemtnlq |
-| gypsy | 71 | gypsy + barcodes |
-| HyuK | 62 | C9_PSM, C9_HyuK9 |
-| Light | 201 | kimsabuho, YB_Lightt, ZergPraticeGGUL |
-| n00b | 66 | ErOs_KBS, WFU_nOOB + barcodes |
+| Air | 363 | NZU_Air + barcodes |
+| Artosis | 208 | valks + barcodes |
+| BishOp | 213 | K_BishOp + barcodes |
+| Dewalt | 181 | DewaltTv + barcodes |
+| Fantasy | 48 | FanTaSy91 + alt (qweqewqqe) |
+| Flash | 170 | C9_FlaSh |
+| Free | 265 | hjvvwer, vmfosemtnlq |
+| gypsy | 76 | gypsy + barcodes |
+| HyuK | 86 | C9_PSM, C9_HyuK9 |
+| Light | 208 | kimsabuho, YB_Lightt, ZergPraticeGGUL |
+| Motive | 149 | JSU_Motive, IllIIllIIIlII |
+| Movie | 100 | MBU_Movie, lllIlIllIIllIl |
+| n00b | 72 | ErOs_KBS, WFU_nOOB + barcodes |
 | NaDa | 49 | asdf98fdkjasdfh |
 | Noel | 202 | wico`1127, wico`````` |
-| ProMise | 144 | NCS_GuRaMise + many barcodes |
-| Rain | 82 | MiniMaxii, Mstz_Dex |
-| Rich | 90 | many handles |
-| Scan | 119 | YB_Scan + barcodes |
-| Shine | 426 | wG_Shine, MBU_Shine, Gyeo\`GLE + barcodes |
+| ProMise | 174 | NCS_GuRaMise + many barcodes |
+| Quickly | 184 | JG_Quickly, &-Quickly, IllIlIIlIIIllII |
+| Rain | 213 | MiniMaxii, Mstz_Dex |
+| Rich | 132 | many handles |
+| Scan | 143 | YB_Scan + barcodes |
+| Shine | 444 | wG_Shine, MBU_Shine, Gyeo\`GLE + barcodes |
 | Shuttle | 22 | TaechoJum |
-| Sky | 256 | ImSky. + barcodes |
-| soO | 558 | INO_soO + barcodes |
-| Tyson | 113 | Mstz_Tyson, 4d5d6d7d8d9d |
-| yOOn | 215 | C9_y00n + barcode |
+| Sky | 331 | ImSky. + barcodes |
+| soO | 985 | INO_soO + barcodes |
+| Tyson | 141 | Mstz_Tyson, 4d5d6d7d8d9d |
+| yOOn | 716 | C9_y00n + barcode |
 
 ## Summary
-- **Labeled**: 40 players (17 ASL20 + 23 others)
+- **Labeled**: 42 players (16 ASL20 + 26 others)
 - **Target**: All 28 ASL20 players labeled
 - **Remaining**: 11 ASL20 players to add
