@@ -667,4 +667,160 @@ Scraped ~1,400 new replays for weak players to improve future training:
 - [x] Leverage cwal.gg aurora_id for account linking (Experiment 12 — player_identities table)
 - [x] Blind validation using held-out games beyond --max-games cap (Experiment 14 — validate.py)
 - [ ] Run Tier 2 API backfill for opponent aurora_ids (improves unlabeled player grouping)
-- [ ] Add Sharp aurora_id to enable training
+- [x] Add Sharp aurora_id to enable training
+
+---
+
+## Experiment 15: 43 Players, No Cap, class_weight="balanced"
+**Date**: Feb 2026
+**Features**: Same as Exp 14 (race-neutral + abstracted n-grams + Prod collapse + deep features + leave trimming)
+**Hyperparameters**: max_depth=10, n_estimators=200, StandardScaler, class_weight="balanced"
+**Feature count**: 218
+**Training data**: Modern era only (>=2025-01-01), NO per-player cap, aurora_id-based, min 20 games
+
+**Key changes from Exp 14:**
+1. **No per-player cap** — uses all available games with `class_weight="balanced"` to handle imbalance
+2. **18 new players** added since Exp 14: NaDa, herO, Noel, Mong, Sharp, Movie, Motive, Quickly, MadYellow, ZeloT (+ others from prior sessions)
+3. Shuttle skipped again (18 games < 20 min threshold)
+
+| Metric | Value |
+|--------|-------|
+| Samples | 6,960 (43 players) |
+| Accuracy | **99.6%** (6933/6960) |
+
+**Per-player accuracy:**
+- 100%: 30/43 players (Shine, Sky, Air, Rush, Free, soma, RoyaL, Speed, Rain, Light, Noel, BishOp, Artosis, sSak, Jaedong, SoulKey, Motive, Scan, Tyson, Rich, Stork, Sharp, ZeloT, HyuK, MadYellow, gypsy, n00b, snOw, NaDa, Fantasy)
+- 99.8%: soO (809/811)
+- 99.5%: EffOrt (183/184)
+- 99.4%: Best (166/167)
+- 99.3%: Dewalt (134/135)
+- 99.2%: Ample (123/124)
+- 98.9%: Larva (187/189)
+- 98.8%: Movie (82/83), Quickly (160/162), Flash (80/81)
+- 98.4%: ProMise (127/129)
+- 97.9%: yOOn (506/517)
+- 97.1%: Mong (34/35)
+- 95.8%: herO (23/24)
+
+**Misclassifications: 27**
+Notable confusion patterns:
+- yOOn → Sky (×10) — persistent, both Protoss with similar style
+- soO → soma (×2) — both top Zerg
+- Larva → soma/soO (×2) — Zerg confusion
+- ProMise → Quickly/Artosis (×2)
+- Quickly → Noel/Sky (×2)
+
+**Top features:**
+1. `ehkg2_4_4` (0.026) - early hotkey group 4 double-tap
+2. `first_assign_0` (0.026) - first hotkey assignment
+3. `ehkg2_3_3` (0.025) - early hotkey group 3 double-tap
+4. `ng2_H_Prod` (0.024) - Hotkey→Produce pattern
+5. `ehkg2_1_2` (0.019) - early hotkey group 1→2 transition
+
+**Notes:**
+- Accuracy held at 99.6% despite nearly tripling player count (from 33 to 43) and 2.4× more samples
+- All 18 new players integrated cleanly — 13 at 100%, lowest is herO (95.8%, only 24 games)
+- BishOp improved from previous sessions: 153/153 = 100% despite K_JyJ4 handle (61 games) being half his data
+- yOOn↔Sky confusion remains the hardest problem (10 of 27 misclassifications)
+
+---
+
+## Experiment 16: Zerg-Only Raw N-gram Ablation Study
+**Date**: Feb 2026
+**Question**: Does using raw command types (Unit Morph, Burrow, etc.) instead of abstracted categories (Prod, Abl) improve Zerg classification?
+**Hypothesis**: Since all players are Zerg, race-neutral abstraction is unnecessary and may discard Zerg-specific signal (larva inject rhythms, burrow habits, morph patterns).
+
+**Setup**: Two LOO CV runs on identical Zerg-only data:
+- **Run A (baseline)**: Abstracted n-grams (current production approach)
+- **Run B (experimental)**: Raw command-type n-grams (no abstraction, no consecutive Prod collapse)
+- Non-n-gram features (timing, hotkeys, APM, deep features) identical in both runs
+- Same n-gram budget: top 25/20/15 for 2/3/4-grams
+- Hotkey group n-grams (hkg, ehkg) included identically in both runs
+- class_weight="balanced", max_depth=10, n_estimators=200
+
+**Players** (Zerg mains with 100+ Zerg games, 7 total):
+| Player | Zerg Games |
+|--------|-----------|
+| soO | 811 |
+| yOOn | 471 |
+| Shine | 347 |
+| Larva | 189 |
+| soma | 170 |
+| EffOrt | 141 |
+| Jaedong | 139 |
+
+| Metric | Abstracted | Raw | Delta |
+|--------|-----------|-----|-------|
+| Samples | 2,268 | 2,268 | — |
+| Accuracy | **100.0%** | **100.0%** | 0 |
+| Features | 201 | 171 | -30 |
+| N-gram features | 103 | 73 | -30 |
+| Misclassifications | 0 | 0 | 0 |
+
+Per-player: All 7 players at 100.0% in both runs.
+
+**Top features (both runs)**: Entirely hotkey patterns — no action n-grams in top 15:
+| Rank | Abstracted | Raw |
+|------|-----------|-----|
+| 1 | ehkg2_3_3 (0.037) | ehkg2_3_3 (0.038) |
+| 2 | ehkg2_5_5 (0.032) | ehkg2_4_4 (0.035) |
+| 3 | ehkg2_5_3 (0.032) | first_assign_0 (0.033) |
+| 4 | ehkg3_3_5_3 (0.031) | early_rapid_ratio (0.032) |
+| 5 | ehkg2_4_4 (0.031) | ehkg2_3_5 (0.029) |
+
+**Sanity check** (--max-games 30, 210 samples): Both runs 99.5% (209/210), same single misclassification (soO→soma).
+
+**Conclusions:**
+1. **Abstraction does NOT hurt Zerg classification.** Raw Zerg-specific commands (Unit Morph, Burrow, etc.) add zero discriminative signal beyond what hotkey patterns already provide.
+2. **Hotkey muscle memory dominates.** The top 15 features in both runs are exclusively early-game hotkey group patterns and timing features. Action n-grams are dead weight for this 7-player Zerg subset.
+3. **soO↔soma confusion disappears** at full data. The 2 soO→soma misclassifications in the 43-player model (Exp 15) are likely caused by cross-race/cross-class noise, not missing Zerg-specific features.
+4. **Fewer features, same accuracy.** Raw mode actually produces 30 fewer features (larger vocabulary → top-N spreads thinner) with no accuracy penalty — confirming the action n-grams are irrelevant here.
+5. **Per-race models are not needed for Zerg.** The current abstracted approach already achieves perfect Zerg separation. The "Per-race models" idea from the Ideas list can be deprioritized.
+
+---
+
+## Experiment 17: Enhanced Hotkey Features (yOOn↔Sky Investigation)
+**Date**: Feb 2026
+**Goal**: Reduce yOOn↔Sky confusion (10 of 27 misclassifications in Exp 15)
+
+**Investigation**: Extracted detailed hotkey data from yOOn's 10 misclassified Protoss games, his correctly classified Protoss games, his Zerg games, and Sky's Protoss games. Found:
+- **All 10 misclassified games are Protoss** — yOOn's group 1/3 usage ratio flips in these games (group 3 dominates at 41% vs normally 35%), making his distribution look like Sky's (32%/32%)
+- **Assign order stays distinct**: yOOn always [1, 3, 2], Sky always [1, 2, 3] — but we only captured `first_assign_0` (both = 1)
+- **Timing stays distinct**: yOOn double-taps group 3 in ~151ms (Sky ~262ms), yOOn switches groups in ~160ms (Sky ~223ms) — not captured at all
+
+**New features added to features.py (11 total):**
+1. `dt_median_g0` through `dt_median_g5` — per-group double-tap timing (median ms between consecutive same-group presses, groups 0-5)
+2. `group_switch_median`, `group_switch_mean` — time to switch between different control groups
+3. `assign_order_1`, `assign_order_2`, `assign_order_3` — 2nd/3rd/4th control groups assigned (extending existing `first_assign_0`)
+
+| Metric | Exp 15 | Exp 17 | Delta |
+|--------|--------|--------|-------|
+| Samples | 6,960 | 6,960 | — |
+| Features | 218 | 229 | +11 |
+| Accuracy | **99.6%** (6933) | **99.6%** (6933) | 0 |
+| Misclassifications | 27 | 27 | 0 |
+| yOOn→Sky errors | 10 | 3 | **-7** |
+
+**Per-player changes (vs Exp 15):**
+- yOOn: 506/517 → 510/517 (97.9% → 98.6%, +0.7%) — **7 fewer Sky confusions**, but picked up 4 new errors (→ProMise, →Free, →BishOp)
+- Flash: 80/81 → 81/81 (98.8% → 100%) — fixed
+- soO: 809/811 → 808/811 — 1 new miss
+- Dewalt: 134/135 → 133/135 — 1 new miss
+- Larva: 187/189 → 186/189 — 1 new miss
+- sSak: 159/159 → 158/159 — 1 new miss
+- snOw: 36/36 → 35/36 — 1 new miss
+
+**Top features:**
+1. `ehkg2_4_4` (0.030)
+2. `first_assign_0` (0.025)
+3. `ehkg2_3_3` (0.022)
+4. `ng2_H_Prod` (0.021)
+5. `ehkg3_3_3_3` (0.017)
+...
+9. **`assign_order_1` (0.016)** ← NEW, confirms 2nd assign group is discriminative
+
+**Conclusions:**
+- The yOOn→Sky systematic confusion (10 games) is largely resolved — down to 3 scattered errors
+- `assign_order_1` proved itself as a real feature (top 15 importance)
+- Total accuracy unchanged at 99.6% — the "error budget" redistributed rather than shrunk
+- The model is likely at its noise floor for LOO CV with Random Forest at this feature set

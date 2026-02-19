@@ -159,6 +159,50 @@ def extract_features(commands: list, game_frames: int) -> tuple:
                         if prob > 0:
                             features[f"hk_tr_{g_from}_{g_to}"] = prob
 
+        # === PER-GROUP DOUBLE-TAP TIMING ===
+        # How fast you double-tap each control group (median ms between consecutive same-group presses)
+        hk_frames_list = [(c.get("Group", 0), c["Frame"]) for c in hotkey_cmds]
+        dt_gaps_by_group = defaultdict(list)
+        for i in range(1, len(hk_frames_list)):
+            g1, f1 = hk_frames_list[i - 1]
+            g2, f2 = hk_frames_list[i]
+            if g1 == g2:
+                gap_ms = (f2 - f1) * FRAME_MS
+                dt_gaps_by_group[g1].append(gap_ms)
+
+        for g in range(6):  # groups 0-5 (most commonly used)
+            gaps_g = dt_gaps_by_group.get(g, [])
+            if len(gaps_g) >= 5:
+                features[f"dt_median_g{g}"] = statistics.median(gaps_g)
+            else:
+                features[f"dt_median_g{g}"] = 0
+
+        # === GROUP-SWITCH VELOCITY ===
+        # How fast you transition between different control groups
+        switch_gaps = []
+        for i in range(1, len(hk_frames_list)):
+            g1, f1 = hk_frames_list[i - 1]
+            g2, f2 = hk_frames_list[i]
+            if g1 != g2:
+                switch_gaps.append((f2 - f1) * FRAME_MS)
+
+        if switch_gaps:
+            features["group_switch_median"] = statistics.median(switch_gaps)
+            features["group_switch_mean"] = statistics.mean(switch_gaps)
+
+        # === FIRST ASSIGN ORDER (2nd and 3rd groups) ===
+        # Which control groups you set up and in what order
+        first_assign_frame = {}
+        for c in hotkey_cmds:
+            g = c.get("Group", 0)
+            if c.get("HotkeyType", {}).get("Name") == "Assign":
+                if g not in first_assign_frame:
+                    first_assign_frame[g] = c["Frame"]
+
+        assign_order = sorted(first_assign_frame.keys(), key=lambda g: first_assign_frame[g])
+        for i in range(1, 4):  # 2nd, 3rd, 4th assigned groups (1st is already first_assign_0)
+            features[f"assign_order_{i}"] = assign_order[i] if i < len(assign_order) else -1
+
         # === HOTKEY GROUP N-GRAMS (raw counters for two-pass) ===
         if len(groups) > 10:
             group_strs = [str(g) for g in groups]
